@@ -28,8 +28,8 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
   @guest
-  <h1>no has iniciado sesion</h1>
-
+ <center><img style="margin-top:55px" src="{{asset('/img/SesionExpirada.png')}}"></center>
+ <center><h4><a href="{{url('/')}}">Volver a iniciar sesión</h4></center>
   @else
   <div class="wrapper">
     <header class="main-header">
@@ -49,16 +49,16 @@
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-          <span class="sr-only">Navegación</span>
-        </a>
+    
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
+        
           <ul class="nav navbar-nav">
             <!-- Messages: style can be found in dropdown.less-->
 
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
+    
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <small class="bg-green"> En línea </small>&emsp; {{ Auth::user()->name }}
                 <span class="hidden-xs"> </span>

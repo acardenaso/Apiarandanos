@@ -128,7 +128,7 @@ body {
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                       <center><a class="fa fa-bug" href="{{ url('/home') }}">Click aqui, Redireccionar al sistema</a></center>
                     @else
                     @endauth
                 </div>
@@ -163,7 +163,7 @@ body {
                     @endif
         
         </div>
-                <button class="buttonn" type="submit">
+                <button style="border-radius: 13px;" class="buttonn" type="submit">
                     Iniciar Sesion</button>
                 </form>
 
