@@ -42,7 +42,7 @@ class ArticlesController extends Controller
              
                 $articles = Article::leftjoin('categories','articles.category_id','=','categories.id')
                 ->leftjoin('sub_categories','articles.sub_category_id','=','sub_categories.id')
-                ->select('nombre_articulo as Articulo','descripcion as Descripcion','cant as Cantidad','category_id as Categoria','sub_category_id as Sub Categoria')->get();                
+                ->select('nombre_articulo as Artículo','descripcion as Descripción','cant as Cantidad','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
                 $sheet->fromArray($articles);
                 $sheet->setOrientation('landscape');
             });
