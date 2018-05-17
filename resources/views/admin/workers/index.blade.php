@@ -66,7 +66,7 @@
 
               <div class="row">
                 <div class="col-lg-offset-1 col-lg-10">
-                  <table class="table table-hover">
+                  <table class="table table-hover ">
                     <thead>
                       <tr>
                         <th class="hidden">ID</th>
