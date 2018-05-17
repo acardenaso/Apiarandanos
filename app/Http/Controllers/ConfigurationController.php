@@ -9,7 +9,7 @@ use App\Location;
 use App\Nationality;
 use App\State;
 use App\Category;
-use App\Unity;
+
 
 class ConfigurationController extends Controller
 {
@@ -22,8 +22,7 @@ class ConfigurationController extends Controller
         $nationalities = Nationality::all();
         $states = State::all();
         $categories = Category::all();
-        $unities = Unity::all();
-        return view('admin.configuration.index')->with(compact('positions','genders','locations','nationalities','states','categories','unities'));
+        return view('admin.configuration.index')->with(compact('positions','genders','locations','nationalities','states','categories'));
 
    
     }

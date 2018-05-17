@@ -21,7 +21,6 @@
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
         "phpunit/phpunit": "~6.0",
-        "malahierba-lab/chile-rut": "5.1.*",
         "symfony/thanks": "^1.0"
         
     },

@@ -79,7 +79,7 @@
                         <th>Opciones</th>
                       </tr>
                     </thead>
-                    <tbody class="buscar">
+                    <tbody>
                     @if(count($workers)>0)
                       @foreach ($workers as $worker)
                       <tr>

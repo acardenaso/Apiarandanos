@@ -10,7 +10,6 @@ use App\Nationality;
 use App\State;
 use App\Location;
 use PDF;
-use Malahierba\ChileRut\ChileRut;
 use Illuminate\Support\Facades\Input;
 use RUT;
 use Toastr;

@@ -164,7 +164,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Malahierba\ChileRut\ChileRutServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Kamaln7\Toastr\ToastrServiceProvider::class,
 
@@ -234,7 +233,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'RUT' => Malahierba\ChileRut\Facades\ChileRut::class,
         'Input' => Illuminate\Support\Facades\Input::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,

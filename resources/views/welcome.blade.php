@@ -128,7 +128,7 @@ body {
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                       <center><a class="fa fa-bug" href="{{ url('/home') }}">Click aqui, Redireccionar al sistema</a></center>
+                       <center><a class="fa fa-bug" href="{{ url('/home') }}">Estas logeado, click aqui para Redireccionar al sistema</a></center>
                     @else
                     @endauth
                 </div>
@@ -146,7 +146,7 @@ body {
             <form class="form-signin" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Correo" required autofocus>
+                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Ingrese su Correo" required autofocus>
                      @if ($errors->has('email'))
                     <span class="help-block">
                     <strong>{{ $errors->first('email') }}</strong>
@@ -155,7 +155,7 @@ body {
                 </div>
 
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">           
-                <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña" required>
+                <input id="password" type="password" class="form-control" name="password" placeholder="Ingrese su Contraseña" required>
                     @if ($errors->has('password'))
                     <span class="help-block">
                     <strong>{{ $errors->first('password') }}</strong>

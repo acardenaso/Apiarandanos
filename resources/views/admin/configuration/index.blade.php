@@ -32,39 +32,37 @@
             <div class="content ">
               <div class="row">
               <div class="col-lg-offset-1 col-lg-10">
-                <div class="col-sm-3">
-                  <a data-target="#ModalCT" data-toggle="modal" type="button" class="btn btn-primary btn-md">
-                    <i class="material-icons">work</i> Cargos de Trabajo</a>
+                <div class="col-sm-12">
+                  <a title="Cree, edite y elimine Cargos" data-target="#ModalCT" data-toggle="modal" type="button" class="btn btn-outline-primary">
+                    <i class="material-icons">copyright</i> Cargos</a>
                 </div>
-                <div class="col-sm-3">
-                  <a data-target="#ModalRG" data-toggle="modal" type="button" class="btn btn-primary btn-md">
-                    <i class="material-icons">accessibility</i> Registro de Géneros</a>
+                <div class="col-sm-12">
+                  <a title="Cree, edite y elimine Generos" data-target="#ModalRG" data-toggle="modal" type="button" class="btn btn-outline-primary">
+                    <i class="material-icons">accessibility</i> Generos</a>
                 </div>
-                <div class="col-sm-3">
-                  <a data-target="#ModalRL" data-toggle="modal" type="button" class="btn btn-primary btn-md">
-                    <i class="material-icons">location_city</i> Registro de localidades</a>
+                <div class="col-sm-12">
+                  <a title="Cree, edite y elimine Localidades" data-target="#ModalRL" data-toggle="modal" type="button" class="btn btn-outline-primary">
+                    <i class="material-icons">location_city</i> Localidades</a>
                 </div>
               </div>
               </div>
-              </br>
               <div class="row">
               <div class="col-lg-offset-1 col-lg-10">
-                <div class="col-sm-3">
-                  <a data-target="#ModalRN" data-toggle="modal" type="button" class="btn btn-primary btn-md">
-                    <i class="material-icons">fingerprint</i> Registro de nacionalidades</a>
+                <div class="col-sm-12">
+                  <a title="Cree, edite y elimine Nacionalidades" data-target="#ModalRN" data-toggle="modal" type="button" class="btn btn-outline-primary">
+                    <i class="material-icons">fingerprint</i> Nacionalidades</a>
                 </div>
                 <div class="col-sm-3">
-                  <a data-target="#ModalRE" data-toggle="modal" type="button" class="btn btn-primary btn-md">
-                    <i class="material-icons">verified_user</i> Registro de Estado trabajador</a>
+                  <a title="Cree, edite y elimine Estados" data-target="#ModalRE" data-toggle="modal" type="button" class="btn btn-outline-primary">
+                    <i class="material-icons">verified_user</i> Estados</a>
                 </div>
               </div>
               </div>
-              </br>
               <div class="row">
               <div class="col-lg-offset-1 col-lg-10">
-                <div class="col-sm-3">
-                  <a data-target="#ModalRC" data-toggle="modal" type="button" class="btn btn-primary btn-md">
-                    <i class="material-icons">content_paste</i> Registro de Categorias</a>
+                <div class="col-sm-12">
+                  <a title="Cree, edite y elimine Categorias" data-target="#ModalRC" data-toggle="modal" type="button" class="btn btn-outline-primary">
+                    <i class="material-icons">content_paste</i> Categorias</a>
                 </div>
               
 
