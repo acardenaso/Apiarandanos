@@ -183,6 +183,8 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Caffeinated\Shinobi\ShinobiServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+    
 
     ],
 
@@ -239,6 +241,8 @@ return [
         'Toastr' => Kamaln7\Toastr\Facades\Toastr::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
 
     ],
 

@@ -11,8 +11,10 @@
         <div class="box">
           <div class="box-header with-border">
             <h3 class="box-title"></h3>
-            <a type="button"  href="{{url('/admin/inventories')}}"><i class="fa fa-refresh" aria-hidden="true"></i></a>&nbsp&nbsp&nbsp
-           <b> Se encontraron  {{ $articles->count() }} Resultados.</b>
+            <a type="button" href="{{url('/admin/inventories')}}">
+              <i class="fa fa-refresh" aria-hidden="true"></i>
+            </a>&nbsp&nbsp&nbsp
+            <b> Se encontraron {{ $articles->count() }} Resultados.</b>
             <div class="box-tools pull-right">
               <button class="btn btn-box-tool" data-widget="collapse">
                 <i class="fa fa-minus"></i>
@@ -34,7 +36,7 @@
               <div class="col-lg-offset-1 col-lg-8">
                 <form method="get" action="{{ url('/searcha') }}">
                   <div class="input-group">
-                  @can('inventories.showa')
+                    @can('inventories.showa')
                     <div class="input-group-btn">
                       <button class="btn btn-default" type="submit">
                         <i class="fa fa-search"></i>
@@ -45,23 +47,27 @@
                   @endcan
                 </form>
               </div>
-              <div class="col-lg-3">
-              @can('inventories.create')
-                <a href="{{ url('/admin/inventories/create') }}" class="btn btn-success">Nuevo Artículo&nbsp;&nbsp;
-                  <i class="fa fa-plus"></i>
-                </a>
-                @endcan
-                <br>
-                    <br>
-                    @can('inventories.gpdfa')
-                    <a target="_blanck" id="btnGenerarPdfI" class="btn btn-success">Genenerar PDF&nbsp;&nbsp;
-                      <i class="fa fa-file-pdf-o"></i>
-                    </a>
-                    @endcan
-                  </div>
+            </div><br>  
+              <div class="row">
+                <div class="col-lg-offset-1 col-lg-12">
+                  @can('inventories.create')
+                  <a href="{{ url('/admin/inventories/create') }}" class="btn btn-success">Nuevo Artículo&nbsp;&nbsp;
+                    <i class="fa fa-plus"></i>
+                  </a>
+
+                  @endcan @can('inventories.gpdfa')
+                  <a target="_blanck" id="btnGenerarPdfI" class="btn btn-success">Genenerar PDF&nbsp;&nbsp;
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+
+                  <a href="{{ route('articles.excel') }}" class="btn btn-success">Genenerar Excel&nbsp;&nbsp;
+                    <i class="fa fa-file-excel-o"></i>
+                  </a>
+                  @endcan
+                </div>
               </div>
-            </div>
-        
+            
+<br>
             <div class="row">
               <div class="col-lg-offset-1 col-lg-10">
                 <table class="table table-hover">
@@ -76,8 +82,7 @@
                     </tr>
                   </thead>
                   <tbody class="buscar">
-                  @if(count($articles)>0)
-                    @foreach ($articles as $article)
+                    @if(count($articles)>0) @foreach ($articles as $article)
                     <tr>
                       <td class="hidden">{{ $article->id }}</td>
                       <td class="nombre">{{ $article->nombre_articulo }}</td>
@@ -85,32 +90,30 @@
                       <td class="nombre">{{ $article->article_state_estado }}</td>
                       <td class="nombre">{{ $article->cant }}</td>
                       <td class="td-actions">
-                      @can('inventories.re')
+                        @can('inventories.re')
                         <a href="{{ url('/admin/inventories/'.$article->id.'/re') }}" class="btn btn-xs btn-info" data-toggle="tooltip" title="reabastecer artículo">reabastecer&nbsp;
                           <i class="fa fa-plus"></i>
                         </a>
-                      @endcan
-                      @can('inventories.edit')
+                        @endcan @can('inventories.edit')
                         <a href="{{ url('/admin/inventories/'.$article->id.'/edit') }}" class="btn btn-xs btn-warning" data-toggle="tooltip" title="editar artículo">
                           <i class="fa fa-pencil"></i>
                         </a>
-                      @endcan
+                        @endcan
                         <form style="display:inline-block;" method="post" action="{{ url('/admin/inventories/'.$article->id.'/delete') }}">
-                      @can('inventories.destroy')
-                        <button style="display:inline-block;" data-toggle="modal" data-target="#deleteI" class="btn btn-xs btn-danger" title="eliminar Articulo">
-                          <i class="fa fa-trash"></i>
-                        </button>
-                      @endcan
+                          @can('inventories.destroy')
+                          <button style="display:inline-block;" data-toggle="modal" data-target="#deleteI" class="btn btn-xs btn-danger" title="eliminar Articulo">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                          @endcan
                         </form>
                       </td>
                     </tr>
                   </tbody>
-                  @endforeach
-                        @else
-                    <div style="position:absolute;visibility:visible z-index:1;top:-220px;left:722px;border-radius: 10px;opacity:0.8;"  class="alert alert-warning">
-                        No se encontraron resultados! 
-                    </div>
-                    @endif
+                  @endforeach @else
+                  <div style="position:absolute;visibility:visible z-index:1;top:-220px;left:722px;border-radius: 10px;opacity:0.8;" class="alert alert-warning">
+                    No se encontraron resultados!
+                  </div>
+                  @endif
                 </table>
                 {{ $articles->links() }}
               </div>

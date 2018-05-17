@@ -1,16 +1,12 @@
 <?php
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome');  
 });
 
 Auth::routes();
-
-
-
 Route::get('/home', 'HomeController@index')->name('home');
-
-
+Route::get('descargar-articulos', 'ArticlesController@excel')->name('articles.excel');
 Route::middleware('auth')->group(function() {
     //rutas pdf
 Route::get('admin/workers/pdf', 'WorkersController@gpdf')->middleware('permission:workers.gpdf');
@@ -23,7 +19,6 @@ Route::get('/mantenedor_inventario', 'InventarioController@index');
 Route::get('/control_quimicos', 'ProductosQuimicosController@index');
 Route::get('/indexBandejasEnviadas', 'BandejasEnviadasController@index');
 Route::get('/indexBandejasRecibidas', 'BandejasRecibidasController@index');
-Route::get('/panel_control', 'PanelControlController@panel_control');
 Route::get('/mantenedor_usuarios', 'PanelControlController@usuarios');
 
     //rutas de trabajadores

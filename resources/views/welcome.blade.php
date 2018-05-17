@@ -13,7 +13,6 @@
     <style>
     @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-
 .form-signin
 {
     max-width: 330px;
@@ -115,6 +114,12 @@ body {
   transition: all 0.3 ease;
   cursor: pointer;
 }
+.buttonn:hover {
+background: rgba(0,0,0,0);
+color: #3a7999;
+box-shadow: inset 0 0 0 3px #3a7999;
+}
+
 .form button:hover,.form button:active,.form button:focus {
   background: #43A047;
 }
@@ -163,6 +168,7 @@ body {
                     @endif
         
         </div>
+  
                 <button style="border-radius: 13px;" class="buttonn" type="submit">
                     Iniciar Sesion</button>
                 </form>

@@ -17,6 +17,8 @@ use App\Berrie;
 use App\Worker;
 use App\App;
 use Toastr;
+use Excel;
+
 
 
 class ArticlesController extends Controller
@@ -32,6 +34,18 @@ class ArticlesController extends Controller
 
         return view('admin.inventories.index')->with(compact('articles','categories','subcategories','operations','article_states'));
     }
+
+    public function excel()
+    {
+        Excel::create('Reporte Excel', function($excel) {
+            $excel->sheet('Excel sheet', function($sheet) {
+             
+                $articles = Article::all();                
+                $sheet->fromArray($articles);
+                $sheet->setOrientation('landscape');
+            });
+        })->download('xls');
+    }    
 
     public function gpdfa(Request $request)
     {

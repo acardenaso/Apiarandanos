@@ -48,7 +48,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                             </span>
-                                            <input type="text" name="name" id="name" class="form-control" placeholder="Nombre de usuario" value=" {{ $users->name }}">
+                                            <input type="text" name="name" id="name" class="form-control" placeholder="Nombre de usuario" value=" {{ $users->name }}" readonly="readonly">
                                         </div>
                                     </div>
                                     <div class="form-group">
