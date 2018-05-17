@@ -65,6 +65,36 @@
               </a>
 
               <style>
+  .buttonn {
+	-moz-box-shadow: 0px 10px 14px -7px #3e7327;
+	-webkit-box-shadow: 0px 10px 14px -7px #3e7327;
+	box-shadow: 0px 10px 14px -7px #3e7327;
+	background:#6495ED;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77b55a', endColorstr='#72b352',GradientType=0);
+	background-color:#77b55a;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #4b8f29;
+	display:inline-block;
+	cursor:pointer;
+	color:#FFFFFF;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:4px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #5b8a3c;
+}
+.buttonn:hover {
+  color:#FFFFFF;
+	background-color:#64994c;
+}
+.buttonn:active {
+	position:relative;
+	top:1px;
+}
+
                 .navbar-nav>.user-menu>.dropdown-menu>li.user-header {
                   height: 80px;
                   padding: 20px;

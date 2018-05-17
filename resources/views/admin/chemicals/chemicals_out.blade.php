@@ -41,7 +41,7 @@
                   </div>
                   <br>
                   @can('chemicals.gpdfqs')
-                    <a target="_blanck" id="btnGenerarPdfQS" class="btn btn-success">Genenerar PDF&nbsp;&nbsp;
+                    <a class="buttonn" target="_blanck" id="btnGenerarPdfQS" class="btn btn-success">Genenerar PDF&nbsp;&nbsp;
                       <i class="fa fa-file-pdf-o"></i>
                     </a>
                     @endcan

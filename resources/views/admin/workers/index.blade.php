@@ -1,5 +1,4 @@
 @extends('layouts.app') @section('content')
-
 <!--Contenido-->
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -42,28 +41,30 @@
                       </div>
                       <input name="query" type="text" class="form-control" placeholder="Buscar trabajador">
                       @endcan
-                    </div>
-                  </form>
-                </div>
-                <!-- window.location.href = '/inventories/pdf' -->
+                      </div>
+                </form>
+              </div>
+            </div><br>
                 <div class="row">
-                  <div class="col-lg-2">
+                <div class="col-lg-offset-1 col-lg-12">
                   @can('workers.create')
-                    <a href="{{ url('admin/workers/create') }}" class="btn btn-success">Nuevo Trabajador&nbsp;&nbsp;
+                    <a class="buttonn" href="{{ url('admin/workers/create') }}" class="btn btn-success btn-sm">Nuevo Trabajador&nbsp;&nbsp;
                       <i class="fa fa-plus"></i>
                     </a>
                     @endcan
-                    <br>
-                    <br>
                     @can('workers.gpdf')
-                    <a target="_blanck" id="btnGenerarPdf" class="btn btn-success">Genenerar PDF&nbsp;&nbsp;
+                    <a class="buttonn" target="_blanck" id="btnGenerarPdf" class="btn btn-success btn-sm">Genenerar PDF&nbsp;&nbsp;
                       <i class="fa fa-file-pdf-o"></i>
                     </a>
-                    @endcan
-                  </div>
+    
+                    <a class="buttonn" href="{{ route('articles.excel') }}" class="btn btn-success btn-sm">Genenerar Excel&nbsp;&nbsp;
+                    <i class="fa fa-file-excel-o"></i>
+                  </a>
+                  @endcan
                 </div>
               </div>
-
+            
+<br>
               <div class="row">
                 <div class="col-lg-offset-1 col-lg-10">
                   <table class="table table-hover ">
@@ -91,10 +92,14 @@
                         <td>{{ $worker->state_estado }}</td>
                         <td>{{ $worker->position_cargo }}</td>
                         <td class="td-actions">
+ 
+ 
+
                         @can('workers.view')
-                          <a href="{{ url('/admin/workers/'.$worker->id.'/view') }}" class="btn btn-xs btn-info" title="Detalle del trabajador" data-toggle="tooltip">
+                          <a  href="{{ url('/admin/workers/'.$worker->id.'/view') }}" class="btn btn-xs btn-info" title="Detalle del trabajador" data-toggle="tooltip">
                             <i class="fa fa-eye"></i>
                           </a>
+
                         @endcan
                         @can('workers.edit')
                           <a href="{{ url('/admin/workers/'.$worker->id.'/edit') }}" class="btn btn-xs btn-warning" data-toggle="tooltip" title="editar trabajador">

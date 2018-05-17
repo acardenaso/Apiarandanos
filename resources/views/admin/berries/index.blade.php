@@ -28,20 +28,16 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-offset-1 col-lg-8">
-              <div class="input-group">
-                <span class="input-group-addon">Buscar</span>
-                <input id="filtrar" type="text" class="form-control" placeholder="Buscar Berries Asociadas">
-              </div>
+            <div class="col-lg-1">
             </div>
             <div class="col-lg-3">
             @can('berries.create')
-              <a href="{{ url('/admin/berries/create') }}" class="btn btn-success">Nueva Empresa&nbsp;&nbsp;
+              <a class="buttonn" href="{{ url('/admin/berries/create') }}" class="btn btn-success">Nueva Empresa
                 <i class="fa fa-plus"></i>
               </a>
             @endcan
             </div>
-          </div>
+          </div><br>
           <div class="row">
             <div class="col-lg-offset-1 col-lg-10">
               <table class="table table-hover">

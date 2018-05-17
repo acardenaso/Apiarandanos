@@ -68,7 +68,7 @@
                                 <td>{{ $article->descripcion }}</td>
                                 <td class="td-actions">
                                 @can('trays.tray_out')
-                                <a href="{{ url('/admin/trays/'.$article->id.'/tray_out') }}" class="btn btn-success">Generar Préstamo &nbsp;&nbsp; <i class="fa fa-plus"></i></a>
+                                <a href="{{ url('/admin/trays/'.$article->id.'/tray_out') }}" class="btn btn-success btn-sm">Generar Préstamo &nbsp;&nbsp; <i class="fa fa-clipboard"></i></a>
                                 @endcan
                                 </td>
                               </tr>

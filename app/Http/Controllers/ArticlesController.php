@@ -35,12 +35,14 @@ class ArticlesController extends Controller
         return view('admin.inventories.index')->with(compact('articles','categories','subcategories','operations','article_states'));
     }
 
-    public function excel()
+    public function excela()
     {
         Excel::create('Reporte Excel', function($excel) {
             $excel->sheet('Excel sheet', function($sheet) {
              
-                $articles = Article::all();                
+                $articles = Article::leftjoin('categories','articles.category_id','=','categories.id')
+                ->leftjoin('sub_categories','articles.sub_category_id','=','sub_categories.id')
+                ->select('nombre_articulo as Articulo','descripcion as Descripcion','cant as Cantidad','category_id as Categoria','sub_category_id as Sub Categoria')->get();                
                 $sheet->fromArray($articles);
                 $sheet->setOrientation('landscape');
             });

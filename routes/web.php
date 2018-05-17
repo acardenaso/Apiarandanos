@@ -6,7 +6,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('descargar-articulos', 'ArticlesController@excel')->name('articles.excel');
+Route::get('descargar-articulos', 'ArticlesController@excela')->name('articles.excel');
 Route::middleware('auth')->group(function() {
     //rutas pdf
 Route::get('admin/workers/pdf', 'WorkersController@gpdf')->middleware('permission:workers.gpdf');

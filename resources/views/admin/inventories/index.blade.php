@@ -45,22 +45,23 @@
                     <input name="query" type="text" class="form-control" placeholder="Buscar Articulo">
                   </div>
                   @endcan
+                   </div>
                 </form>
               </div>
             </div><br>  
               <div class="row">
                 <div class="col-lg-offset-1 col-lg-12">
                   @can('inventories.create')
-                  <a href="{{ url('/admin/inventories/create') }}" class="btn btn-success">Nuevo Artículo&nbsp;&nbsp;
+                  <a class="buttonn" href="{{ url('/admin/inventories/create') }}" class="btn btn-success btn-sm">Nuevo Artículo&nbsp;&nbsp;
                     <i class="fa fa-plus"></i>
                   </a>
 
                   @endcan @can('inventories.gpdfa')
-                  <a target="_blanck" id="btnGenerarPdfI" class="btn btn-success">Genenerar PDF&nbsp;&nbsp;
+                  <a class="buttonn" target="_blanck" id="btnGenerarPdfI" class="btn btn-success btn-sm">Genenerar PDF&nbsp;&nbsp;
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
 
-                  <a href="{{ route('articles.excel') }}" class="btn btn-success">Genenerar Excel&nbsp;&nbsp;
+                  <a class="buttonn" href="{{ route('articles.excel') }}" class="btn btn-success btn-sm">Genenerar Excel&nbsp;&nbsp;
                     <i class="fa fa-file-excel-o"></i>
                   </a>
                   @endcan

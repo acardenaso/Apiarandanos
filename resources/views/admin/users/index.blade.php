@@ -20,20 +20,17 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                 <div class="col-lg-offset-1 col-lg-10">
-              <div class="col-lg-8">
+
                   <h1>Mantenedor de Usuarios</h1>
                   </div>
                   </div>
                 <div class="row">
-                  <div class="col-lg-offset-1 col-lg-8">
-                    <div class="input-group">
-                      <span class="input-group-addon">Buscar</span>
-                      <input id="filtrar" type="text" class="form-control" placeholder="Buscar Usuario">
-                    </div>
+                  <div class="col-lg-1">
                   </div>
                   <div class="col-lg-3">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Nuevo Usuario&nbsp;&nbsp;<i class="fa fa-plus"></i></button>
-                </div>
+                    <button type="button" class="buttonn" data-toggle="modal" data-target="#myModal">Nuevo Usuario&nbsp;&nbsp;<i class="fa fa-plus"></i></button>
+                    </div>
+          </div><br>
 
                 <div class="row">
                   <div class="col-lg-offset-1 col-lg-10">

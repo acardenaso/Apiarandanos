@@ -44,7 +44,7 @@
                   @endcan
                   <br>
                   @can('chemicals.gpdfq')
-                    <a target="_blanck" id="btnGenerarPdfQ" class="btn btn-success">Genenerar PDF&nbsp;&nbsp;
+                    <a class="buttonn" target="_blanck" id="btnGenerarPdfQ" class="btn btn-success">Genenerar PDF&nbsp;&nbsp;
                       <i class="fa fa-file-pdf-o"></i>
                     </a>
                   @endcan
@@ -77,7 +77,7 @@
                                   <td>{{ $article->subcategoria }}</td>
                                   <td class="td-actions"> 
                                   @can('chemicals.chemical_out')
-                                    <a href="{{ url('/admin/chemicals/'.$article->id.'/chemical_out') }}" class="btn btn-success">Generar Salida &nbsp;&nbsp; <i class="fa fa-plus"></i></a>
+                                    <a href="{{ url('/admin/chemicals/'.$article->id.'/chemical_out') }}" class="btn btn-success btn-sm">Generar Salida &nbsp;&nbsp; <i class="fa fa-clipboard"></i></a>
                                   @endcan
                                     </td>
                                 </tr>
