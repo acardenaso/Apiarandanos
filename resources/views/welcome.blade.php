@@ -89,16 +89,7 @@
     margin-top: 10px;
 }
 
-body {
-  background: #76b852; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #ADD8E6, #cbe7ef);
-  background: -moz-linear-gradient(right, #ADD8E6, #cbe7ef);
-  background: -o-linear-gradient(right, #ADD8E6, #cbe7ef);
-  background: linear-gradient(to left, #ADD8E6, #cbe7ef);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
-}
+
 
 .buttonn {
   font-family: "Roboto", sans-serif;
@@ -115,20 +106,22 @@ body {
   cursor: pointer;
 }
 .buttonn:hover {
-background: rgba(0,0,0,0);
-color: #3a7999;
-box-shadow: inset 0 0 0 3px #3a7999;
+    color:#FFFFFF;
+	background-color:#64994c;
+
 }
 
 .form button:hover,.form button:active,.form button:focus {
   background: #43A047;
 }
 
-
+.fondo{
+background-image: url(img/bg.jpg);
+}
     </style>
 
     </head>
-    <body>
+    <body class="fondo">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
