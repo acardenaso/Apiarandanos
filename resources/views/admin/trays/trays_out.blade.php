@@ -11,6 +11,8 @@
         <div class="box">
           <div class="box-header with-border">
             <h3 class="box-title"></h3>
+            <a type="button"  href="{{url('/admin/trays_out')}}"><i class="fa fa-refresh" aria-hidden="true"></i></a>&nbsp&nbsp&nbsp
+            <b> Se encontraron  {{ $operations->count() }} Resultados.</b>
             <div class="box-tools pull-right">
               <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 
@@ -35,9 +37,9 @@
                     </div>
                     <input name="query" type="text" class="form-control" placeholder="Buscar Articulo">
                   </div><br>
-                  @can('trays.tray_return')
-                        <a href="" class="buttonn">Registrar Devolución &nbsp;&nbsp;<i class="fa fa-plus"></i></a>
-                      @endcan
+                  
+                        <a href="{{ url('admin/trays/tray_return') }}" class="buttonn">Registrar Devolución &nbsp;&nbsp;<i class="fa fa-plus"></i></a>
+                   
                       <a href="" class="buttonn">Generar PDF &nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i></a>
                       <a href="" class="buttonn">Generar Excel &nbsp;&nbsp;<i class="fa fa-file-excel-o"></i></a>   
                 </form>

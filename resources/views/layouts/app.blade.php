@@ -248,9 +248,9 @@
                 <li class="user-footer">
 
                   <div class="pull-right">
-                    <a href="{{ route('logout') }}" class="btn btn-danger" onclick="event.preventDefault();
+                    <a href="{{ route('logout') }}" class="buttonn" onclick="event.preventDefault();
 document.getElementById('logout-form').submit();">
-                      Cerrar Sesion
+                      Cerrar Sesion <i class="fa fa-sign-out"></i>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       {{ csrf_field() }}

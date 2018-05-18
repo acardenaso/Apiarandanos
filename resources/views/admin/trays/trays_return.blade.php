@@ -13,6 +13,8 @@
               <div class="box">
                 <div class="box-header with-border">
                   <h3 class="box-title"></h3>
+                  <a type="button"  href="{{url('/admin/trays_return')}}"><i class="fa fa-refresh" aria-hidden="true"></i></a>&nbsp&nbsp&nbsp
+            <b> Se encontraron  {{ $operations->count() }} Resultados.</b>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     
