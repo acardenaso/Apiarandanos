@@ -57,10 +57,10 @@
 {
     margin-top: 80px;
     padding: 40px 0px 20px 0px;
-    background-color: #f7f7f7;
+    background-color: #ffffff;
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.3);
 }
 .login-title
 {
@@ -71,7 +71,7 @@
 }
 .profile-img
 {
-    width: 200px;
+    width: 240px;
     height: 170px;
     margin: 0 auto 20px;
     display: block;
@@ -106,9 +106,12 @@
   cursor: pointer;
 }
 .buttonn:hover {
-    color:#FFFFFF;
+  color:#FFFFFF;
 	background-color:#64994c;
-
+}
+.buttonn:active {
+	position:relative;
+	top:1px;
 }
 
 .form button:hover,.form button:active,.form button:focus {
@@ -161,9 +164,9 @@ background-image: url(img/bg.jpg);
                     @endif
         
         </div>
-  
+
                 <button style="border-radius: 13px;" class="buttonn" type="submit">
-                    Iniciar Sesion</button>
+                    Iniciar Sesion </button>
                 </form>
 
 
