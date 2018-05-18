@@ -262,7 +262,7 @@ class ArticlesController extends Controller
     }
 
     //formulario de devolucion de bandejas
-    public function tray_return(Request $request,$id)
+    public function tray_return()
     {
         $berries = Berrie::all();
         $workers = Worker::all();
@@ -271,10 +271,9 @@ class ArticlesController extends Controller
         ->leftjoin('articles','operations.article_id','=','articles.id')
         ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
         ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
-        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','operation_details.descripcion','operation_details.berrie_id','operation_details.worker_id','articles.nombre_articulo','berries.nombre_berrie')
+        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','operation_details.sector','operation_details.berrie_id','operation_details.worker_id','articles.nombre_articulo','berries.nombre_berrie')
         ->where('articles.category_id','=','9')
         ->where('operations.operation_type_id','=','2')
-        ->where('operations.id','=',$id)
         ->first();
 
         return view('admin.trays.tray_return')->with(compact('operations','berries','workers'));
@@ -746,7 +745,8 @@ class ArticlesController extends Controller
         ->where('articles.category_id','=','10')
         ->join('articles','operations.article_id','=','articles.id')
         ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
-        ->where('articles.nombre_articulo', 'like',"%$query%")
+        ->where('operation_details.fecha', 'like',"%$query%")
+        ->orwhere('articles.nombre_articulo', 'like',"%$query%")
         ->orwhere('operation_details.sector', 'like',"%$query%")
         ->get();
         
