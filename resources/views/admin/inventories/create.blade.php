@@ -110,7 +110,7 @@
 
                   <div class="form-group">
                     <div class="col-lg-2">
-                      <label for="min_stock" class="control-label">Stock Mínimo  <i data-toggle="tooltip" title="Genera una alerta si el stock es menor al numero ingresado" class="fa fa-question-circle" aria-hidden="true"></i></label>
+                      <label for="min_stock" class="control-label">Stock Mínimo  <i data-toggle="tooltip" title="Cambia a color rojo si el stock es menor o igual al inventario inicial" class="fa fa-question-circle" aria-hidden="true"></i></label>
                       <div class="input-group">
                         <span class="input-group-addon">
                           <i  class="fa fa-dot-circle-o" aria-hidden="true"></i>

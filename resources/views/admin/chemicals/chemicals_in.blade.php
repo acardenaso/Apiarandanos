@@ -75,7 +75,13 @@
                                 <tr>
                                   <td class="hidden">{{ $article->id }}</td>
                                   <td>{{ $article->nombre_articulo }}</td>
-                                  <td>{{ $article->cant }}</td>
+                                  @if($article->cant < $article->min_stock)
+                                  <td class="rojo">{{ $article->cant }}</td>
+                                  @elseif($article->cant == $article->min_stock)
+                                  <td class="rojo">{{ $article->cant }}</td>
+                                  @elseif($article->cant > $article->min_stock)
+                                  <td class="nombre">{{ $article->cant }}</td>
+                                  @endif
                                   <td>{{ $article->descripcion }}</td>
                                   <td>{{ $article->subcategoria }}</td>
                                   <td class="td-actions"> 
