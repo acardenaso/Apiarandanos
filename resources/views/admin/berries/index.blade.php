@@ -63,12 +63,12 @@
                     <td>{{ $berrie->fono }}</td>
                     <td class="td-actions">
                     @can('berries.edit')
-                      <a href="{{ url('/admin/berries/'.$berrie->id.'/edit') }}" class="btn btn-xs btn-warning" data-toggle="tooltip" title="editar Empresa">
+                      <a href="{{ url('/admin/berries/'.$berrie->id.'/edit') }}" class="buttonne-sm" data-toggle="tooltip" title="editar Empresa">
                         <i class="fa fa-pencil"></i>
                       </a>
                     @endcan
                     @can('berries.destroy')
-                      <button style="display:inline-block;" data-toggle="modal" data-target="#delete" class="btn btn-xs btn-danger" data-toggle="tooltip"
+                      <button style="display:inline-block;" data-toggle="modal" data-target="#delete" class="buttonnde-sm" data-toggle="tooltip"
                         title="eliminar Empresa">
                         <i class="fa fa-trash"></i>
                       </button>

@@ -92,17 +92,17 @@
                       <td class="nombre">{{ $article->cant }}</td>
                       <td class="td-actions">
                         @can('inventories.re')
-                        <a href="{{ url('/admin/inventories/'.$article->id.'/re') }}" class="btn btn-xs btn-info" data-toggle="tooltip" title="reabastecer artículo">reabastecer&nbsp;
+                        <a href="{{ url('/admin/inventories/'.$article->id.'/re') }}" class="buttonnd-sm" data-toggle="tooltip" title="reabastecer artículo">reabastecer&nbsp;
                           <i class="fa fa-plus"></i>
                         </a>
                         @endcan @can('inventories.edit')
-                        <a href="{{ url('/admin/inventories/'.$article->id.'/edit') }}" class="btn btn-xs btn-warning" data-toggle="tooltip" title="editar artículo">
+                        <a href="{{ url('/admin/inventories/'.$article->id.'/edit') }}" class="buttonne-sm" data-toggle="tooltip" title="editar artículo">
                           <i class="fa fa-pencil"></i>
                         </a>
                         @endcan
                         <form style="display:inline-block;" method="post" action="{{ url('/admin/inventories/'.$article->id.'/delete') }}">
                           @can('inventories.destroy')
-                          <button style="display:inline-block;" data-toggle="modal" data-target="#deleteI" class="btn btn-xs btn-danger" title="eliminar Articulo">
+                          <button style="display:inline-block;" data-toggle="modal" data-target="#deleteI" class="buttonnde-sm" title="eliminar Articulo">
                             <i class="fa fa-trash"></i>
                           </button>
                           @endcan

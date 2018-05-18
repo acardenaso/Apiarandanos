@@ -50,10 +50,10 @@
                           <td>{{ $user->name }}</td>
                           <td>{{ $user->email }}</td>
                           <td class="td-actions">
-                            <a href="{{ url('/admin/users/'.$user->id.'/edit') }}" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Establecer Rol"  ><i class="fa fa-shield"></i></a>
+                            <a href="{{ url('/admin/users/'.$user->id.'/edit') }}" class="buttonne-sm" data-toggle="tooltip" title="Establecer Rol"  ><i class="fa fa-shield"></i></a>
                             <form style="display:inline-block;" method="post" action="{{ url('/admin/users/'.$user->id.'/delete') }}">
                               {{ csrf_field() }}
-                            <button type="submit" class="btn btn-xs btn-danger" data-toggle="tooltip" title="eliminar usuario"><i class="fa fa-trash"></i></button>
+                            <button type="submit" class="buttonnde-sm" data-toggle="tooltip" title="eliminar usuario"><i class="fa fa-trash"></i></button>
                             </form>
                                    
                           </td>

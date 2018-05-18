@@ -6,7 +6,15 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+//rutas excel
 Route::get('descargar-articulos', 'ArticlesController@excela')->name('articles.excel');
+Route::get('descargar-trabajadores', 'WorkersController@excelw')->name('workers.excel');
+Route::get('descargar-quimicos', 'ArticlesController@excelq')->name('articles.excel');
+Route::get('descargar-quimicoss', 'ArticlesController@excelqs')->name('articless.excel');
+
+//rutas excel
+
 Route::middleware('auth')->group(function() {
     //rutas pdf
 Route::get('admin/workers/pdf', 'WorkersController@gpdf')->middleware('permission:workers.gpdf');
@@ -65,7 +73,8 @@ Route::get('/admin/trays_out', 'ArticlesController@trays_out')->middleware('perm
 Route::get('/admin/trays/{id}/tray_out_view','ArticlesController@tray_out_view')->middleware('permission:trays.tray_out_view');  
 Route::get('/admin/trays/{id}/tray_return','ArticlesController@tray_return')->middleware('permission:trays.tray_return');  
 Route::get('/admin/trays/{id}/tray_out_edit','ArticlesController@tray_out_edit')->middleware('permission:trays.tray_out_edit'); 
-Route::get('/admin/trays_return', 'ArticlesController@trays_return')->middleware('permission:trays.trays_return');  
+Route::get('/admin/trays_return', 'ArticlesController@trays_return')->middleware('permission:trays.trays_return');
+Route::get('/searchto','ArticlesController@showt');
     //rutas bandejas 
 
     //rutas usuarios

@@ -57,7 +57,7 @@
                       <i class="fa fa-file-pdf-o"></i>
                     </a>
     
-                    <a class="buttonn" href="{{ route('articles.excel') }}" class="btn btn-success btn-sm">Genenerar Excel&nbsp;&nbsp;
+                    <a class="buttonn" href="{{ route('workers.excel') }}" class="btn btn-success btn-sm">Genenerar Excel&nbsp;&nbsp;
                     <i class="fa fa-file-excel-o"></i>
                   </a>
                   @endcan
@@ -96,19 +96,19 @@
  
 
                         @can('workers.view')
-                          <a  href="{{ url('/admin/workers/'.$worker->id.'/view') }}" class="btn btn-xs btn-info" title="Detalle del trabajador" data-toggle="tooltip">
+                          <a  href="{{ url('/admin/workers/'.$worker->id.'/view') }}" class="buttonnd-sm" title="Detalle del trabajador" data-toggle="tooltip">
                             <i class="fa fa-eye"></i>
                           </a>
 
                         @endcan
                         @can('workers.edit')
-                          <a href="{{ url('/admin/workers/'.$worker->id.'/edit') }}" class="btn btn-xs btn-warning" data-toggle="tooltip" title="editar trabajador">
+                          <a href="{{ url('/admin/workers/'.$worker->id.'/edit') }}" class="buttonne-sm" data-toggle="tooltip" title="editar trabajador">
                             <i class="fa fa-pencil"></i>
                           </a>
                           @endcan
                           <form style="display:inline-block;" method="post" action="{{ url('/admin/workers/'.$worker->id.'/delete') }}">
                           @can('workers.destroy')
-                          <button style="display:inline-block;" class="btn btn-xs btn-danger" title="eliminar Trabajador">
+                          <button style="display:inline-block;" data-toggle="tooltip" class="buttonnde-sm" title="eliminar Trabajador">
                             <i class="fa fa-trash"></i>
                           </button>
                           @endcan

@@ -26,7 +26,7 @@
             </div>
             <div class="row">
               <div class="col-lg-offset-1 col-lg-8">
-                <form method="get" action="{{ url('/search') }}">
+                <form method="get" action="{{ url('/searchto') }}">
                   <div class="input-group">
                     <div class="input-group-btn">
                       <button class="btn btn-default" type="submit">
@@ -34,7 +34,12 @@
                       </button>
                     </div>
                     <input name="query" type="text" class="form-control" placeholder="Buscar Articulo">
-                  </div>
+                  </div><br>
+                  @can('trays.tray_return')
+                        <a href="" class="buttonn">Registrar Devolución &nbsp;&nbsp;<i class="fa fa-plus"></i></a>
+                      @endcan
+                      <a href="" class="buttonn">Generar PDF &nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i></a>
+                      <a href="" class="buttonn">Generar Excel &nbsp;&nbsp;<i class="fa fa-file-excel-o"></i></a>   
                 </form>
               </div>
 
@@ -45,19 +50,18 @@
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th >ID</th>
-                      <th>Guia de despacho</th>
+                      <th>N° de Guia</th>
                       <th>Fecha</th>
                       <th>Artículo </th>
                       <th>Empresa</th>
-                      <th>Bandejas prestadas</th>
+                      <th>Cantidad</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
                   <tbody class="buscar">
                     @foreach ($operations as $operation)
                     <tr>
-                      <td>{{ $operation->id }}</td>
+                      <td class="hidden">{{ $operation->id }}</td>
                       <td>{{ $operation->folio }}</td>
                       <td>{{ $operation->fecha }}</td>
                       <td>{{ $operation->nombre_articulo }}</td>
@@ -65,13 +69,11 @@
                       <td>{{ $operation->cantidad }}</td>
                       <td class="td-actions">
                       @can('trays.tray_out_view')
-                        <a href="{{ url('/admin/trays/'.$operation->id.'/tray_out_view') }}" class="btn btn-xs btn-info">Detalle Guia &nbsp;&nbsp;<i class="fa fa-eye"></i></a>
+                        <a href="{{ url('/admin/trays/'.$operation->id.'/tray_out_view') }}" class="buttonnd-sm">Detalle Guia &nbsp;&nbsp;<i class="fa fa-eye"></i></a>
                       @endcan
-                      @can('trays.tray_return')
-                        <a href="{{ url('/admin/trays/'.$operation->id.'/tray_return') }}" class="btn btn-xs btn-success">Registrar Devolución &nbsp;&nbsp;<i class="fa fa-search"></i></a>
-                      @endcan
+                     
                       @can('trays.tray_out_edit')
-                        <a href="{{ url('/admin/trays/'.$operation->id.'/tray_out_edit') }}" class="btn btn-xs btn-warning" data-toggle="tooltip" title="editar despacho">
+                        <a href="{{ url('/admin/trays/'.$operation->id.'/tray_out_edit') }}" class="buttonne-sm" data-toggle="tooltip" title="editar despacho">
                       @endcan  
                           <i class="fa fa-pencil"></i>
                                   </td>

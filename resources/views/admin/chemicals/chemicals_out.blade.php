@@ -13,6 +13,8 @@
               <div class="box">
                 <div class="box-header with-border">
                   <h3 class="box-title"></h3>
+                  <a type="button"  href="{{url('/admin/chemicals_out')}}"><i class="fa fa-refresh" aria-hidden="true"></i></a>&nbsp&nbsp&nbsp
+                  <b> Se encontraron  {{ $operations->count() }} Resultados.</b>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     
@@ -45,6 +47,9 @@
                       <i class="fa fa-file-pdf-o"></i>
                     </a>
                     @endcan
+                    <a class="buttonn" href="{{ route('articless.excel') }}" class="btn btn-success btn-sm">Genenerar Excel&nbsp;&nbsp;
+                    <i class="fa fa-file-excel-o"></i>
+                  </a>
                 </form>
               </div>
              

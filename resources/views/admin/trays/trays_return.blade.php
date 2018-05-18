@@ -36,7 +36,9 @@
                       </button>
                     </div>
                     <input name="query" type="text" class="form-control" placeholder="Buscar Articulo">
-                  </div>
+                  </div><br>
+                  <a href="" class="buttonn">Generar PDF &nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i></a>
+                  <a href="" class="buttonn">Generar Excel &nbsp;&nbsp;<i class="fa fa-file-excel-o"></i></a>
                 </form>
               </div>
            
@@ -52,7 +54,7 @@
                                   <th>Fecha</th>
                                   <th>Artículo </th>
                                   <th>Empresa</th>
-                                  <th>Bandejas prestadas</th>
+                                  <th>Bandejas devueltas</th>
                                   <th>Opciones</th>
                                 </tr>
                               </thead>
@@ -66,8 +68,8 @@
                                   <td>{{ $operation->nombre_berrie }}</td>
                                   <td>{{ $operation->cantidad }}</td>
                                   <td class="td-actions"> 
-                                  <a href="{{ url('/admin/trays/'.$operation->id.'/tray_in') }}" class="btn btn-xs btn-info">Ver&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
-                                  <a href="{{ url('/admin/trays/'.$operation->id.'/edit') }}" class="btn btn-xs btn-warning" data-toggle="tooltip" title="editar despacho">
+                                  <a href="{{ url('/admin/trays/'.$operation->id.'/tray_in') }}" class="buttonnd-sm">Detalle Guia&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
+                                  <a href="{{ url('/admin/trays/'.$operation->id.'/edit') }}" class="buttonne-sm" data-toggle="tooltip" title="editar despacho">
                           <i class="fa fa-pencil"></i>
                                   </td>
                                 </tr>

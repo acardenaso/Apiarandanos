@@ -48,6 +48,9 @@
                       <i class="fa fa-file-pdf-o"></i>
                     </a>
                   @endcan
+                  <a class="buttonn" href="{{ route('articles.excel') }}" class="btn btn-success btn-sm">Genenerar Excel&nbsp;&nbsp;
+                    <i class="fa fa-file-excel-o"></i>
+                  </a>
                 </form>
               </div>
              
@@ -77,7 +80,7 @@
                                   <td>{{ $article->subcategoria }}</td>
                                   <td class="td-actions"> 
                                   @can('chemicals.chemical_out')
-                                    <a href="{{ url('/admin/chemicals/'.$article->id.'/chemical_out') }}" class="btn btn-success btn-sm">Generar Salida &nbsp;&nbsp; <i class="fa fa-clipboard"></i></a>
+                                    <a href="{{ url('/admin/chemicals/'.$article->id.'/chemical_out') }}" class="buttonn">Generar Salida &nbsp;&nbsp; <i class="fa fa-clipboard"></i></a>
                                   @endcan
                                     </td>
                                 </tr>

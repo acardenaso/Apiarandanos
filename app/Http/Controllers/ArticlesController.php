@@ -47,7 +47,38 @@ class ArticlesController extends Controller
                 $sheet->setOrientation('landscape');
             });
         })->download('xls');
-    }    
+    }   
+
+    public function excelq()
+    {
+        Excel::create('Reporte Excel', function($excel) {
+            $excel->sheet('Excel sheet', function($sheet) {
+             
+                $articles = Article::where('articles.category_id','=','10')
+                ->join('sub_categories','articles.sub_category_id','=','sub_categories.id')
+                ->join('categories','articles.category_id','=','categories.id')
+                ->select('nombre_articulo as Artículo','cant as Cantidad disponible','descripcion as Descripcion','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
+                $sheet->fromArray($articles);
+                $sheet->setOrientation('landscape');
+            });
+        })->download('xls');
+    } 
+
+    public function excelqs()
+    {
+        Excel::create('Reporte Excel', function($excel) {
+            $excel->sheet('Excel sheet', function($sheet) {
+             
+                $operations = Operation::where('operations.operation_type_id','=','2')
+                ->where('articles.category_id','=','10')
+                ->join('articles','operations.article_id','=','articles.id')
+                ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+                ->select('operation_details.fecha as Fecha','nombre_articulo as Articulo','operation_details.descripcion as Sector','cantidad as Cantidad')->get();                
+                $sheet->fromArray($operations);
+                $sheet->setOrientation('landscape');
+            });
+        })->download('xls');
+    } 
 
     public function gpdfa(Request $request)
     {
@@ -162,8 +193,6 @@ class ArticlesController extends Controller
     public function showq(Request $request)
     {
         $query = $request->input('query'); 
-
-    
         $articles = Article::where('articles.category_id','=','10')
         ->join('sub_categories','articles.sub_category_id','=','sub_categories.id')
         ->where('articles.nombre_articulo', 'like',"%$query%")
@@ -188,16 +217,13 @@ class ArticlesController extends Controller
     {
         
         $query = $request->input('query');
-
         $operations = Operation::where('operations.operation_type_id','=','2')
         ->where('articles.category_id','=','10')
         ->join('articles','operations.article_id','=','articles.id')
         ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
         ->where('articles.nombre_articulo', 'like',"%$query%")
         ->orwhere('operation_details.descripcion', 'like',"%$query%")
-     
         ->get();
-        
         
         return view('admin.chemicals.chemicals_out')->with(compact('operations','query'));
 
@@ -322,8 +348,9 @@ class ArticlesController extends Controller
         return back(); 
     }
 
-    //listado de bandejas prestadas
+   
 
+    //listado de bandejas prestadas
     public function trays_out()
     {
         $operations = DB::table('operations')
