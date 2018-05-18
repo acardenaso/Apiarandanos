@@ -119,8 +119,8 @@
                             </div>
 
                             <div class="form-group">
-                              <div class="col-md-offset-5 col-lg-7 ">
-                                <button type="submit" class="btn btn-success"> Crear Cargo de trabajo</button>
+                              <div class="col-md-offset-4 col-lg-7 ">
+                              <button type="submit" class="buttonna">Crear Cargo <i class="fa fa-floppy-o"></i></button>
                               </div>
                             </div>
 
@@ -211,8 +211,8 @@
                           </div>
 
                           <div class="form-group">
-                            <div class="col-md-offset-5 col-lg-7 ">
-                              <button type="submit" class="btn btn-success"> Crear Género</button>
+                            <div class="col-md-offset-4 col-lg-7 ">
+                              <button type="submit" class="buttonna">Crear Género <i class="fa fa-floppy-o"></i></button>
                             </div>
                           </div>
 
@@ -302,8 +302,8 @@
                         </div>
 
                         <div class="form-group">
-                          <div class="col-md-offset-5 col-lg-7 ">
-                            <button type="submit" class="btn btn-success"> Crear Localidad</button>
+                          <div class="col-md-offset-4 col-lg-7 ">
+                          <button type="submit" class="buttonna">Crear localidad <i class="fa fa-floppy-o"></i></button>
                           </div>
                         </div>
 
@@ -387,8 +387,8 @@
                       </div>
 
                       <div class="form-group">
-                        <div class="col-md-offset-5 col-lg-7 ">
-                          <button type="submit" class="btn btn-success"> Crear Nacionalidad</button>
+                        <div class="col-md-offset-4 col-lg-7 ">
+                        <button type="submit" class="buttonna">Crear nacionalidad <i class="fa fa-floppy-o"></i></button>
                         </div>
                       </div>
 
@@ -470,8 +470,8 @@
                   </div>
 
                   <div class="form-group">
-                    <div class="col-md-offset-5 col-lg-7 ">
-                      <button type="submit" class="btn btn-success"> Crear Estado</button>
+                    <div class="col-md-offset-4 col-lg-7 ">
+                    <button type="submit" class="buttonna">Crear estado <i class="fa fa-floppy-o"></i></button>
                     </div>
                   </div>
 
@@ -552,8 +552,8 @@
               </div>
 
               <div class="form-group">
-                <div class="col-md-offset-5 col-lg-7 ">
-                  <button type="submit" class="btn btn-success"> Crear Categoria</button>
+                <div class="col-md-offset-4  col-lg-7 ">
+                <button type="submit" class="buttonna">Crear categoria <i class="fa fa-floppy-o"></i></button>
                 </div>
               </div>
 

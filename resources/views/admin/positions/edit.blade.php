@@ -24,18 +24,18 @@
 <div class="box-body">
 
 <div class="row">
-<div class="col-lg-10">
+<div class="col-lg-offset-1 col-lg-10">
 <h2>Editar Cargo de Trabajo</h2>
 <br>
 <form class="form-horizontal" method="post" action="{{ url('/admin/positions/'.$position->id.'/edit') }}">
 {{ csrf_field() }}  
 
 <div class="form-group">
-<div class="col-lg-6">
-<label for="cargo" class="control-label">Cargo *</label>
+<div class="col-lg-4">
+<label for="cargo" class="control-label">Cargo</label>
 <input type="text" name="cargo" id="cargo" class="form-control" value=" {{ $position->cargo }}" >
 </div>
-<div class="col-lg-6">
+<div class="col-lg-4">
 <label for="apellidos" class="control-label">Descripción </label>
 <input type="text" name="descripcion" class="form-control" id="descripcion" value=" {{ $position->descripcion }}">
 </div>    
@@ -43,10 +43,10 @@
 
 <br>
 <div class="form-group">
-<div class="col-lg-offset-8 col-lg-4">
-<button type="submit" class="btn btn-info">Actualizar Cargo de Trabajo</button>
+<div class="col-lg-offset-4 col-lg-4">
+<button type="submit" class="buttonna">Actualizar cargo <i class="fa fa-floppy-o"></i></button>
 &nbsp;
-<a href="{{ url('/admin/configuration') }}" class="btn btn-default"  > Cancelar </a>
+<a href="{{ url('/admin/configuration') }}" class="buttonna"> Cancelar </a>
 </div>
 </div>
 

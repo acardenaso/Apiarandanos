@@ -195,8 +195,8 @@
                                     </div>
                                     <br>
                                     <div class="form-group">
-                                        <div class="col-lg-offset-10 col-lg-4">
-                                            <button type="submit" class="btn btn-success">Actualizar datos del Trabajador</button>
+                                        <div class="col-lg-offset-9 col-lg-4">
+                                        <button type="submit" class="buttonna">Actualizar Trabajador <i class="fa fa-floppy-o"></i></button>
                                         </div>
                                     </div>
 

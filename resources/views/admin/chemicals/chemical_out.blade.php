@@ -11,7 +11,8 @@
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title"></h3>
-                        <a type="button"  href="{{url('/admin/chemicals_in')}}" class="btn btn-success"><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>
+                        <a type="button" href="{{url('/admin/chemicals_in')}}" class="btn btn-success">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>
                         <div class="box-tools pull-right">
                             <button class="btn btn-box-tool" data-widget="collapse">
                                 <i class="fa fa-minus"></i>
@@ -24,15 +25,15 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                    @if ($errors->any())
-                <div class="alert alert-danger">
-                  <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{$error}}</li>
-                    @endforeach
-                  </ul>
-                </div>
-                @endif
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <div class="row">
                             <div class="col-lg-offset-1 col-lg-10">
                                 <div class="col-lg-10">
@@ -51,7 +52,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label for="nombres" class="control-label">Nombre del producto</label>
                                             <h4> {{ $articles->nombre_articulo }} </h4>
                                         </div>
@@ -62,7 +63,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label for="fono" class="control-label">Cantidad de salida</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -71,7 +72,7 @@
                                                 <input type="text" name="cantidad" class="form-control" id="fono" required value="{{ old('cantidad') }}">
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label for="berrie" class="control-label">Sector</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -83,7 +84,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label for="berrie" class="control-label">Fecha salida</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -96,8 +97,10 @@
 
                                     <br>
                                     <div class="form-group">
-                                        <div class="col-lg-offset-8 col-lg-4">
-                                            <button type="submit" class="btn btn-info">Registrar salida</button>
+                                        <div class="col-lg-offset-6 col-lg-4">
+                                            <button type="submit" class="buttonna">Registrar salida
+                                                <i class="fa fa-floppy-o"></i>
+                                            </button>
 
 
                                         </div>

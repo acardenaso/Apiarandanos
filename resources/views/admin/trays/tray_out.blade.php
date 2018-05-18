@@ -60,7 +60,7 @@
 
                                     <div class="form-group">
 
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label for="id" class="control-label">Folio (N° Guia de despacho)*</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -81,14 +81,14 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <h4>
                                                 <label for="nombres" class="control-label">Tipo de bandeja</label>
                                             </h4>
                                             <h4> {{ $articles->nombre_articulo }} </h4>
                                         </div>
 
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label for="berrie" class="control-label">Fecha de solicitud</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -101,7 +101,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label for="berrie" class="control-label">Huerto solicitante</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -116,7 +116,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
                                                 <label for="berrie" class="control-label">Descripción</label>
                                                 <textarea name="descripcion" class="form-control" required>{{ old('descripcion') }}</textarea>
                                             </div>
@@ -144,13 +144,9 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-      
-                                    <br>
                                     <div class="form-group">
-                                        <div class="col-lg-offset-8 col-lg-4">
-                                            <button type="submit" class="btn btn-info">Generar prestamo</button> &nbsp;
+                                        <div class="col-lg-offset-5 col-lg-4">
+                                        <button type="submit" class="buttonna">Agregar Trabajador <i class="fa fa-floppy-o"></i></button>
 
                                         </div>
                                     </div>

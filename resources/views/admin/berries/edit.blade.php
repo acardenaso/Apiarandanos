@@ -84,8 +84,8 @@
                 </div>
                 <br>
                 <div class="form-group">
-                  <div class="col-lg-offset-1 col-lg-2">
-                    <button type="submit" class="btn btn-success">Actualizar Datos de Empresa</button>
+                  <div class="col-lg-offset-9 col-lg-2">
+                  <button type="submit" class="buttonna">Actualizar huerto <i class="fa fa-floppy-o"></i></button>
                   </div>
                 </div>
              

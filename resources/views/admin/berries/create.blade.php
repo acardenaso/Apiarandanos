@@ -94,8 +94,8 @@
                 </div>
                 <br>
                 <div class="form-group">
-                  <div class="col-lg-offset-10 col-lg-2">
-                    <button type="submit" class="btn btn-success">Agregar Empresa</button>
+                  <div class="col-lg-offset-9 col-lg-2">
+                  <button type="submit" class="buttonna">Agregar huerto <i class="fa fa-floppy-o"></i></button>
                   </div>
                 </div>
              

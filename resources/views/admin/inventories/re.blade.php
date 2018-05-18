@@ -54,7 +54,7 @@
                                             <div class="form-group">
                                                 <div class="col-lg-3">
                                                     <label for="min_stock" class="control-label">En inventario</label>
-                                                    <h5>{{ $articles->cant }}</h5>
+                                                    <h4>{{ $articles->cant }}</h4>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -79,7 +79,7 @@
 
                                             <div class="form-group">
                                                 <div class="col-lg-9 pull-right">
-                                                    <button type="submit" class="btn btn-success">Reabastecer</button>
+                                                <button type="submit" class="buttonna">Reabastecer articulo <i class="fa fa-floppy-o"></i></button>
                                                 </div>
                                             </div>
 

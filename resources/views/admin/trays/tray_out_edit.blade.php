@@ -140,13 +140,9 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
-                                    <br>
                                     <div class="form-group">
                                         <div class="col-lg-offset-8 col-lg-4">
-                                            <button type="submit" class="btn btn-info">Generar prestamo</button> &nbsp;
+                                        <button type="submit" class="buttonna">Actualizar prestamo <i class="fa fa-floppy-o"></i></button>
 
                                         </div>
                                     </div>

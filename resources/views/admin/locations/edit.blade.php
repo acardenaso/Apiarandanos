@@ -24,7 +24,7 @@
 <div class="box-body">
 
 <div class="row">
-<div class="col-lg-10">
+<div class="col-lg-offset-1 col-lg-10">
 <h2>Editar Localidad</h2>
 <br>
 <form class="form-horizontal" method="post" action="{{ url('/admin/locations/'.$location->id.'/edit') }}">
@@ -39,10 +39,10 @@
 
 <br>
 <div class="form-group">
-<div class="col-lg-offset-8 col-lg-4">
-<button type="submit" class="btn btn-info">Actualizar localidad</button>
+<div class="col-lg-offset-4 col-lg-4">
+<button type="submit" class="buttonna">Actualizar localidad <i class="fa fa-floppy-o"></i></button>
 &nbsp;
-<a href="{{ url('/admin/configuration') }}" class="btn btn-default"  > Cancelar </a>
+<a href="{{ url('/admin/configuration') }}" class="buttonna"> Cancelar </a>
 </div>
 </div>
 

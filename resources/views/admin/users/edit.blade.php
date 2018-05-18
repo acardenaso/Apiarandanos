@@ -66,16 +66,14 @@
                                          </label>
                                          </li>
                                              @endforeach
-                                    </ul>
-                                    
+                                    </ul>   
                             </div>
                                 </div>
                                 </div>
                                     </div>
-                                <br>
                                 <div class="form-group">
-                                    <div class="col-lg-offset-10 col-lg-4">
-                                        <button type="submit" class="btn btn-success">Definir Rol</button>
+                                    <div class="col-lg-offset-9 col-lg-2">
+                                    <button type="submit" class="buttonna">Definir rol <i class="fa fa-floppy-o"></i></button>
                                     </div>
                                 </div>
 

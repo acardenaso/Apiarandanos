@@ -187,8 +187,8 @@
 
                   <br>
                   <div class="form-group">
-                    <div class="col-lg-offset-10 col-lg-2">
-                      <button type="submit" class="btn btn-success">Agregar Trabajador</button>
+                    <div class="col-lg-offset-9 col-lg-3">
+                      <button type="submit" class="buttonna">Agregar Trabajador <i class="fa fa-floppy-o"></i></button>
                     </div>
                   </div>
 

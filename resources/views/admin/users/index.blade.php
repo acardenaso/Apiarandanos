@@ -131,8 +131,8 @@
                             </div>
            
                             <div class="form-group">
-                              <div class="col-md-offset-5 col-lg-7 ">
-                                <button type="submit" class="btn btn-success"> Crear Usuario</button>
+                              <div class="col-md-offset-4 col-lg-7 ">
+                              <button type="submit" class="buttonna">Crear usurio <i class="fa fa-floppy-o"></i></button>
                               </div>
                             </div>
 

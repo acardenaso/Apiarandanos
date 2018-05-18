@@ -266,6 +266,7 @@ class ArticlesController extends Controller
     {
         $berries = Berrie::all();
         $workers = Worker::all();
+        $articles = Article::all();
 
         $operations = DB::table('operations')
         ->leftjoin('articles','operations.article_id','=','articles.id')
@@ -276,7 +277,7 @@ class ArticlesController extends Controller
         ->where('operations.operation_type_id','=','2')
         ->first();
 
-        return view('admin.trays.tray_return')->with(compact('operations','berries','workers'));
+        return view('admin.trays.tray_return')->with(compact('operations','berries','workers','articles'));
     }
 
     //formulario detalle de prestamo de bandejas
