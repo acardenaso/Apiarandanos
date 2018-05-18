@@ -73,8 +73,13 @@ Route::get('/admin/trays_in', 'ArticlesController@trays_in')->middleware('permis
 Route::get('/admin/trays/{article_id}/tray_out','ArticlesController@tray_out')->middleware('permission:trays.tray_out');
 Route::post('/admin/trays/{id}/tray_out','ArticlesController@tray_out_store')->middleware('permission:trays.tray_out_store');   
 Route::get('/admin/trays_out', 'ArticlesController@trays_out')->middleware('permission:trays.trays_out');
+
+Route::get('/admin/trays/{id}/tray_out_view','ArticlesController@tray_out_view')->middleware('permission:trays.tray_out_view');
+Route::get('/admin/trays/{id}/trays_return_view','ArticlesController@trays_return_view');
+Route::get('/admin/trays/{id}/tray_return','ArticlesController@tray_return')->middleware('permission:trays.tray_return');  
 Route::get('/admin/trays/{id}/tray_out_view','ArticlesController@tray_out_view')->middleware('permission:trays.tray_out_view');  
 Route::get('/admin/trays/tray_return','ArticlesController@tray_return')->middleware('permission:trays.tray_return');  
+
 Route::get('/admin/trays/{id}/tray_out_edit','ArticlesController@tray_out_edit')->middleware('permission:trays.tray_out_edit'); 
 Route::get('/admin/trays_return', 'ArticlesController@trays_return')->middleware('permission:trays.trays_return');
 Route::get('/searcht','ArticlesController@showt')->middleware('permission:trays.showt');
