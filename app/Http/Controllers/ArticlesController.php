@@ -299,6 +299,25 @@ class ArticlesController extends Controller
         return view('admin.trays.tray_out_view')->with(compact('operations','berries','workers'));
     }
 
+     //formulario detalle de devolucion de bandejas PENDIENTE
+    public function trays_return_view(Request $request,$id)
+    {
+        $berries = Berrie::all();
+        $workers = Worker::all();
+
+        $operations = DB::table('operations')
+        ->leftjoin('articles','operations.article_id','=','articles.id')
+        ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
+        ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
+        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','operation_details.sector','operation_details.berrie_id','operation_details.worker_id','articles.nombre_articulo','berries.nombre_berrie')
+        ->where('articles.category_id','=','9')
+        ->where('operations.operation_type_id','=','2')
+        ->where('operations.id','=',$id)
+        ->first();
+
+        return view('admin.trays.tray_out_view')->with(compact('operations','berries','workers'));
+    }
+
      //formulario detalle de edición guía de despacho PENDIENTE
     public function tray_out_edit(Request $request,$id)
     {
@@ -390,12 +409,12 @@ class ArticlesController extends Controller
         //validar prestamo de bandejas
         $messages = [
         'cantidad.numeric' => 'Campo cantidad de salida solo numeros',
-        'description.alpha'  => 'Campo sector solo letras',    
+        'sector.alpha'  => 'Campo sector solo letras',    
         ];    
 
         $rules = [
-                'cantidad' => 'numeric',
-                'description'  => 'alpha',
+        'cantidad' => 'numeric',
+        'sector'  => 'alpha',
         ];
 
     $this->validate($request, $rules,$messages);
@@ -404,7 +423,7 @@ class ArticlesController extends Controller
         $operation_details->berrie_id = $request->input('berrie_id');
         $operation_details->worker_id = $request->input('worker_id');
         $operation_details->fecha = $request->input('fecha');
-        $operation_details->descripcion = $request->input('descripcion');
+        $operation_details->sector = $request->input('sector');
         $operation_details->save();//INSERT     
 
         $operations = new Operation();
@@ -730,7 +749,15 @@ class ArticlesController extends Controller
         ->where('articles.nombre_articulo', 'like',"%$query%")
         ->orwhere('operation_details.sector', 'like',"%$query%")
         ->get();
-            
+        
+             
+        if(empty($query)){  
+            $title = "ingrese un criterio para la búsqueda";
+            Toastr::warning($title);
+
+            return redirect('/admin/chemicals_out/');
+        }   
+
         return view('admin.chemicals.chemicals_out')->with(compact('operations','query'));
     }
     
@@ -775,7 +802,15 @@ class ArticlesController extends Controller
         ->orwhere('operation_details.folio','like',"%$query%")
         ->orwhere('berries.nombre_berrie','like',"%$query%")
         ->get();
-            
+        
+              
+        if(empty($query)){  
+            $title = "ingrese un criterio para la búsqueda";
+            Toastr::warning($title);
+
+            return redirect('/admin/trays_out/');
+        }   
+
         return view('admin.trays.trays_out')->with(compact('operations','query'));
     }
 

@@ -70,13 +70,13 @@
                                   <td>{{ $operation->nombre_berrie }}</td>
                                   <td>{{ $operation->cantidad }}</td>
                                   <td class="td-actions"> 
-                                  <a href="{{ url('/admin/trays/'.$operation->id.'/tray_in') }}" class="buttonnd-sm">Detalle Guia&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
+                                  <a href="{{ url('/admin/trays/'.$operation->id.'/trays_return_view') }}" class="buttonnd-sm">Detalle Guia&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
                                   <a href="{{ url('/admin/trays/'.$operation->id.'/edit') }}" class="buttonne-sm" data-toggle="tooltip" title="editar despacho">
                           <i class="fa fa-pencil"></i>
                                   </td>
                                 </tr>
                               </tbody>
-                              
+                    
                                 @endforeach
                           </table>
                          

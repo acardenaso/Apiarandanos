@@ -77,7 +77,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                 </span>
-                                                <input type="text" name="descripcion" class="form-control" required value="{{ old('description') }}">
+                                                <input type="text" name="sector" class="form-control" required value="{{ old('sector') }}">
                                             </div>
                                         </div>
                                     </div>

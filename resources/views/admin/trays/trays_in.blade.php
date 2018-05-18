@@ -33,7 +33,7 @@
               </div>
             </div>
             <div class="row">
-                <div class="col-lg-offset-1 col-lg-8">
+                <div class="col-lg-offset-1 col-lg-8 hidden">
                     <form method="get" action="{{ url('/searcht') }}">
                       <div class="input-group">
                         <div class="input-group-btn">
@@ -63,7 +63,8 @@
                     </tr>
                   </thead>
                   <tbody class="buscar">
-                    @if(count($articles)>0) @foreach ($articles as $article)
+                    @if(count($articles)>0) 
+                    @foreach ($articles as $article)
                     <tr>
                       <td class="hidden">{{ $article->id }}</td>
                       <td>{{ $article->nombre_articulo }}</td>
@@ -78,11 +79,12 @@
                       </td>
                     </tr>
                   </tbody>
-                  @endforeach @else
-                  <div style="position:absolute;visibility:visible z-index:1;top:-220px;left:722px;border-radius: 10px;opacity:0.8;" class="alert alert-warning">
-                    No se encontraron resultados!
-                  </div>
-                  @endif
+                  @endforeach 
+                  @else
+                    <div style="position:absolute;visibility:visible z-index:1;top:-140px;left:722px;border-radius: 10px;opacity:0.8;"  class="buttonn">
+                    <i class="fa fa-exclamation"></i>  No se encontraron resultados
+                    </div>
+                    @endif 
                 </table>
 
 

@@ -110,9 +110,10 @@
                       </td>
                     </tr>
                   </tbody>
-                  @endforeach @else
-                  <div style="position:absolute;visibility:visible z-index:1;top:-220px;left:722px;border-radius: 10px;opacity:0.8;" class="alert alert-warning">
-                    No se encontraron resultados!
+                  @endforeach
+                   @else
+                  <div style="position:absolute;visibility:visible z-index:1;top:-190px;left:722px;border-radius: 10px;opacity:0.8;" class="buttonn">
+                  <i class="fa fa-exclamation"></i> No se encontraron resultados
                   </div>
                   @endif
                 </table>
