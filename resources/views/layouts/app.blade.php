@@ -66,7 +66,8 @@
 
               <style>
   .rojo{
-    background-color:#77b55a;
+    color:#FF0000;
+    font-size:20px;
 }
   .buttonna {
 	-moz-box-shadow: 0px 10px 14px -7px #3e7327;

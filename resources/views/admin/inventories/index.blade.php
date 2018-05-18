@@ -90,7 +90,11 @@
                       <td class="nombre">{{ $article->nombre_articulo }}</td>
                       <td class="nombre">{{ $article->descripcion }}</td>
                       <td class="nombre">{{ $article->article_state_estado }}</td>
-                      <td id="idcant">{{ $article->cant }}</td>
+                      @if($article->cant < $article->min_stock)
+                      <td class="rojo">{{ $article->cant }}</td>
+                      @elseif($article->cant > $article->min_stock)
+                      <td class="nombre">{{ $article->cant }}</td>
+                      @endif
                       <td class="td-actions">
                         @can('inventories.re')
                         <a href="{{ url('/admin/inventories/'.$article->id.'/re') }}" class="buttonnd-sm" data-toggle="tooltip" title="reabastecer artículo">reabastecer&nbsp;

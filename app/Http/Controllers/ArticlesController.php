@@ -22,7 +22,7 @@ class ArticlesController extends Controller
 {
         //Lista los articulos
     public function index()
-    {
+    {   
         $articles = Article::paginate(10);
         $categories = Category::all();
         $subcategories = SubCategory::all();
