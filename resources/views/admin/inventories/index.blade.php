@@ -83,13 +83,14 @@
                     </tr>
                   </thead>
                   <tbody class="buscar">
-                    @if(count($articles)>0) @foreach ($articles as $article)
+                    @if(count($articles)>0) 
+                    @foreach ($articles as $article)
                     <tr>
                       <td class="hidden">{{ $article->id }}</td>
                       <td class="nombre">{{ $article->nombre_articulo }}</td>
                       <td class="nombre">{{ $article->descripcion }}</td>
                       <td class="nombre">{{ $article->article_state_estado }}</td>
-                      <td class="nombre">{{ $article->cant }}</td>
+                      <td id="idcant">{{ $article->cant }}</td>
                       <td class="td-actions">
                         @can('inventories.re')
                         <a href="{{ url('/admin/inventories/'.$article->id.'/re') }}" class="buttonnd-sm" data-toggle="tooltip" title="reabastecer artículo">reabastecer&nbsp;
@@ -119,7 +120,7 @@
                 </table>
                 {{ $articles->links() }}
               </div>
-
+         
             </div>
           </div>
         </div>

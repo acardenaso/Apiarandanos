@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-
 use App\Article;
 use App\Category;
 use App\SubCategory;
@@ -21,7 +20,7 @@ use Excel;
 
 class ArticlesController extends Controller
 {
-    //listado de artículos en el inventatrio
+        //Lista los articulos
     public function index()
     {
         $articles = Article::paginate(10);
@@ -29,25 +28,24 @@ class ArticlesController extends Controller
         $subcategories = SubCategory::all();
         $operations = Operation::all();
         $article_states = ArticleState::all();
-        
         return view('admin.inventories.index')->with(compact('articles','categories','subcategories','operations','article_states'));
     }
     
-    //formulario de creación de artículos
+
+        //Creacion de articulos
     public function create()
     {
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $article_states = ArticleState::all();
         $user = Auth::user();
-
         return view('admin.inventories.create')->with(compact('articles','categories','subcategories','article_states','user'));
     }
 
-    //función para almacenar el artículo en el inventario
+
+        //Almacenar articulo
     public function store(Request $request)
     {
-        //validar Articulo
         $messages = [
             'nombre_articulo.unique' => 'Este articulo ya se encuentra registrado',
             'category_id.required' => 'Campo categoria es necesario',
@@ -55,18 +53,13 @@ class ArticlesController extends Controller
             'min_stock.numeric' => 'Campo stock minimo solo numeros',
             'min_stock.numeric' => 'Campo inventario inicial minimo solo numeros',
         ];    
-
         $rules = [
             'nombre_articulo' => 'unique:articles',
             'category_id' => 'required',
             'article_state_id' => 'required',
             'min_stock' => 'numeric',
         ];
-
         $this->validate($request, $rules,$messages);
-
-        //crear un nuevo articulo
-        
         $articles = new Article();
         $articles->nombre_articulo = $request->input('nombre_articulo');
         $articles->descripcion = $request->input('descripcion');
@@ -76,38 +69,34 @@ class ArticlesController extends Controller
         $articles->sub_category_id = $request->input('sub_category_id');
         $articles->article_state_id = $request->input('article_state_id');
         $articles->user_id = $request->input('user_id');
-        $articles->save();//INSERT
+        $articles->save();
 
         //almacena el articulo_id y la cantidad correspondiente al producto, segun el tipo de operacion, en este caso, entrada
-        
         $operations = new Operation();
         $operations->cantidad = $request->input('cantidad');
         $operations->article_id = $articles->id;
         $operations->operation_type_id = '1';
-        $operations->save();//INSERT
-
+        $operations->save();
         $title = "Artículo creado correctamente!";
         Toastr::success($title);
-
         return redirect('/admin/inventories');
     }
 
-    //formulario de edición de un artículo en el inventario
-    public function edit($id)
+
+        //Editar articulo
+        public function edit($id)
     {
         $categories = Category::orderBy('categoria')->get();
         $subcategories = SubCategory::orderBy('subcategoria')->get();
         $article_states = ArticleState::orderBy('estado')->get();
         $article = Article::find($id);
         $user = Auth::user();
-
         return view('admin.inventories.edit')->with(compact('article','categories','subcategories','article_states','user'));
     }
 
-    //función para actualizar un artículo en el inventario
-    public function update(Request $request, $id)
+         //Actualizar articulo
+        public function update(Request $request, $id)
     {
-         //validar Articulo
          $messages = [
             'nombre_articulo.required' => 'Articulo es requerido',
             'category_id.required' => 'Campo categoria es necesario',
@@ -115,19 +104,15 @@ class ArticlesController extends Controller
             'min_stock.numeric' => 'Campo stock minimo solo numeros',
             'min_stock.numeric' => 'Campo inventario inicial minimo solo numeros',
         ];    
-
         $rules = [
             'nombre_articulo' => 'required',
             'category_id' => 'required',
             'article_state_id' => 'required',
             'min_stock' => 'numeric',
         ];
-
         $this->validate($request, $rules,$messages);     
-
         //Editar articulo en la bd, edita todos los campos, menos la cantidad, ya que ese campo es 
         //una operación realizada con las entradas y salidas, de la tabla operations
-    
         $articles = Article::find($id);
         $articles->nombre_articulo = $request->input('nombre_articulo');
         $articles->descripcion = $request->input('descripcion');
@@ -136,28 +121,24 @@ class ArticlesController extends Controller
         $articles->sub_category_id = $request->input('sub_category_id');
         $articles->article_state_id = $request->input('article_state_id');
         $articles->user_id = $request->input('user_id');
-        $articles->save();//UPDATE
-
+        $articles->save();
         $title = "Artículo editado correctamente!";
         Toastr::success($title);
-
         return redirect('/admin/inventories');
     }
 
-    //función para eliminar un artículo en el inventario
-    public function destroy($id)
+        //Eliminar articulo
+        public function destroy($id)
     {
         $article = Article::find($id);
         $article->delete();
-
         $title = "Artículo eliminado correctamente!";
         Toastr::success($title);
-
         return back(); 
     }
 
-    //listado de bandejas prestadas
-    public function trays_out()
+        //Listar bandejas prestadas
+        public function trays_out()
     {
         $operations = DB::table('operations')
         ->leftjoin('articles','operations.article_id','=','articles.id')
@@ -167,62 +148,48 @@ class ArticlesController extends Controller
         ->where('articles.category_id','=','9')
         ->where('operations.operation_type_id','=','2')
         ->get();
-
         return view('admin.trays.trays_out')->with(compact('operations'));    
     }
     
-    //formulario de préstamo de bandejas
-    public function tray_out(Request $request,$article_id)
+        //Crear préstamo de bandejas
+        public function tray_out(Request $request,$article_id)
     {
         $articles = Article::find($article_id);
         $berries = Berrie::all();
         $workers = Worker::all();
-        
-        
         $entradas = DB::table('operations')
         ->select(DB::raw('SUM(cantidad) as cantidad'))
         ->where('operations.article_id','=',$article_id)
         ->where('operations.operation_type_id','=','1')
         ->first();
-        
         $salidas = DB::table('operations')
         ->select(DB::raw('SUM(cantidad) as cantidad'))
         ->where('operations.article_id','=',$article_id)
         ->where('operations.operation_type_id','=','2')
-        ->first();
-             
-        $stock = $entradas->cantidad-$salidas->cantidad;   
-               
+        ->first();   
+        $stock = $entradas->cantidad-$salidas->cantidad;         
         return view('admin.trays.tray_out')->with(compact('articles','berries','workers','stock')); 
     }
 
-    //guarda en db las bandejas prestadas
+        //Almacenar préstamo de bandejas
     public function tray_out_store(Request $request,$id)
     {
-         //validar trabajador
         $messages = [
             'folio.numeric' => 'Campo folio solo numeros',
             'cantidad.numeric'  => 'Campo cantidad solo numeros',
             'berrie_id.required'  => 'Campo berrie es requerido',     
         ];    
-
         $rules = [
             'folio' => 'numeric',
             'cantidad'  => 'numeric',
             'berrie_id' => 'required',
         ];
-
         $this->validate($request, $rules,$messages);
-       
         if($request->input('cantidad')>= $request->input('new_cant')){
-
             $title = "La cantidad solicitada es mayor al stock diponible";
             Toastr::error($title);
-
             return redirect()->back();
-
         }else{
-
         $operation_details = new OperationDetail();
         $operation_details->folio = $request->input('folio');
         $operation_details->berrie_id = $request->input('berrie_id');
@@ -246,8 +213,8 @@ class ArticlesController extends Controller
         }
     }
 
-    //lstado de bandejas devueltas
-    public function trays_return()
+        //Listar bandejas devueltas
+        public function trays_return()
     {
         $operations = DB::table('operations')
         ->leftjoin('articles','operations.article_id','=','articles.id')
@@ -257,17 +224,15 @@ class ArticlesController extends Controller
         ->where('articles.category_id','=','9')
         ->where('operations.operation_type_id','=','2')
         ->get();
-
         return view('admin.trays.trays_return')->with(compact('operations')); 
     }
 
-    //formulario de devolucion de bandejas
-    public function tray_return()
+        //Crear devolucion de bandejas
+        public function tray_return()
     {
         $berries = Berrie::all();
         $workers = Worker::all();
         $articles = Article::all();
-
         $operations = DB::table('operations')
         ->leftjoin('articles','operations.article_id','=','articles.id')
         ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
@@ -276,16 +241,31 @@ class ArticlesController extends Controller
         ->where('articles.category_id','=','9')
         ->where('operations.operation_type_id','=','2')
         ->first();
-
         return view('admin.trays.tray_return')->with(compact('operations','berries','workers','articles'));
     }
 
-    //formulario detalle de prestamo de bandejas
-    public function tray_out_view(Request $request,$id)
+        //Detalle prestamo de bandejas
+        public function tray_out_view(Request $request,$id)
     {
         $berries = Berrie::all();
         $workers = Worker::all();
+        $operations = DB::table('operations')
+        ->leftjoin('articles','operations.article_id','=','articles.id')
+        ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
+        ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
+        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','operation_details.sector','operation_details.berrie_id','operation_details.worker_id','articles.nombre_articulo','berries.nombre_berrie')
+        ->where('articles.category_id','=','9')
+        ->where('operations.operation_type_id','=','2')
+        ->where('operations.id','=',$id)
+        ->first();
+        return view('admin.trays.tray_out_view')->with(compact('operations','berries','workers'));
+    }
 
+        //formulario detalle de devolucion de bandejas PENDIENTE
+        public function trays_return_view(Request $request,$id)
+    {
+        $berries = Berrie::all();
+        $workers = Worker::all();
         $operations = DB::table('operations')
         ->leftjoin('articles','operations.article_id','=','articles.id')
         ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
@@ -299,31 +279,11 @@ class ArticlesController extends Controller
         return view('admin.trays.tray_out_view')->with(compact('operations','berries','workers'));
     }
 
-     //formulario detalle de devolucion de bandejas PENDIENTE
-    public function trays_return_view(Request $request,$id)
-    {
-        $berries = Berrie::all();
-        $workers = Worker::all();
-
-        $operations = DB::table('operations')
-        ->leftjoin('articles','operations.article_id','=','articles.id')
-        ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
-        ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
-        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','operation_details.sector','operation_details.berrie_id','operation_details.worker_id','articles.nombre_articulo','berries.nombre_berrie')
-        ->where('articles.category_id','=','9')
-        ->where('operations.operation_type_id','=','2')
-        ->where('operations.id','=',$id)
-        ->first();
-
-        return view('admin.trays.tray_out_view')->with(compact('operations','berries','workers'));
-    }
-
-     //formulario detalle de edición guía de despacho PENDIENTE
-    public function tray_out_edit(Request $request,$id)
+        //formulario detalle de edición guía de despacho PENDIENTE
+        public function tray_out_edit(Request $request,$id)
     {
          $berries = Berrie::all();
          $workers = Worker::all();
- 
          $operations = DB::table('operations')
          ->leftjoin('articles','operations.article_id','=','articles.id')
          ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
@@ -333,22 +293,20 @@ class ArticlesController extends Controller
          ->where('operations.operation_type_id','=','2')
          ->where('operations.id','=',$id)
          ->first();
- 
          return view('admin.trays.tray_out_edit')->with(compact('operations','berries','workers'));
     }
  
-    //listado de bandejas almacenadas en bd
-    public function trays_in()
+        //Listar bandejas disponibles
+        public function trays_in()
     {
         $articles = DB::table('articles')
         ->where('articles.category_id','=','9')
         ->paginate(10);
-
         return view('admin.trays.trays_in')->with(compact('articles'));   
     }
 
-    //guarda en la db la devolución de bandejas
-    public function trays_in_store(Request $request,$id)
+        //Almacenar devolución de bandejas
+        public function trays_in_store(Request $request,$id)
     {
         $operations = new Operation();
         $operations->folio = $request->input('folio');
@@ -357,17 +315,15 @@ class ArticlesController extends Controller
         $operations->article_id = $request->input('article_id');
         $operations->berrie_id = $request->input('berrie_id');
         $operations->fecha = $request->input('fecha');
-        $operations->save();//INSERT
-
+        $operations->save();
         $articles = Article::find($id);
         $articles->stock = $request->input('stock')-$operations->cantidad = $request->input('cantidad');
-        $articles->save();//UPDATE
-        
+        $articles->save();
         return redirect('/admin/inventories');
     }
 
-    //listado de salida de productos químicos
-    public function chemicals_out()
+        //Listar salida productos quimicos
+        public function chemicals_out()
     {
         $operations = DB::table('operations')
         ->leftjoin('articles','operations.article_id','=','articles.id')
@@ -376,91 +332,84 @@ class ArticlesController extends Controller
         ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','operation_details.sector','articles.nombre_articulo','berries.nombre_berrie')
         ->where('articles.category_id','=','10')
         ->where('operations.operation_type_id','=','2')
-        ->get();
-            
+        ->get(); 
         return view('admin.chemicals.chemicals_out')->with(compact('operations'));    
     }
         
-    //formulario de prestamo de bandejas
-    public function chemical_out(Request $request,$article_id)
+        //formulario de prestamo de bandejas
+        public function chemical_out(Request $request,$article_id)
     {
-        $articles = Article::find($article_id);
-            
+        $articles = Article::find($article_id);   
         $entradas = DB::table('operations')
         ->select(DB::raw('SUM(cantidad) as cantidad'))
         ->where('operations.article_id','=',$article_id)
         ->where('operations.operation_type_id','=','1')
-        ->first();
-            
+        ->first(); 
         $salidas = DB::table('operations')
         ->select(DB::raw('SUM(cantidad) as cantidad'))
         ->where('operations.article_id','=',$article_id)
         ->where('operations.operation_type_id','=','2')
-        ->first();
-                 
-        $stock = $entradas->cantidad-$salidas->cantidad;   
-                   
+        ->first();       
+        $stock = $entradas->cantidad-$salidas->cantidad;            
         return view('admin.chemicals.chemical_out')->with(compact('articles','stock')); 
     }
     
-    //guarda en db las las salidas de productos quimicos
-    public function chemicaloutstore(Request $request,$id)    
+        //Almacenar salidas de productos quimicos
+        public function chemicaloutstore(Request $request,$id)    
     {
-        //validar prestamo de bandejas
         $messages = [
         'cantidad.numeric' => 'Campo cantidad de salida solo numeros',
         'sector.alpha'  => 'Campo sector solo letras',    
         ];    
-
         $rules = [
         'cantidad' => 'numeric',
         'sector'  => 'alpha',
         ];
-
-    $this->validate($request, $rules,$messages);
-
+        $this->validate($request, $rules,$messages);
+        if($request->input('cantidad')>= $request->input('new_cant')){
+            $title = "La cantidad solicitada es mayor al stock diponible";
+            Toastr::error($title);
+            return redirect()->back();
+        }else{
         $operation_details = new OperationDetail();
         $operation_details->berrie_id = $request->input('berrie_id');
         $operation_details->worker_id = $request->input('worker_id');
         $operation_details->fecha = $request->input('fecha');
         $operation_details->sector = $request->input('sector');
-        $operation_details->save();//INSERT     
+        $operation_details->save();   
 
         $operations = new Operation();
         $operations->cantidad = $request->input('cantidad');
         $operations->operation_type_id = '2';
         $operations->operation_detail_id = $operation_details->id;
         $operations->article_id = $request->input('article_id');
-        $operations->save();//INSERT
+        $operations->save();
 
         $articles = Article::find($id);
         $articles->cant = $request->input('new_cant')-$operations->cantidad = $request->input('cantidad');
-        $articles->save();//UPDATE
-            
+        $articles->save();      
         $title = "Salida realizada correctamente!";
         Toastr::success($title);
         return redirect('/admin/chemicals_out');
     }
-    
-    //listado de quimicos almacenados en bd
-    public function chemicals_in()
+} 
+        //Listar productos quimicos
+        public function chemicals_in()
     {   
         $articles = DB::table('articles')
         ->leftjoin('sub_categories','articles.sub_category_id','=','sub_categories.id')
         ->select('articles.*','sub_categories.subcategoria')
         ->where('articles.category_id','=','10')
         ->get();
-        
         return view('admin.chemicals.chemicals_in')->with(compact('articles','subcategories'));     
     }
     
-    //detalle de quimicos
-    public function chemicalin($id)
+        //Detalle de quimicos
+        public function chemicalin($id)
     {
         $berries = Berrie::all();
         $operations = Operation::all();
-        $articles = Article::find($id);
-           
+        $articles = Article::find($id);  
         $entradas = DB::table('operations') 
         ->select(DB::raw('SUM(cantidad) as cantidad'))
         ->where('operations.article_id','=',$id)
@@ -471,15 +420,13 @@ class ArticlesController extends Controller
         ->select(DB::raw('SUM(cantidad) as cantidad'))
         ->where('operations.article_id','=',$id)
         ->where('operations.operation_type_id','=','2')
-        ->first();
-                 
-        $stock = $entradas->cantidad-$salidas->cantidad;   
-         
+        ->first();         
+        $stock = $entradas->cantidad-$salidas->cantidad;    
         return view('admin.trays.tray_in')->with(compact('articles','berries','operations','stock'));
     }
     
-    //salida de quimicos
-    public function chemicalsinstore(Request $request,$id)
+        //salida de quimicos
+        public function chemicalsinstore(Request $request,$id)
     {
         $operation_details = new OperationDetail();
         $operation_details->berrie_id = $request->input('berrie_id');

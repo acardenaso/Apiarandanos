@@ -36,8 +36,8 @@
                         <div class="row">
                             <div class="col-lg-offset-1 col-lg-10">
                                 <div class="col-lg-10">
-                                    <div class="col-lg-offset-12 col-lg-10">
-                                        <h1>Total: {{ $articles->cant }}</h1>
+                                    <div class="col-lg-offset-9 col-lg-10">
+                                        <h1>Disponible: {{ $articles->cant }} unidades</h1>
                                     </div>
                                     <h2>Préstamo de Bandejas</h2>
                                 </div>
@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-lg-offset-5 col-lg-4">
-                                        <button type="submit" class="buttonna">Agregar Trabajador <i class="fa fa-floppy-o"></i></button>
+                                        <button type="submit" class="buttonna">Generar prestamo <i class="fa fa-floppy-o"></i></button>
 
                                         </div>
                                     </div>
