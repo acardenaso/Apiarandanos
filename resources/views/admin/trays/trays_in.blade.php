@@ -33,6 +33,21 @@
               </div>
             </div>
             <div class="row">
+                <div class="col-lg-offset-1 col-lg-8">
+                    <form method="get" action="{{ url('/searcht') }}">
+                      <div class="input-group">
+                        <div class="input-group-btn">
+                   
+                          <button class="btn btn-default" type="submit">
+                            <i class="fa fa-search"></i>
+                          </button>
+                        </div>
+                        <input name="query" type="text" class="form-control" placeholder="Buscar Articulo">
+                      </div>
+                    
+                    </form>
+                  </div>
+                 
             </div>
             <br>
             <div class="row">

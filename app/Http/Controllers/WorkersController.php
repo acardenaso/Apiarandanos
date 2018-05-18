@@ -15,8 +15,6 @@ use RUT;
 use Toastr;
 use Excel;
 
-
-
 class WorkersController extends Controller
 {
 
@@ -88,6 +86,7 @@ class WorkersController extends Controller
         ->select('workers.*','positions.cargo')
         ->where('nombre', 'like',"%$query%")
         ->orwhere('apellidos', 'like',"%$query%")
+        ->orwhere('fono', 'like',"%$query%")
         ->orwhere('rut', 'like',"%$query%")
         ->orwhere('positions.cargo', 'like',"%$query%")
         ->orwhere('nationalities.nacionalidad', 'like',"%$query%")

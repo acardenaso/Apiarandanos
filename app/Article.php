@@ -19,8 +19,7 @@ class Article extends Model
 
      public function operation(){
             
-            return $this->hasOne(Operation::class);
-        
+            return $this->hasOne(Operation::class);  
     }
 
     public function getOperationCantidadAttribute(){

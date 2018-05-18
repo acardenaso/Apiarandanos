@@ -100,7 +100,7 @@
                                             <div class="form-group">
                                                 <div class="col-lg-6">
                                                     <label for="berrie" class="control-label">Descripción</label>
-                                                    <h4>{{ $operations->descripcion }}</h4>
+                                                    <h4>{{ $operations->sector }}</h4>
                                                 </div>
 
 

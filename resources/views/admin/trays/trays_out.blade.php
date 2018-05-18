@@ -28,7 +28,7 @@
             </div>
             <div class="row">
               <div class="col-lg-offset-1 col-lg-8">
-                <form method="get" action="{{ url('/searchto') }}">
+                <form method="get" action="{{ url('/searchts') }}">
                   <div class="input-group">
                     <div class="input-group-btn">
                       <button class="btn btn-default" type="submit">

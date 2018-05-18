@@ -115,7 +115,7 @@
                                         <div class="form-group">
                                             <div class="col-lg-6">
                                                 <label for="berrie" class="control-label">Descripción</label>
-                                                <textarea name="descripcion" class="form-control" required>{{ $operations->descripcion}}</textarea>
+                                                <textarea name="descripcion" class="form-control" required>{{ $operations->sector}}</textarea>
                                             </div>
 
 

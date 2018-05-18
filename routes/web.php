@@ -21,12 +21,15 @@ Route::get('admin/workers/pdf', 'WorkersController@gpdf')->middleware('permissio
 Route::get('admin/inventories/pdf', 'ArticlesController@gpdfa')->middleware('permission:inventories.gpdfa');
 Route::get('admin/chemicals/pdf', 'ArticlesController@gpdfq')->middleware('permission:chemicals.gpdfq');
 Route::get('admin/chemicals/pdfs', 'ArticlesController@gpdfqs')->middleware('permission:chemicals.gpdfqs');
+
+Route::get('admin/trays/pdfs', 'ArticlesController@gpdfbs')->middleware('permission:trays.gpdfbs');
     //rutas pdf
 
 Route::get('/mantenedor_inventario', 'InventarioController@index');
 Route::get('/control_quimicos', 'ProductosQuimicosController@index');
 Route::get('/indexBandejasEnviadas', 'BandejasEnviadasController@index');
 Route::get('/indexBandejasRecibidas', 'BandejasRecibidasController@index');
+Route::get('/panel_control', 'PanelControlController@panel_control');
 Route::get('/mantenedor_usuarios', 'PanelControlController@usuarios');
 
     //rutas de trabajadores
@@ -74,8 +77,8 @@ Route::get('/admin/trays/{id}/tray_out_view','ArticlesController@tray_out_view')
 Route::get('/admin/trays/{id}/tray_return','ArticlesController@tray_return')->middleware('permission:trays.tray_return');  
 Route::get('/admin/trays/{id}/tray_out_edit','ArticlesController@tray_out_edit')->middleware('permission:trays.tray_out_edit'); 
 Route::get('/admin/trays_return', 'ArticlesController@trays_return')->middleware('permission:trays.trays_return');
-Route::get('/admin/trays/tray_return','ArticlesController@tray_return');
-Route::get('/searchto','ArticlesController@showt');
+Route::get('/searcht','ArticlesController@showt')->middleware('permission:trays.showt');
+Route::get('/searchts','ArticlesController@showts')->middleware('permission:trays.showts');   
     //rutas bandejas 
 
     //rutas usuarios
@@ -92,7 +95,8 @@ Route::get('/admin/berries/create','BerriesController@create')->middleware('perm
 Route::post('/admin/berries','BerriesController@store')->middleware('permission:berries.store');   
 Route::get('/admin/berries/{id}/edit','BerriesController@edit')->middleware('permission:berries.edit');   
 Route::post('/admin/berries/{id}/delete','BerriesController@destroy')->middleware('permission:berries.destroy');  
-Route::post('/admin/berries/{id}/edit','BerriesController@update')->middleware('permission:berries.update');  
+Route::post('/admin/berries/{id}/edit','BerriesController@update')->middleware('permission:berries.update');
+Route::get('/searchb','ArticlesController@showb')->middleware('permission:berries.showb');  
      //rutas Huertos
  
     //rutas generos
@@ -152,10 +156,3 @@ Route::post('/admin/unities/{id}/delete','UnitiesController@destroy');
 Route::get('/admin/configuration', 'ConfigurationController@index')->middleware('permission:configuration.index');
     //rutas Configuración General de Sistema
 });
-
-
-
-
-
-
-

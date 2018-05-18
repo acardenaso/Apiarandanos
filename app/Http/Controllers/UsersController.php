@@ -24,7 +24,6 @@ class UsersController extends Controller
     {
      
     }
-
     public function edit($id)
     {
         $roles = Role::get();

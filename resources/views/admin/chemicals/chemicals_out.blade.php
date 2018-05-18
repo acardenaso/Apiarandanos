@@ -73,7 +73,7 @@
                                   <td class="hidden">{{ $operation->id }}</td>
                                   <td>{{ $operation->fecha }}</td>
                                   <td>{{ $operation->nombre_articulo }}</td>
-                                  <td>{{ $operation->descripcion }}</td>
+                                  <td>{{ $operation->sector }}</td>
                                   <td>{{ $operation->cantidad }}</td>
                                 </tr>
                               </tbody>
