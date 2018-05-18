@@ -589,9 +589,10 @@ class ArticlesController extends Controller
             ->where('articles.category_id','=','10')
             ->join('articles','operations.article_id','=','articles.id')
             ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
-            ->where('articles.nombre_articulo', 'like',"%$filter%")
+            ->where('operation_details.fecha', 'like',"%$filter%")
+            ->orwhere('articles.nombre_articulo', 'like',"%$filter%")
             ->orwhere('operation_details.sector', 'like',"%$filter%")
-            ->get();        
+            ->get();
         }else{
             $operations = Operation::where('operations.operation_type_id','=','2')
             ->where('articles.category_id','=','10')
