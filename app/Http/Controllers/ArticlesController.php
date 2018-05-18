@@ -464,7 +464,6 @@ class ArticlesController extends Controller
     {
         $berries = Berrie::all();
         $workers = Worker::all();
-
         $operations = DB::table('operations')
         ->leftjoin('articles','operations.article_id','=','articles.id')
         ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')

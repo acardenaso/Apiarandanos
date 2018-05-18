@@ -27,7 +27,7 @@
           <div class="box-body">
             <div class="workers">
               <div class="col-lg-offset-1 col-lg-8">
-                <h1>Trabajadores</h1>
+                <h2>Trabajadores</h2>
               </div>
               <div class="row">
                 <div class="col-lg-offset-1 col-lg-8">

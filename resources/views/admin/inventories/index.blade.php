@@ -28,7 +28,7 @@
           <!-- /.box-header -->
           <div class="box-body">
             <div class="col-lg-offset-1 col-lg-10">
-              <div class="col-lg-10">
+              <div class="col-lg-6">
                 <h2>Mantenedor de Artículos</h2>
               </div>
             </div>
