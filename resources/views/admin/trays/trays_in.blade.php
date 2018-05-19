@@ -69,9 +69,9 @@
                       <td class="hidden">{{ $article->id }}</td>
                       <td>{{ $article->nombre_articulo }}</td>
                       @if($article->cant < $article->min_stock)
-                      <td class="rojo">{{ $article->cant }}</td>
+                      <td class="rojo">{{ $article->cant }} stock critico!</td>
                       @elseif($article->cant == $article->min_stock)
-                      <td class="rojo">{{ $article->cant }}</td>
+                      <td class="rojo">{{ $article->cant }} stock critico!</td>
                       @elseif($article->cant > $article->min_stock)
                       <td class="nombre">{{ $article->cant }}</td>
                       @endif

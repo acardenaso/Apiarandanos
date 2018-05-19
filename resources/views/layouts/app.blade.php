@@ -69,6 +69,8 @@
     color:#FF0000;
     font-weight:bold;
 }
+
+
   .buttonna {
 	-moz-box-shadow: 0px 10px 14px -7px #3e7327;
 	-webkit-box-shadow: 0px 10px 14px -7px #3e7327;
