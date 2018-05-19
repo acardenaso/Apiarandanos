@@ -69,6 +69,8 @@
     color:#FF0000;
     font-weight:bold;
 }
+
+
   .buttonna {
 	-moz-box-shadow: 0px 10px 14px -7px #3e7327;
 	-webkit-box-shadow: 0px 10px 14px -7px #3e7327;
@@ -485,6 +487,24 @@ document.getElementById('logout-form').submit();">
             window.open("/admin/chemicals/pdfs" + "?filter=" + filter)
           } else {
             window.open("/admin/chemicals/pdfs")
+          }
+        })
+
+         $("#btnGenerarPdfTO").click(function () {
+          var filter = window.location.search.split('?query=')[1];
+          if (filter) {
+            window.open("/admin/trays/pdfto" + "?filter=" + filter)
+          } else {
+            window.open("/admin/trays/pdfto")
+          }
+        })
+
+         $("#btnGenerarPdfTR").click(function () {
+          var filter = window.location.search.split('?query=')[1];
+          if (filter) {
+            window.open("/admin/trays/pdftr" + "?filter=" + filter)
+          } else {
+            window.open("/admin/trays/pdftr")
           }
         })
 

@@ -40,8 +40,12 @@
                   
                         <a href="{{ url('admin/trays/tray_return') }}" class="buttonn">Registrar Devolución &nbsp;&nbsp;<i class="fa fa-plus"></i></a>
                    
-                      <a href="" class="buttonn">Generar PDF &nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i></a>
-                      <a href="" class="buttonn">Generar Excel &nbsp;&nbsp;<i class="fa fa-file-excel-o"></i></a>   
+                        <a class="buttonn" target="_blanck" id="btnGenerarPdfTO" class="btn btn-success">Genenerar PDF&nbsp;&nbsp;
+                      <i class="fa fa-file-pdf-o"></i>
+                    </a>
+                      <a class="buttonn" href="{{ route('operations.excel') }}" class="btn btn-success btn-sm">Genenerar Excel&nbsp;&nbsp;
+                    <i class="fa fa-file-excel-o"></i>
+                  </a>  
                 </form>
               </div>
 

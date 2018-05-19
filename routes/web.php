@@ -15,7 +15,8 @@ Route::get('descargar-articulos', 'ArticlesController@excela')->name('articles.e
 Route::get('descargar-trabajadores', 'WorkersController@excelw')->name('workers.excel');
 Route::get('descargar-quimicos', 'ArticlesController@excelq')->name('articles.excel');
 Route::get('descargar-quimicoss', 'ArticlesController@excelqs')->name('articless.excel');
-
+Route::get('descargar-bandejas', 'ArticlesController@excelto')->name('operations.excel');
+Route::get('descargar-bandejass', 'ArticlesController@exceltr')->name('operationss.excel');
 //rutas excel
 
 Route::middleware('auth')->group(function() {
@@ -24,8 +25,8 @@ Route::get('admin/workers/pdf', 'WorkersController@gpdf')->middleware('permissio
 Route::get('admin/inventories/pdf', 'ArticlesController@gpdfa')->middleware('permission:inventories.gpdfa');
 Route::get('admin/chemicals/pdf', 'ArticlesController@gpdfq')->middleware('permission:chemicals.gpdfq');
 Route::get('admin/chemicals/pdfs', 'ArticlesController@gpdfqs')->middleware('permission:chemicals.gpdfqs');
-
-Route::get('admin/trays/pdfs', 'ArticlesController@gpdfbs')->middleware('permission:trays.gpdfbs');
+Route::get('admin/trays/pdfto', 'ArticlesController@gpdfto');
+Route::get('admin/trays/pdftr', 'ArticlesController@gpdftr');
     //rutas pdf
 
 Route::get('/mantenedor_inventario', 'InventarioController@index');
