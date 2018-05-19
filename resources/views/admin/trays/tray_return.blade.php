@@ -68,7 +68,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
-                                            <label for="fono" class="control-label">Bandejas devueltas</label>
+                                            <label for="fono" class="control-label">Cantidad Bandejas devueltas</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
@@ -86,7 +86,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                 </span>
-                                                <select data-live-search="true" class="form-control selectpicker" name="berrie_id" id="berrie">
+                                                <select data-live-search="true" class="form-control selectpicker" name="article_id" id="article_id">
                                                     <option value="">Seleccione bandeja:</option>
                                                     @foreach ($articles as $article)
                                                     <option value="{{ $article->id }}"> {{ $article->nombre_articulo }}</option>
@@ -129,7 +129,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
-                                            <label for="berrie" class="control-label">Fecha devolucion</label>
+                                            <label for="berrie" class="control-label">Fecha devolución</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                 <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
@@ -147,7 +147,12 @@
                                             </div>
                                         </div>
                                         </div>
-
+                                        <div class="form-group ">
+                                            <div class="col-lg-6">
+                                                <label for="fono" class="control-label">Cantidad de bandejas solicitadas</label>
+                                                <input type="text" name="new_cant" class="form-control" id="new_cant" value="{{ $article->cant }}">
+                                            </div>
+                                        </div>
 
                                             <br>
                                             <div class="form-group">

@@ -100,7 +100,7 @@
                                             <div class="form-group">
                                                 <div class="col-lg-6">
                                                     <label for="berrie" class="control-label">Descripción</label>
-                                                    <h4>{{ $operations->sector }}</h4>
+                                                    <h4>{{ $operations->descripcion }}</h4>
                                                 </div>
 
 
@@ -111,6 +111,7 @@
                                                     <input type="text" name="article_id" id="id" class="form-control hidden">
                                                 </div>
                                             </div>
+
                                             <div class="col-lg-4">
                                                 <label for="worker" class="control-label">Responsable</label>
                                                 <div class="input-group">
@@ -128,7 +129,7 @@
 
 
                                         <br>
-                                      
+
 
                                 </div>
 
@@ -152,3 +153,4 @@
 <!-- /.content-wrapper -->
 <!--Fin-Contenido-->
 @endsection
+

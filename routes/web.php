@@ -7,6 +7,9 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('myform',array('as'=>'myform','uses'=>'ArticlesController@myform'));
+Route::get('myform/ajax/{id}',array('as'=>'myform.ajax','uses'=>'ArticlesController@myformAjax'));
+
 //rutas excel
 Route::get('descargar-articulos', 'ArticlesController@excela')->name('articles.excel');
 Route::get('descargar-trabajadores', 'WorkersController@excelw')->name('workers.excel');

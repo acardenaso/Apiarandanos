@@ -120,7 +120,7 @@
                                         <div class="form-group">
                                             <div class="col-lg-4">
                                                 <label for="berrie" class="control-label">Descripción</label>
-                                                <textarea name="descripcion" class="form-control" required>{{ old('descripcion') }}</textarea>
+                                                <textarea name="description" class="form-control" required>{{ old('description') }}</textarea>
                                             </div>
                                             
                                            

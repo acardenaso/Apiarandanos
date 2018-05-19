@@ -44,7 +44,7 @@
 
                                     {{ csrf_field() }}
 
-                                    <div class="form-group hidden">
+                                    <div class="form-group">
                                         <div class="col-lg-6">
                                             <label for="id" class="control-label">ID Producto quimico *</label>
                                             <input type="text" name="article_id" id="id" class="form-control" value=" {{ $articles->id }}">
@@ -73,14 +73,20 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
-                                            <label for="berrie" class="control-label">Sector</label>
+                                            <label for="sub_category_id" class="control-label">Sector</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                </span>
-                                                <input type="text" name="sector" class="form-control" required value="{{ old('sector') }}">
+                                              <span class="input-group-addon">
+                                                <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                                              </span>
+                                              <select data-live-search="true" name="sector_id" id="sector_id" class="form-control selectpicker">
+                                                <option value="">Seleccione Sector</option>
+                                                @foreach ($sectors as $sector)
+                                                <option value="{{ $sector->id }}" @if(old('sector_id') == $sector->id) {{ 'selected' }} @endif> {{ $sector->sector }} </option>
+                                                @endforeach
+                                              </select>
                                             </div>
-                                        </div>
+                                          </div>
+                      
                                     </div>
 
                                     <div class="form-group">
@@ -94,6 +100,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-6">
+
+                                            <input type="text" name="article_id" id="id" class="form-control hidden">
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                     <br>
                                     <div class="form-group">

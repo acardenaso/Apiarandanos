@@ -11,4 +11,10 @@ class OperationDetail extends Model
             return $this->hasMany(Operation::class);
     
         }
+
+        public function sector(){
+            
+                return $this->belongsTo(Sector::class);
+        
+            }
 }

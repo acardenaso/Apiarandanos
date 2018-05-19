@@ -14,13 +14,16 @@ use App\OperationDetail;
 use App\ArticleState;
 use App\Berrie;
 use App\Worker;
+use App\Sector;
 use App\App;
 use Toastr;
 use Excel;
 
 class ArticlesController extends Controller
 {
-        //Lista los articulos
+    //LOGICA MODULO INVENTARIO
+
+         //Lista los articulos
     public function index()
     {   
         $articles = Article::paginate(10);
@@ -94,6 +97,7 @@ class ArticlesController extends Controller
         return view('admin.inventories.edit')->with(compact('article','categories','subcategories','article_states','user'));
     }
 
+
          //Actualizar articulo
         public function update(Request $request, $id)
     {
@@ -127,6 +131,7 @@ class ArticlesController extends Controller
         return redirect('/admin/inventories');
     }
 
+
         //Eliminar articulo
         public function destroy($id)
     {
@@ -137,7 +142,31 @@ class ArticlesController extends Controller
         return back(); 
     }
 
-        //Listar bandejas prestadas
+    //LOGICA MODULO INVENTARIO
+
+// <------------------------------------------------------------------------------------------>
+
+    //LOGICA MODULO BANDEJAS
+
+    //BANDEJAS DISPONIBLES
+
+        //Listar bandejas disponibles
+        public function trays_in()
+        {
+            $articles = DB::table('articles')
+            ->where('articles.category_id','=','9')
+            ->paginate(10);
+            return view('admin.trays.trays_in')->with(compact('articles'));   
+        }
+    
+    //BANDEJAS DISPONIBLES
+
+//---------------------------------------------------------------------------------------------------------------------    
+    
+    //PRESTAMO DE BANDEJAS
+
+
+    //Listar bandejas prestadas
         public function trays_out()
     {
         $operations = DB::table('operations')
@@ -151,7 +180,7 @@ class ArticlesController extends Controller
         return view('admin.trays.trays_out')->with(compact('operations'));    
     }
     
-        //Crear préstamo de bandejas
+        //Crear un nuevo préstamo de bandejas
         public function tray_out(Request $request,$article_id)
     {
         $articles = Article::find($article_id);
@@ -172,7 +201,7 @@ class ArticlesController extends Controller
     }
 
         //Almacenar préstamo de bandejas
-    public function tray_out_store(Request $request,$id)
+        public function tray_out_store(Request $request,$id)
     {
         $messages = [
             'folio.numeric' => 'Campo folio solo numeros',
@@ -195,7 +224,7 @@ class ArticlesController extends Controller
         $operation_details->berrie_id = $request->input('berrie_id');
         $operation_details->worker_id = $request->input('worker_id');
         $operation_details->fecha = $request->input('fecha');
-        $operation_details->descripcion = $request->input('descripcion');
+        $operation_details->description = $request->input('description');
         $operation_details->save();//INSERT            
 
         $operations = new Operation();
@@ -213,6 +242,12 @@ class ArticlesController extends Controller
         }
     }
 
+        //PRESTAMO DE BANDEJAS
+
+//---------------------------------------------------------------------------------------------------------------------
+
+        //DEVOLUCION DE BANDEJAS
+
         //Listar bandejas devueltas
         public function trays_return()
     {
@@ -227,21 +262,62 @@ class ArticlesController extends Controller
         return view('admin.trays.trays_return')->with(compact('operations')); 
     }
 
-        //Crear devolucion de bandejas
+        //formulario devolucion de bandejas
         public function tray_return()
     {
         $berries = Berrie::all();
         $workers = Worker::all();
-        $articles = Article::all();
+        $articles = DB::table('articles')
+        ->where('category_id','=','9')
+        ->get();
+
         $operations = DB::table('operations')
         ->leftjoin('articles','operations.article_id','=','articles.id')
         ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
         ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
-        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','operation_details.sector','operation_details.berrie_id','operation_details.worker_id','articles.nombre_articulo','berries.nombre_berrie')
+        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','articles.nombre_articulo','articles.cant','berries.nombre_berrie')
         ->where('articles.category_id','=','9')
         ->where('operations.operation_type_id','=','2')
         ->first();
         return view('admin.trays.tray_return')->with(compact('operations','berries','workers','articles'));
+    }
+         //Almacenar devolución de bandejas
+        public function tray_in_store()
+    {
+        $messages = [
+            'folio.numeric' => 'Campo folio solo numeros',
+            'cantidad.numeric'  => 'Campo cantidad solo numeros',
+            'berrie_id.required'  => 'Campo berrie es requerido',     
+        ];    
+        $rules = [
+            'folio' => 'numeric',
+            'cantidad'  => 'numeric',
+            'berrie_id' => 'required',
+        ];            
+            $this->validate($request, $rules,$messages);
+            
+
+        $operation_details = new OperationDetail();
+        $operation_details->folio = $request->input('folio');
+        $operation_details->berrie_id = $request->input('berrie_id');
+        $operation_details->worker_id = $request->input('worker_id');
+        $operation_details->fecha = $request->input('fecha');
+        $operation_details->description = $request->input('description');
+        $operation_details->save();//INSERT            
+        
+        $operations = new Operation();
+        $operations->cantidad = $request->input('cantidad');
+        $operations->operation_type_id = '3';
+        $operations->operation_detail_id = $operation_details->id;
+        $operations->article_id = $request->input('article_id');
+        $operations->save();//INSERT
+        
+        $articles = Article::find($operations->article_id);
+        $articles->cant = $articles->cant+$operations->cantidad = $request->input('cantidad');
+        $articles->save();//SAVE
+        
+        return redirect('/admin/trays_out');
+        
     }
 
         //Detalle prestamo de bandejas
@@ -258,24 +334,6 @@ class ArticlesController extends Controller
         ->where('operations.operation_type_id','=','2')
         ->where('operations.id','=',$id)
         ->first();
-        return view('admin.trays.tray_out_view')->with(compact('operations','berries','workers'));
-    }
-
-        //formulario detalle de devolucion de bandejas PENDIENTE
-        public function trays_return_view(Request $request,$id)
-    {
-        $berries = Berrie::all();
-        $workers = Worker::all();
-        $operations = DB::table('operations')
-        ->leftjoin('articles','operations.article_id','=','articles.id')
-        ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
-        ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
-        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','operation_details.sector','operation_details.berrie_id','operation_details.worker_id','articles.nombre_articulo','berries.nombre_berrie')
-        ->where('articles.category_id','=','9')
-        ->where('operations.operation_type_id','=','2')
-        ->where('operations.id','=',$id)
-        ->first();
-
         return view('admin.trays.tray_out_view')->with(compact('operations','berries','workers'));
     }
 
@@ -296,40 +354,22 @@ class ArticlesController extends Controller
          return view('admin.trays.tray_out_edit')->with(compact('operations','berries','workers'));
     }
  
-        //Listar bandejas disponibles
-        public function trays_in()
-    {
-        $articles = DB::table('articles')
-        ->where('articles.category_id','=','9')
-        ->paginate(10);
-        return view('admin.trays.trays_in')->with(compact('articles'));   
-    }
 
-        //Almacenar devolución de bandejas
-        public function trays_in_store(Request $request,$id)
-    {
-        $operations = new Operation();
-        $operations->folio = $request->input('folio');
-        $operations->cantidad = $request->input('cantidad');
-        $operations->operation_type_id = '2';
-        $operations->article_id = $request->input('article_id');
-        $operations->berrie_id = $request->input('berrie_id');
-        $operations->fecha = $request->input('fecha');
-        $operations->save();
-        $articles = Article::find($id);
-        $articles->stock = $request->input('stock')-$operations->cantidad = $request->input('cantidad');
-        $articles->save();
-        return redirect('/admin/inventories');
-    }
+    //LOGICA DE BANDEJAS
 
-        //Listar salida productos quimicos
+// <---------------------------------------------------------------------------------------------------------------->
+
+    //LOGICA DE QUIMICOS
+
+    //Listar salida productos quimicos
         public function chemicals_out()
     {
         $operations = DB::table('operations')
         ->leftjoin('articles','operations.article_id','=','articles.id')
         ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
         ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
-        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','operation_details.sector','articles.nombre_articulo','berries.nombre_berrie')
+        ->leftjoin('sectors','operation_details.sector_id','=','sectors.id')
+        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','articles.nombre_articulo','berries.nombre_berrie','sectors.sector')
         ->where('articles.category_id','=','10')
         ->where('operations.operation_type_id','=','2')
         ->get(); 
@@ -339,7 +379,8 @@ class ArticlesController extends Controller
         //formulario de prestamo de bandejas
         public function chemical_out(Request $request,$article_id)
     {
-        $articles = Article::find($article_id);   
+        $articles = Article::find($article_id);
+        $sectors = Sector::all();   
         $entradas = DB::table('operations')
         ->select(DB::raw('SUM(cantidad) as cantidad'))
         ->where('operations.article_id','=',$article_id)
@@ -351,7 +392,7 @@ class ArticlesController extends Controller
         ->where('operations.operation_type_id','=','2')
         ->first();       
         $stock = $entradas->cantidad-$salidas->cantidad;            
-        return view('admin.chemicals.chemical_out')->with(compact('articles','stock')); 
+        return view('admin.chemicals.chemical_out')->with(compact('articles','stock','sectors')); 
     }
     
         //Almacenar salidas de productos quimicos
@@ -375,14 +416,14 @@ class ArticlesController extends Controller
         $operation_details->berrie_id = $request->input('berrie_id');
         $operation_details->worker_id = $request->input('worker_id');
         $operation_details->fecha = $request->input('fecha');
-        $operation_details->sector = $request->input('sector');
+        $operation_details->sector_id = $request->input('sector_id');
         $operation_details->save();   
 
         $operations = new Operation();
+        $operations->article_id = $id;
         $operations->cantidad = $request->input('cantidad');
         $operations->operation_type_id = '2';
         $operations->operation_detail_id = $operation_details->id;
-        $operations->article_id = $request->input('article_id');
         $operations->save();
 
         $articles = Article::find($id);
@@ -449,6 +490,12 @@ class ArticlesController extends Controller
         return redirect('/admin/inventories');
     }
 
+    //LOGICA DE QUIMICOS
+
+// <---------------------------------------------------------------------------------------------------------------->
+
+    //LOGICA DE REABSTECIMIENTOS
+
     //abrir formulario de reabastecimiento de articulos
     public function re($id)
     {
@@ -489,7 +536,11 @@ class ArticlesController extends Controller
         return redirect('/admin/inventories');
     }
 
-    //Generar Reportes en PDF
+    //LOGICA DE REABSTECIMIENTOS
+
+// <---------------------------------------------------------------------------------------------------------------->
+
+    //LOGICA REPORTES PDF
 
     //reporte de artículos
     public function gpdfa(Request $request)
@@ -556,15 +607,17 @@ class ArticlesController extends Controller
             ->where('articles.category_id','=','10')
             ->join('articles','operations.article_id','=','articles.id')
             ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+            ->join('sectors','operation_details.sector_id','=','sectors.id')
             ->where('operation_details.fecha', 'like',"%$filter%")
             ->orwhere('articles.nombre_articulo', 'like',"%$filter%")
-            ->orwhere('operation_details.sector', 'like',"%$filter%")
+            ->orwhere('sectors.sector', 'like',"%$filter%")
             ->get();
         }else{
             $operations = Operation::where('operations.operation_type_id','=','2')
             ->where('articles.category_id','=','10')
             ->join('articles','operations.article_id','=','articles.id')
             ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+            ->leftjoin('sectors','operation_details.sector_id','=','sectors.id')
             ->get();
         }
         $view = \View::make('admin.chemicals.pdfs', compact('operations'))->render();
@@ -634,6 +687,67 @@ class ArticlesController extends Controller
             return $pdf->stream('invoice');
     }
 
+    //LOGICA REPORTES PDF
+
+// <---------------------------------------------------------------------------------------------------------------->
+
+    //LOGICA REPORTES EXCEL
+
+    //reportes inventario
+    public function excela()
+    {
+        Excel::create('Reporte Excel', function($excel) {
+            $excel->sheet('Excel sheet', function($sheet) {
+             
+                $articles = Article::leftjoin('categories','articles.category_id','=','categories.id')
+                ->leftjoin('sub_categories','articles.sub_category_id','=','sub_categories.id')
+                ->select('nombre_articulo as Artículo','descripcion as Descripción','cant as Cantidad','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
+                $sheet->fromArray($articles);
+                $sheet->setOrientation('landscape');
+            });
+        })->download('xls');
+    }   
+
+    //reportes productos químicos
+    public function excelq()
+    {
+        Excel::create('Reporte Excel', function($excel) {
+            $excel->sheet('Excel sheet', function($sheet) {
+             
+                $articles = Article::where('articles.category_id','=','10')
+                ->join('sub_categories','articles.sub_category_id','=','sub_categories.id')
+                ->join('categories','articles.category_id','=','categories.id')
+                ->select('nombre_articulo as Artículo','cant as Cantidad disponible','descripcion as Descripcion','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
+                $sheet->fromArray($articles);
+                $sheet->setOrientation('landscape');
+            });
+        })->download('xls');
+    } 
+
+    //reportes salida productos químicos
+    public function excelqs()
+    {
+        Excel::create('Reporte Excel', function($excel) {
+            $excel->sheet('Excel sheet', function($sheet) {
+             
+                $operations = Operation::where('operations.operation_type_id','=','2')
+                ->where('articles.category_id','=','10')
+                ->join('articles','operations.article_id','=','articles.id')
+                ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+                ->leftjoin('sectors','operation_details.sector_id','=','sectors.id')
+                ->select('operation_details.fecha as Fecha','nombre_articulo as Articulo','sectors.sector as Sector','cantidad as Cantidad')->get();                
+                $sheet->fromArray($operations);
+                $sheet->setOrientation('landscape');
+            });
+        })->download('xls');
+    } 
+
+    //LOGICA REPORTES EXCEL
+
+// <---------------------------------------------------------------------------------------------------------------->
+
+    //LOGICA BUSQUEDAS
+
     //Funciones para búsquedas
 
     //búsqueda de artículos
@@ -694,9 +808,10 @@ class ArticlesController extends Controller
         ->where('articles.category_id','=','10')
         ->join('articles','operations.article_id','=','articles.id')
         ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+        ->join('sectors','operation_details.sector_id','=','sectors.id')
         ->where('operation_details.fecha', 'like',"%$query%")
         ->orwhere('articles.nombre_articulo', 'like',"%$query%")
-        ->orwhere('operation_details.sector', 'like',"%$query%")
+        ->orwhere('sectors.sector', 'like',"%$query%")
         ->get();
         
              
@@ -763,55 +878,24 @@ class ArticlesController extends Controller
         return view('admin.trays.trays_out')->with(compact('operations','query'));
     }
 
-    //reportes en excel
+     //LOGICA BUSQUEDAS
 
-    //reportes inventario
-    public function excela()
-    {
-        Excel::create('Reporte Excel', function($excel) {
-            $excel->sheet('Excel sheet', function($sheet) {
-             
-                $articles = Article::leftjoin('categories','articles.category_id','=','categories.id')
-                ->leftjoin('sub_categories','articles.sub_category_id','=','sub_categories.id')
-                ->select('nombre_articulo as Artículo','descripcion as Descripción','cant as Cantidad','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
-                $sheet->fromArray($articles);
-                $sheet->setOrientation('landscape');
-            });
-        })->download('xls');
-    }   
+     // <---------------------------------------------------------------------------------------------------------------->
 
-    //reportes productos químicos
-    public function excelq()
-    {
-        Excel::create('Reporte Excel', function($excel) {
-            $excel->sheet('Excel sheet', function($sheet) {
-             
-                $articles = Article::where('articles.category_id','=','10')
-                ->join('sub_categories','articles.sub_category_id','=','sub_categories.id')
-                ->join('categories','articles.category_id','=','categories.id')
-                ->select('nombre_articulo as Artículo','cant as Cantidad disponible','descripcion as Descripcion','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
-                $sheet->fromArray($articles);
-                $sheet->setOrientation('landscape');
-            });
-        })->download('xls');
-    } 
-
-    //reportes salida productos químicos
-    public function excelqs()
-    {
-        Excel::create('Reporte Excel', function($excel) {
-            $excel->sheet('Excel sheet', function($sheet) {
-             
-                $operations = Operation::where('operations.operation_type_id','=','2')
-                ->where('articles.category_id','=','10')
-                ->join('articles','operations.article_id','=','articles.id')
-                ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
-                ->select('operation_details.fecha as Fecha','nombre_articulo as Articulo','operation_details.sector as Sector','cantidad as Cantidad')->get();                
-                $sheet->fromArray($operations);
-                $sheet->setOrientation('landscape');
-            });
-        })->download('xls');
-    } 
-
-
+    
+     public function myform()
+     {
+         $states = DB::table("categories")->pluck("categoria","id");
+         return view('myform',compact('states'));
+     }
+ 
+ 
+     public function myformAjax($id)
+     {
+         $cities = DB::table("articles")
+                     ->where("category_id",$id)
+                     ->pluck("nombre_articulo","id");
+         return json_encode($cities);
+     }
+ 
 }
