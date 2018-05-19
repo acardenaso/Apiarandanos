@@ -490,6 +490,24 @@ document.getElementById('logout-form').submit();">
           }
         })
 
+         $("#btnGenerarPdfTO").click(function () {
+          var filter = window.location.search.split('?query=')[1];
+          if (filter) {
+            window.open("/admin/trays/pdfto" + "?filter=" + filter)
+          } else {
+            window.open("/admin/trays/pdfto")
+          }
+        })
+
+         $("#btnGenerarPdfTR").click(function () {
+          var filter = window.location.search.split('?query=')[1];
+          if (filter) {
+            window.open("/admin/trays/pdftr" + "?filter=" + filter)
+          } else {
+            window.open("/admin/trays/pdftr")
+          }
+        })
+
         $("#btnAgregarTrabajador").click(function (e) {
           $("#formAddWorkers").submit(function (e) {})
         })

@@ -39,8 +39,12 @@
                     </div>
                     <input name="query" type="text" class="form-control" placeholder="Buscar Articulo">
                   </div><br>
-                  <a href="" class="buttonn">Generar PDF &nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i></a>
-                  <a href="" class="buttonn">Generar Excel &nbsp;&nbsp;<i class="fa fa-file-excel-o"></i></a>
+                  <a class="buttonn" target="_blanck" id="btnGenerarPdfTR" class="btn btn-success">Genenerar PDF&nbsp;&nbsp;
+                      <i class="fa fa-file-pdf-o"></i>
+                    </a>
+                  <a class="buttonn" href="{{ route('operationss.excel') }}" class="btn btn-success btn-sm">Genenerar Excel&nbsp;&nbsp;
+                    <i class="fa fa-file-excel-o"></i>
+                  </a>
                 </form>
               </div>
            

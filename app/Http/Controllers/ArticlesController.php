@@ -574,36 +574,41 @@ class ArticlesController extends Controller
         return $pdf->stream('invoice');
     }
     
-    //reporte de bandejas
-    public function gpdfb(Request $request)
+    //reporte de bandejas prestadas
+    public function gpdfto(Request $request)
     {
         $filter = $request->input('filter');
         $articles;
 
         if($filter){
-            $articles = Article::where('articles.category_id','=','9')
-            ->whereIn ('articles.category_id',[9])
-            ->where('nombre_articulo', 'like',"%$filter%")
-            ->whereIn ('articles.category_id',[9])
-            ->orWhere('descripcion', 'like',"%$filter%")
-            ->whereIn ('articles.category_id',[9])
-            ->orWhere('cant', 'like',"%$filter%")
+            $operations = Operation::where('operations.operation_type_id','=','2')
+            ->where('articles.category_id','=','9')
+            ->join('articles','operations.article_id','=','articles.id')
+            ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+            ->join('berries','operation_details.berrie_id','=','berries.id')
+            ->where('articles.nombre_articulo','like',"%$filter%")
+            ->orwhere('operation_details.sector','like',"%$filter%")
+            ->orwhere('operation_details.fecha','like',"%$filter%")
+            ->orwhere('operation_details.folio','like',"%$filter%")
+            ->orwhere('berries.nombre_berrie','like',"%$filter%")
             ->get();          
         }else{
-            $articles = Article::where('articles.category_id','=','10')
-            ->select('articles.id','articles.nombre_articulo','articles.cant','articles.descripcion','sub_categories.subcategoria')
-            ->where('articles.category_id','=','10')
+            $operations = Operation::where('articles.category_id','=','9')
+            ->where('operations.operation_type_id','=','2')
+            ->leftjoin('articles','operations.article_id','=','articles.id')
+            ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
+            ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
             ->get();
         }
-        $view = \View::make('admin.chemicals.pdf', compact('articles'))->render();
+        $view = \View::make('admin.trays.pdfto', compact('operations'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
 
         return $pdf->stream('invoice');
     }
     
-    //reporte de préstamo de bandejas
-    public function gpdfbs(Request $request)
+        //reporte bandejas devueltas
+        public function gpdftr(Request $request)
     {
         $filter = $request->input('filter');
         $operations;
@@ -621,13 +626,14 @@ class ArticlesController extends Controller
             ->orwhere('berries.nombre_berrie','like',"%$filter%")
             ->get();
         }else{
-            $operations = Operation::where('operations.operation_type_id','=','2')
-            ->where('articles.category_id','=','9')
-            ->join('articles','operations.article_id','=','articles.id')
-            ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+            $operations = Operation::where('articles.category_id','=','9')
+            ->where('operations.operation_type_id','=','2')
+            ->leftjoin('articles','operations.article_id','=','articles.id')
+            ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
+            ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
             ->get();
         }
-            $view = \View::make('admin.trays.pdfs', compact('operations'))->render();
+            $view = \View::make('admin.trays.pdftr', compact('operations'))->render();
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadHTML($view);
 
@@ -763,9 +769,7 @@ class ArticlesController extends Controller
         return view('admin.trays.trays_out')->with(compact('operations','query'));
     }
 
-    //reportes en excel
-
-    //reportes inventario
+    //reportes excel articulos
     public function excela()
     {
         Excel::create('Reporte Excel', function($excel) {
@@ -780,7 +784,7 @@ class ArticlesController extends Controller
         })->download('xls');
     }   
 
-    //reportes productos químicos
+    //reportes excel productos químicos
     public function excelq()
     {
         Excel::create('Reporte Excel', function($excel) {
@@ -796,7 +800,7 @@ class ArticlesController extends Controller
         })->download('xls');
     } 
 
-    //reportes salida productos químicos
+    //reportes excel salida productos químicos
     public function excelqs()
     {
         Excel::create('Reporte Excel', function($excel) {
@@ -807,6 +811,44 @@ class ArticlesController extends Controller
                 ->join('articles','operations.article_id','=','articles.id')
                 ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
                 ->select('operation_details.fecha as Fecha','nombre_articulo as Articulo','operation_details.sector as Sector','cantidad as Cantidad')->get();                
+                $sheet->fromArray($operations);
+                $sheet->setOrientation('landscape');
+            });
+        })->download('xls');
+    } 
+
+    //reportes excel bandejas prestadas
+    public function excelto()
+    {
+        Excel::create('Reporte Excel', function($excel) {
+            $excel->sheet('Excel sheet', function($sheet) {
+             
+                $operations = Operation::where('articles.category_id','=','9')
+                ->where('operations.operation_type_id','=','2')     
+                ->leftjoin('articles','operations.article_id','=','articles.id')
+                ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
+                ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
+                ->select('operation_details.folio as N° de guia','operation_details.fecha as Fecha','articles.nombre_articulo as Tipo bandeja','operations.cantidad as Cantidad','berries.nombre_berrie as Huerto')->get();
+                   
+                $sheet->fromArray($operations);
+                $sheet->setOrientation('landscape');
+            });
+        })->download('xls');
+    } 
+
+    //reportes excel bandejas devueltas
+    public function exceltr()
+    {
+        Excel::create('Reporte Excel', function($excel) {
+            $excel->sheet('Excel sheet', function($sheet) {
+             
+                $operations = Operation::where('articles.category_id','=','9')
+                ->where('operations.operation_type_id','=','2')
+                ->leftjoin('articles','operations.article_id','=','articles.id')
+                ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
+                ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
+                ->select('operation_details.folio as N° de guia','articles.nombre_articulo as Articulo','operation_details.fecha as Fecha devolucion','operations.cantidad as Cantidad','berries.nombre_berrie as Huerto')->get();
+              
                 $sheet->fromArray($operations);
                 $sheet->setOrientation('landscape');
             });
