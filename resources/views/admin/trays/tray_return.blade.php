@@ -42,7 +42,7 @@
 
                                 <br>
 
-                                <form class="form-horizontal" method="post" action="{{ url('/admin/trays/trays_in') }}">
+                                <form class="form-horizontal" method="post" action="{{ url('/admin/trays/tray_in_store') }}">
 
                                     {{ csrf_field() }}
 
@@ -73,7 +73,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                 </span>
-                                                <input type="text" class="form-control" id="cantidad">
+                                                <input type="text" class="form-control" id="cantidad" name="cantidad">
                                             </div>
                                         </div>
                                     </div>
@@ -142,7 +142,7 @@
                                         <div class="col-lg-4">
                                             <label for="fono" class="control-label">Descripcion</label>
                                             <div class="input-group">
-                                                <textarea name="descripcion" class="form-control" required>{{ old('descripcion') }}</textarea>
+                                                <textarea name="description" class="form-control" required>{{ old('description') }}</textarea>
                                                
                                             </div>
                                         </div>

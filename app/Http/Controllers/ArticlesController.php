@@ -142,7 +142,7 @@ class ArticlesController extends Controller
         return back(); 
     }
 
-    //LOGICA MODULO INVENTARIO
+    // FIN LOGICA MODULO INVENTARIO
 
 // <------------------------------------------------------------------------------------------>
 
@@ -263,26 +263,37 @@ class ArticlesController extends Controller
     }
 
         //formulario devolucion de bandejas
+        //PRUEBA SELECT
+           
+     public function myform()
+     {
+         $states = DB::table("categories")->pluck("categoria","id");
+         return view('myform',compact('states'));
+     }
+ 
+ 
+     public function myformAjax($id)
+     {
+         $cities = DB::table("articles")
+                     ->where("category_id",$id)
+                     ->pluck("nombre_articulo","id");
+         return json_encode($cities);
+     }
+        //PRUEBA SELECT
+
         public function tray_return()
     {
         $berries = Berrie::all();
         $workers = Worker::all();
+        
         $articles = DB::table('articles')
         ->where('category_id','=','9')
         ->get();
 
-        $operations = DB::table('operations')
-        ->leftjoin('articles','operations.article_id','=','articles.id')
-        ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
-        ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
-        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','articles.nombre_articulo','articles.cant','berries.nombre_berrie')
-        ->where('articles.category_id','=','9')
-        ->where('operations.operation_type_id','=','2')
-        ->first();
-        return view('admin.trays.tray_return')->with(compact('operations','berries','workers','articles'));
+        return view('admin.trays.tray_return')->with(compact('berries','workers','articles'));
     }
          //Almacenar devolución de bandejas
-        public function tray_in_store()
+        public function tray_in_store(Request $request)
     {
         $messages = [
             'folio.numeric' => 'Campo folio solo numeros',
@@ -355,7 +366,7 @@ class ArticlesController extends Controller
     }
  
 
-    //LOGICA DE BANDEJAS
+    // FIN LOGICA DE BANDEJAS
 
 // <---------------------------------------------------------------------------------------------------------------->
 
@@ -888,20 +899,6 @@ class ArticlesController extends Controller
 
      // <---------------------------------------------------------------------------------------------------------------->
 
-    
-     public function myform()
-     {
-         $states = DB::table("categories")->pluck("categoria","id");
-         return view('myform',compact('states'));
-     }
  
- 
-     public function myformAjax($id)
-     {
-         $cities = DB::table("articles")
-                     ->where("category_id",$id)
-                     ->pluck("nombre_articulo","id");
-         return json_encode($cities);
-     }
  
 }
