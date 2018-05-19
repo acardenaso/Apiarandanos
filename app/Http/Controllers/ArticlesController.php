@@ -176,7 +176,7 @@ class ArticlesController extends Controller
         ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','articles.nombre_articulo','berries.nombre_berrie')
         ->where('articles.category_id','=','9')
         ->where('operations.operation_type_id','=','2')
-        ->get();
+        ->paginate(6);
         return view('admin.trays.trays_out')->with(compact('operations'));    
     }
     
@@ -258,7 +258,7 @@ class ArticlesController extends Controller
         ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','articles.nombre_articulo','berries.nombre_berrie')
         ->where('articles.category_id','=','9')
         ->where('operations.operation_type_id','=','2')
-        ->get();
+        ->paginate(5);
         return view('admin.trays.trays_return')->with(compact('operations')); 
     }
 
@@ -383,7 +383,7 @@ class ArticlesController extends Controller
         ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','articles.nombre_articulo','berries.nombre_berrie','sectors.sector')
         ->where('articles.category_id','=','10')
         ->where('operations.operation_type_id','=','2')
-        ->get(); 
+        ->paginate(6);
         return view('admin.chemicals.chemicals_out')->with(compact('operations'));    
     }
         
@@ -452,7 +452,7 @@ class ArticlesController extends Controller
         ->leftjoin('sub_categories','articles.sub_category_id','=','sub_categories.id')
         ->select('articles.*','sub_categories.subcategoria')
         ->where('articles.category_id','=','10')
-        ->get();
+        ->paginate(5);
         return view('admin.chemicals.chemicals_in')->with(compact('articles','subcategories'));     
     }
     

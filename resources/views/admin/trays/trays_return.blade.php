@@ -74,16 +74,17 @@
                                   <td>{{ $operation->nombre_berrie }}</td>
                                   <td>{{ $operation->cantidad }}</td>
                                   <td class="td-actions"> 
-                                  <a href="{{ url('/admin/trays/'.$operation->id.'/trays_return_view') }}" class="buttonnd-sm">Detalle Guia&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
-                                  <a href="{{ url('/admin/trays/'.$operation->id.'/edit') }}" class="buttonne-sm" data-toggle="tooltip" title="editar despacho">
-                          <i class="fa fa-pencil"></i>
+                                  <a data-toggle="tooltip"  title="detalle Guia" href="{{ url('/admin/trays/'.$operation->id.'/trays_return_view') }}" class="buttonnd-sm">Detalle Guia&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
+                                  <button style="display:inline-block;" data-toggle="tooltip" class="buttonnde-sm" title="eliminar devolucion">
+                            <i class="fa fa-trash"></i>
+                          </button>
                                   </td>
                                 </tr>
                               </tbody>
                     
                                 @endforeach
                           </table>
-                         
+                          {{ $operations->links() }}
 
                         </div>       
                     </div>

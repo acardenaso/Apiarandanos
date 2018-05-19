@@ -36,10 +36,14 @@
                         <div class="row">
                             <div class="col-lg-offset-1 col-lg-10">
                                 <div class="col-lg-10">
-                                    <div class="col-lg-offset-9 col-lg-12">
+                                    <div class="col-lg-offset-8 col-lg-12">
                                     @if($articles->cant < $articles->min_stock)
-                                        <h3 class="rojo">Disponible: {{ $articles->cant }} unidades</h3>
-                                        @endif
+                                        <h3 class="rojo">Disponible: {{ $articles->cant }} unidades stock critico!</h3>
+                                    @elseif($articles->cant = $articles->min_stock)
+                                    <h3 class="rojo">Disponible: {{ $articles->cant }} unidades stock critico!</h3>
+                                    @elseif($articles->cant = $articles->min_stock)
+                                    <h3>Disponible: {{ $articles->cant }} unidades</h3>
+                                    @endif
                                     </div>
                                     <h2>Préstamo de Bandejas</h2>
                                 </div>

@@ -76,13 +76,15 @@
                       <td>{{ $operation->cantidad }}</td>
                       <td class="td-actions">
                       @can('trays.tray_out_view')
-                        <a href="{{ url('/admin/trays/'.$operation->id.'/tray_out_view') }}" class="buttonnd-sm">Detalle Guia &nbsp;&nbsp;<i class="fa fa-eye"></i></a>
+                        <a data-toggle="tooltip" title="detalle Guia" href="{{ url('/admin/trays/'.$operation->id.'/tray_out_view') }}" class="buttonnd-sm">Detalle Guia &nbsp;&nbsp;<i class="fa fa-eye"></i></a>
                       @endcan
-                     
-                      @can('trays.tray_out_edit')
-                        <a href="{{ url('/admin/trays/'.$operation->id.'/tray_out_edit') }}" class="buttonne-sm" data-toggle="tooltip" title="editar despacho">
-                      @endcan  
-                          <i class="fa fa-pencil"></i>
+                      <form style="display:inline-block;" method="post" action="{{ url('/admin/trays/'.$operation->id.'/delete') }}">
+                          <button data-toggle="tooltip" class="buttonnde-sm" title="eliminar Guia">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                
+                        </form>
+                         
                                   </td>
                                 </tr>
                               </tbody>
@@ -94,7 +96,7 @@
                     </div>
                     @endif 
                           </table>
-                         
+                          {{ $operations->links() }}
 
                         </div>       
                     </div>

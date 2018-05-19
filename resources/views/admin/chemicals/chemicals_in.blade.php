@@ -99,7 +99,7 @@
                     </div>
                     @endif 
                           </table>
-
+                          {{ $articles->links() }}
                         </div>       
                     </div>
                   </div><!-- /.box-body -->

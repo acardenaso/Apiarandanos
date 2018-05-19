@@ -86,7 +86,7 @@
                     </div>
                     @endif 
                           </table>
-            
+                          {{ $operations->links() }}
 
                         </div>    
                        
