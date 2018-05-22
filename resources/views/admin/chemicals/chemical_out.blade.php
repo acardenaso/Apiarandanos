@@ -37,6 +37,13 @@
                         <div class="row">
                             <div class="col-lg-offset-1 col-lg-10">
                                 <div class="col-lg-10">
+                                        <div class="col-lg-offset-8 col-lg-12">
+                                                @if($articles->min_stock >= $articles->cant)
+                                                    <h3 class="rojo">Disponible: {{ $articles->cant }} unidades stock critico!</h3>
+                                                @else
+                                                <h3>Disponible: {{ $articles->cant }} unidades</h3>
+                                                @endif
+                                                </div>
                                     <h2>Salida de productos</h2>
                                 </div>
                                 <br>
@@ -44,7 +51,7 @@
 
                                     {{ csrf_field() }}
 
-                                    <div class="form-group">
+                                    <div class="form-group hidden">
                                         <div class="col-lg-6">
                                             <label for="id" class="control-label">ID Producto quimico *</label>
                                             <input type="text" name="article_id" id="id" class="form-control" value=" {{ $articles->id }}">

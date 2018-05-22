@@ -36,6 +36,23 @@
                         <div class="row">
                             <div class="col-lg-offset-1 col-lg-10">
                                 <div class="col-lg-10">
+                                    <div class="col-lg-offset-6 col-lg-12">
+                                        <div class="form-group ">
+                                            <div class="col-lg-3">
+                                                <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas prestadas a la fecha</label>
+                                            <input type="text" class="form-control input-lg text-center" id="prestadas" value="{{ $prestadas->cant }}">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                    <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas devueltas a la fecha</label>
+                                                    <input type="text" class="form-control input-lg text-center" id="devueltas" value="{{ $devueltas->cant }}">
+                                                </div>
+                                            <div class="col-lg-3">
+                                                <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas pendientes</label>
+                                            <input type="text" class="form-control input-lg text-center" id="tipo" value="{{$saldo_bandejas}}">
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
 
                                     <h2>Devolución de Bandejas</h2>
                                 </div>
@@ -57,7 +74,6 @@
                                     </div>
 
                                     <div class="form-group">
-
                                         <div class="col-lg-4">
                                             <label for="id" class="control-label">Folio (N° Guia de despacho)*</label>
                                             <div class="input-group">
@@ -67,19 +83,24 @@
                                                 <input maxlength="5" type="text" name="folio" id="id" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
-                                            <label for="fono" class="control-label">Cantidad Bandejas devueltas</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                </span>
-                                                <input type="text" class="form-control" id="cantidad" name="cantidad">
-                                            </div>
-                                        </div>
                                     </div>
 
 
                                     <div class="form-group">
+
+                                        <div class="col-lg-4">
+                                            <label for="berrie" class="control-label">Huerto</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                                                        </span>
+                                                <select data-live-search="true" class="form-control selectpicker" name="berrie_id" id="berrie">
+                                                        @foreach ($berries as $berrie)
+                                                        <option value="{{ $berrie->id }}" selected> {{ $berrie->nombre_berrie }}</option>
+                                                        @endforeach
+                                                        </select>
+                                            </div>
+                                        </div>
                                         <div class="col-lg-4">
                                             <label for="fono" class="control-label">Tipo de bandeja</label>
                                             <div class="input-group">
@@ -95,40 +116,19 @@
                                             </div>
                                         </div>
 
-                                         <div class="col-lg-4">
-                                            <label for="berrie" class="control-label">Huerto</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                </span>
-                                                <select data-live-search="true" class="form-control selectpicker" name="berrie_id" id="berrie">
-                                                    <option value="">Seleccione Huerto:</option>
-                                                    @foreach ($berries as $berrie)
-                                                    <option value="{{ $berrie->id }}" @if(old('berrie_id') == $berrie->id) {{ 'selected' }} @endif> {{ $berrie->nombre_berrie }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
                                     </div>
 
                                     <div class="form-group">
-
                                         <div class="col-lg-4">
-                                            <label for="fono" class="control-label">Responsable</label>
+                                            <label for="fono" class="control-label">Cantidad Bandejas devueltas</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                            </span>
-                                            <select data-live-search="true" class="form-control selectpicker" name="worker_id" id="worker">
-                                                    <option value="">Seleccione Responsable:</option>
-                                                    @foreach ($workers as $worker)
-                                                    <option value="{{ $worker->id }}" @if(old('worker_id') == $worker->id) {{ 'selected' }} @endif> {{ $worker->nombre }}</option>
-                                                    @endforeach
-                                                </select>
+                                                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                                                        </span>
+                                                <input type="text" class="form-control" id="cantidad" name="cantidad">
                                             </div>
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-4 ">
                                             <label for="berrie" class="control-label">Fecha devolución</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -137,45 +137,58 @@
                                                 <input type="date" name="fecha" class="form-control" </div>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                        <div class="col-lg-4">
-                                            <label for="fono" class="control-label">Descripcion</label>
+                                    <div class="form-group">
+                                        <div class="col-lg-3">
+                                            <label for="fono" class="control-label">Responsable</label>
                                             <div class="input-group">
+                                                <span class="input-group-addon">
+                                                        <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                                                        </span>
+                                                <select data-live-search="true" class="form-control selectpicker" name="worker_id" id="worker">
+                                                                <option value="">Seleccione Responsable:</option>
+                                                                @foreach ($workers as $worker)
+                                                                <option value="{{ $worker->id }}" @if(old('worker_id') == $worker->id) {{ 'selected' }} @endif> {{ $worker->nombre }}</option>
+                                                                @endforeach
+                                                    </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <label for="fono" class="control-label">Descripcion</label>
+                                            <div class="form-group">
                                                 <textarea name="description" class="form-control" required>{{ old('description') }}</textarea>
-                                               
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="col-lg-6">
+                                            <label for="fono" class="control-label">Cantidad de bandejas solicitadas(input de prueba)</label>
+                                            <input type="text" name="operation" class="form-control" id="operation">
                                         </div>
-                                        <div class="form-group ">
-                                            <div class="col-lg-6">
-                                                <label for="fono" class="control-label">Cantidad de bandejas solicitadas</label>
-                                                <input type="text" name="new_cant" class="form-control" id="new_cant" value="{{ $article->cant }}">
-                                            </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-8 col-lg-4">
+                                            <button type="submit" class="buttonna">Generar devolución  <i class="fa fa-floppy-o"></i></button>
                                         </div>
 
-                                            <br>
-                                            <div class="form-group">
-                                                <div class="col-lg-offset-8 col-lg-4">
-                                                    <button type="submit" class="buttonna">Generar devolución  <i class="fa fa-floppy-o"></i></button>                                    
-                                                   
-                                                </div>
-                                         
 
 
                                 </form>
 
                                 </div>
-                                </div>
-
                             </div>
-                            <!-- /.box-body -->
+
                         </div>
-                        <!-- /.box -->
+                        <!-- /.box-body -->
                     </div>
-                    <!-- /.col -->
+                    <!-- /.box -->
                 </div>
-                <!-- /.row -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
 
     </section>
     <!-- /.content -->

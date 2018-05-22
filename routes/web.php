@@ -7,9 +7,6 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('myform',array('as'=>'myform','uses'=>'ArticlesController@myform'));
-Route::get('myform/ajax/{id}',array('as'=>'myform.ajax','uses'=>'ArticlesController@myformAjax'));
-
 //rutas excel
 Route::get('descargar-articulos', 'ArticlesController@excela')->name('articles.excel');
 Route::get('descargar-trabajadores', 'WorkersController@excelw')->name('workers.excel');
@@ -82,15 +79,17 @@ Route::post('/admin/trays/tray_in_store','ArticlesController@tray_in_store')->mi
 
 Route::get('/admin/trays/{id}/tray_out_view','ArticlesController@tray_out_view')->middleware('permission:trays.tray_out_view');
 Route::get('/admin/trays/{id}/trays_return_view','ArticlesController@trays_return_view');
-Route::get('/admin/trays/{id}/tray_return','ArticlesController@tray_return')->middleware('permission:trays.tray_return');  
 Route::get('/admin/trays/{id}/tray_out_view','ArticlesController@tray_out_view')->middleware('permission:trays.tray_out_view');  
-Route::get('/admin/trays/tray_return','ArticlesController@tray_return')->middleware('permission:trays.tray_return');  
+Route::get('/admin/trays/{berrie_id}/tray_return','ArticlesController@tray_return')->middleware('permission:trays.tray_return');  
 
 
 Route::get('/admin/trays/{id}/tray_out_edit','ArticlesController@tray_out_edit')->middleware('permission:trays.tray_out_edit'); 
 Route::get('/admin/trays_return', 'ArticlesController@trays_return')->middleware('permission:trays.trays_return');
 Route::get('/searcht','ArticlesController@showt')->middleware('permission:trays.showt');
 Route::get('/searchts','ArticlesController@showts')->middleware('permission:trays.showts');   
+
+Route::get('admin/trays/tray_return/ajax/{id}','ArticlesController@tipo_bandejaAjax')->middleware('permission:trays.tipo_bandeja.ajax');
+
     //rutas bandejas 
 
     //rutas usuarios

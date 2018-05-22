@@ -169,6 +169,8 @@ class ArticlesController extends Controller
     //Listar bandejas prestadas
         public function trays_out()
     {
+        $berries = Berrie::all();
+        
         $operations = DB::table('operations')
         ->leftjoin('articles','operations.article_id','=','articles.id')
         ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
@@ -177,7 +179,7 @@ class ArticlesController extends Controller
         ->where('articles.category_id','=','9')
         ->where('operations.operation_type_id','=','2')
         ->paginate(6);
-        return view('admin.trays.trays_out')->with(compact('operations'));    
+        return view('admin.trays.trays_out')->with(compact('operations','berries'));    
     }
     
         //Crear un nuevo préstamo de bandejas
@@ -257,41 +259,63 @@ class ArticlesController extends Controller
         ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
         ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','articles.nombre_articulo','berries.nombre_berrie')
         ->where('articles.category_id','=','9')
-        ->where('operations.operation_type_id','=','2')
+        ->where('operations.operation_type_id','=','3')
         ->paginate(5);
         return view('admin.trays.trays_return')->with(compact('operations')); 
     }
 
         //formulario devolucion de bandejas
-        //PRUEBA SELECT
-           
-     public function myform()
-     {
-         $states = DB::table("categories")->pluck("categoria","id");
-         return view('myform',compact('states'));
-     }
- 
- 
-     public function myformAjax($id)
-     {
-         $cities = DB::table("articles")
-                     ->where("category_id",$id)
-                     ->pluck("nombre_articulo","id");
-         return json_encode($cities);
-     }
-        //PRUEBA SELECT
 
-        public function tray_return()
-    {
-        $berries = Berrie::all();
-        $workers = Worker::all();
-        
+
+        public function tray_return($berrie_id)
+    {   
         $articles = DB::table('articles')
         ->where('category_id','=','9')
         ->get();
 
-        return view('admin.trays.tray_return')->with(compact('berries','workers','articles'));
+        $berries = DB::table('berries')
+        ->where('id','=',$berrie_id)
+        ->get();
+
+        $workers = Worker::all();
+
+        $prestadas = DB::table('operations')
+        ->select(DB::raw('SUM(cantidad) as cant'))
+        ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+        ->where('operations.operation_type_id','=','2')
+        ->where('operation_details.berrie_id','=',$berrie_id)
+        ->first();
+
+        $devueltas = DB::table('operations')
+        ->select(DB::raw('SUM(cantidad) as cant'))
+        ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+        ->where('operations.operation_type_id','=','3')
+        ->where('operation_details.berrie_id','=',$berrie_id)
+        ->first();
+
+        $saldo_bandejas = $prestadas->cant-$devueltas->cant;
+       
+
+        return view('admin.trays.tray_return')->with(compact('articles','berries','workers','prestadas','devueltas','saldo_bandejas'));
     }
+
+    //ajax para obtener total tipo de bandejas prestadas PENDIENTE
+    public function tipo_bandejaAjax(Request $request, $id)
+    {
+        $berrie = $request->input('berrie_id');
+        
+       $articulos = DB::table('operations')
+       ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+       ->select(DB::raw('SUM(cantidad) as cant'))
+       ->where('operations.operation_type_id','=','2')
+       ->where('operations.article_id','=',$id)
+       ->first();
+
+
+        return json_encode($articulos);
+    }
+    
+
          //Almacenar devolución de bandejas
         public function tray_in_store(Request $request)
     {
@@ -327,7 +351,7 @@ class ArticlesController extends Controller
         $articles->cant = $articles->cant+$operations->cantidad = $request->input('cantidad');
         $articles->save();//SAVE
         
-        return redirect('/admin/trays_out');
+        return redirect('/admin/trays_return');
         
     }
 
@@ -776,11 +800,12 @@ class ArticlesController extends Controller
         ->leftjoin('sub_categories','articles.sub_category_id','=','sub_categories.id')
         ->leftjoin('users','articles.user_id','=','users.id')
         ->leftjoin('article_states','articles.article_state_id','=','article_states.id')
-        ->select('articles.*','categories.categoria')
+        ->select('articles.*','categories.categoria','article_states.estado')
         ->where('nombre_articulo', 'like',"%$query%")
         ->orwhere('descripcion', 'like',"%$query%")
         ->orwhere('categories.categoria', 'like',"%$query%")
         ->orwhere('cant', 'like',"%$query%")
+        ->orwhere('article_states.estado', 'like',"%$query%")
         ->paginate(10); 
             
         if(empty($query)){  
@@ -803,7 +828,7 @@ class ArticlesController extends Controller
         ->where('articles.nombre_articulo', 'like',"%$query%")
         ->orwhere('articles.descripcion', 'like',"%$query%")
         ->orwhere('sub_categories.subcategoria', 'like',"%$query%")
-        ->get(); 
+        ->paginate(5); 
     
         if(empty($query)){
                 
@@ -829,7 +854,7 @@ class ArticlesController extends Controller
         ->where('operation_details.fecha', 'like',"%$query%")
         ->orwhere('articles.nombre_articulo', 'like',"%$query%")
         ->orwhere('sectors.sector', 'like',"%$query%")
-        ->get();
+        ->paginate(3);
         
              
         if(empty($query)){  
@@ -877,12 +902,13 @@ class ArticlesController extends Controller
         ->join('articles','operations.article_id','=','articles.id')
         ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
         ->join('berries','operation_details.berrie_id','=','berries.id')
+        ->join('sectors','operation_details.sector_id','=','sectors.id')
         ->where('articles.nombre_articulo','like',"%$query%")
-        ->orwhere('operation_details.sector','like',"%$query%")
         ->orwhere('operation_details.fecha','like',"%$query%")
         ->orwhere('operation_details.folio','like',"%$query%")
         ->orwhere('berries.nombre_berrie','like',"%$query%")
-        ->get();
+        ->orwhere('sectors.sector','like',"%$query%")
+        ->paginate(5);
         
               
         if(empty($query)){  
