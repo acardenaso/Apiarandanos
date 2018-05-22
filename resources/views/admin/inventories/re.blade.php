@@ -24,7 +24,15 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-
+                    @if ($errors->any())
+                <div class="alert alert-danger">
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                  </ul>
+                </div>
+                @endif
                         <div class="row">
                             <div class="container">
                                 <div class="col-lg-offset-1 col-lg-10">
@@ -40,14 +48,8 @@
                                                     <input type="text" name="article_id" id="id" class="form-control" value="{{ $articles->id }}">
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <label for="nombre_articulo" class="control-label">Nombre Artículo</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                        </span>
-                                                        <input type="text" name="nombre_articulo" id="nombre_articulo" class="form-control" value="{{ $articles->nombre_articulo }}"
-                                                            disabled>
-                                                    </div>
+                                                    <label for="nombre_articulo" class="control-label">Nombre Artículo</label> 
+                                                        <h3>{{ $articles->nombre_articulo }}</h3>
                                                 </div>
                                             </div>
 
@@ -64,7 +66,7 @@
                                                         <span class="input-group-addon">
                                                             <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                         </span>
-                                                        <input type="text" name="cantidad" id="min_stock" class="form-control" required>
+                                                        <input maxlength="5" type="text" name="cantidad" id="min_stock" class="form-control" required>
                                                     </div>
                                                 </div>
                                             </div>

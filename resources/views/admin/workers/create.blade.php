@@ -75,7 +75,7 @@
                         <span class="input-group-addon">
                           <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                         </span>
-                        <input type="text" name="nombre" id="nombres" class="form-control" required value="{{old('nombre')}}">
+                        <input maxlength="30" type="text" name="nombre" id="nombres" class="form-control" required value="{{old('nombre')}}">
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -84,7 +84,7 @@
                         <span class="input-group-addon">
                           <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                         </span>
-                        <input type="text" name="apellidos" class="form-control" id="apellidos" required value="{{old('apellidos')}}">
+                        <input maxlength="30" type="text" name="apellidos" class="form-control" id="apellidos" required value="{{old('apellidos')}}">
                       </div>
                     </div>
                   </div>
@@ -105,7 +105,7 @@
                         <span class="input-group-addon">
                           <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                         </span>
-                        <input type="text" name="direccion" class="form-control" id="direccion" required value="{{old('direccion')}}">
+                        <input maxlength="35" type="text" name="direccion" class="form-control" id="direccion" required value="{{old('direccion')}}">
                       </div>
                     </div>
                   </div>

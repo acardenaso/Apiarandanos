@@ -24,7 +24,7 @@
 
                 <div class="row">
                   <div class="col-lg-offset-1 col-lg-10">
-                    <h2 style="border-bottom : 1px solid gray">Registro de trabajadores</h2>
+                    <h2 >Registro de trabajadores</h2>
                     <br>
 
                     <form class="form-horizontal">

@@ -79,7 +79,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                 </span>
-                                                <input type="text" name="cantidad" class="form-control" id="cantidad" required value="{{old('cantidad')}}">
+                                                <input maxlength="5" type="text" name="cantidad" class="form-control" id="cantidad" required value="{{old('cantidad')}}">
                                             </div>
                                         </div>
                                     </div>

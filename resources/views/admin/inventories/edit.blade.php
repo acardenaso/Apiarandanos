@@ -47,13 +47,13 @@
                           <span class="input-group-addon">
                             <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                           </span>
-                          <input type="text" name="nombre_articulo" id="nombre_articulo" class="form-control" value=" {{ $article->nombre_articulo }}">
+                          <input maxlength="30" type="text" name="nombre_articulo" id="nombre_articulo" class="form-control" value=" {{ $article->nombre_articulo }}" required>
                         </div>
                       </div>
 
                       <div class="col-lg-6">
                         <label for="descripcion" class="control-label">Descripción </label>
-                        <textarea name="descripcion" id="descripcion" class="form-control">{{ $article->descripcion }}</textarea>
+                        <textarea maxlength="35" name="descripcion" id="descripcion" class="form-control" required>{{ $article->descripcion }}</textarea>
                       </div>
                     </div>
 
@@ -94,7 +94,7 @@
                           <span class="input-group-addon">
                             <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                           </span>
-                          <input type="text" name="min_stock" id="min_stock" class="form-control" value=" {{ $article->min_stock }}">
+                          <input maxlength="5" type="text" name="min_stock" id="min_stock" class="form-control" value=" {{ $article->min_stock }}" required>
                         </div>
                       </div>
 

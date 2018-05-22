@@ -80,7 +80,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                 </span>
-                                                <input maxlength="5" type="text" name="folio" id="id" class="form-control">
+                                                <input maxlength="5" type="text" name="folio" id="id" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@
                                                 <span class="input-group-addon">
                                                             <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                         </span>
-                                                <input type="text" class="form-control" id="cantidad" name="cantidad">
+                                                <input maxlength="5" type="text" class="form-control" id="cantidad" name="cantidad" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 ">
@@ -134,13 +134,13 @@
                                                 <span class="input-group-addon">
                                                 <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                             </span>
-                                                <input type="date" name="fecha" class="form-control" </div>
+                                                <input type="date" name="fecha" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <label for="fono" class="control-label">Responsable</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -157,7 +157,7 @@
                                         <div class="col-lg-5">
                                             <label for="fono" class="control-label">Descripcion</label>
                                             <div class="form-group">
-                                                <textarea  name="description" class="form-control" required>{{ old('description') }}solo traslado</textarea>
+                                                <textarea required  name="description" class="form-control" required>{{ old('description') }}solo traslado</textarea>
                                             </div>
                                         </div>
                                     </div>

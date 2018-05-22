@@ -15,6 +15,8 @@ use RUT;
 use Toastr;
 use Excel;
 
+
+
 class WorkersController extends Controller
 {
 
@@ -120,8 +122,8 @@ class WorkersController extends Controller
         //validar trabajador
         $messages = [
             'rut.unique' => 'Este rut ya se encuentra registrado',
-            'nombre.string' => 'Campo nombre es necesario solo caracteres',
-            'apellidos.string' => 'Campo apellidos es necesario solo caracteres',
+            'nombre.alpha' => 'Campo nombre es necesario solo caracteres',
+            'apellidos.alpha' => 'Campo apellidos es necesario solo caracteres',
             'fono.min' => 'Campo telefono es necesario 8 digitos',
             'fono.numeric' => 'Campo telefono es necesario solo numeros',
             'gender_id.required' => 'Campo sexo es necesario',
@@ -135,8 +137,8 @@ class WorkersController extends Controller
 
         $rules = [
             'rut' => 'required|unique:workers',
-            'nombre' => 'string',
-            'apellidos' => 'string',
+            'nombre' => 'alpha',
+            'apellidos' => 'alpha',
             'fono' => 'min:8|numeric',
             'position_id' => 'required',
             'gender_id' => 'required',
@@ -198,17 +200,16 @@ class WorkersController extends Controller
     {
           //validar trabajador
           $messages = [
-            'nombre.alpha' => 'Campo nombre es necesario solo caracteres',
-            'apellidos.alpha' => 'Campo apellidos es necesario solo caracteres',
+            'nombre.string' => 'Campo nombre es necesario solo caracteres',
+            'apellidos.string' => 'Campo apellidos es necesario solo caracteres',
             'fono.numeric' => 'Campo fono es necesario solo numeros',
             'fono.min' => 'Campo telefono es necesario 8 digitos',
             'gender_id.required' => 'Campo sexo es necesario',
             'nationality_id.required' => 'Campo nacionalidad es necesario',
-            'state_id.required' => 'Campo estado es necesario',
+            'state_id.required' => 'Campo estado del trabajador es necesario',
             'location_id.required' => 'Campo localidad es necesario',
+            'position_id.required' => 'Campo cargo es necesario'
         ];    
-
-
         $rules = [
             'rut' => 'required',
             'nombre' => 'string',
@@ -221,8 +222,8 @@ class WorkersController extends Controller
             'location_id' => 'required'
         ];
         $this->validate($request, $rules,$messages);
+
         //registrar nuevo trabajador en la bd
-    
         $worker = Worker::find($id);
         $worker->rut = $request->input('rut');
         $worker->nombre = $request->input('nombre');
@@ -235,7 +236,7 @@ class WorkersController extends Controller
         $worker->state_id = $request->input('state_id');
         $worker->gender_id = $request->input('gender_id');
         $worker->location_id = $request->input('location_id');
-        $worker->save();//UPDATE
+        $worker->save();
 
         $title = "Trabajador editado correctamente!";
         Toastr::success($title);

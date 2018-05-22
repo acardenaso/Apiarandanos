@@ -49,7 +49,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                 </span>
-                                                <input type="text" name="rut" id="rut" class="form-control" placeholder="Rut Trabajador" value=" {{ $worker->rut }}">
+                                                <input maxlength="12" onkeyup="this.value = formatterRut(this.value)" type="text" name="rut" id="rut" class="form-control"  value=" {{ $worker->rut }}"  required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -75,7 +75,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                 </span>
-                                                <input type="text" name="nombre" id="nombres" class="form-control" value=" {{ $worker->nombre }}">
+                                                <input maxlength="30" type="text" name="nombre" id="nombres" class="form-control" value=" {{ $worker->nombre }}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -84,7 +84,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                 </span>
-                                                <input type="text" name="apellidos" class="form-control" id="apellidos" value=" {{ $worker->apellidos }}">
+                                                <input maxlength="30" type="text" name="apellidos" class="form-control" id="apellidos" value=" {{ $worker->apellidos }}" required>
                                             </div>
                                         </div>
                                     </div>
@@ -95,7 +95,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                 </span>
-                                                <input type="text" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" value=" {{ $worker->fecha_nacimiento }}">
+                                                <input type="text" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" value=" {{ $worker->fecha_nacimiento }}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -104,7 +104,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                 </span>
-                                                <input type="text" name="direccion" class="form-control" id="direccion" value=" {{ $worker->direccion }}">
+                                                <input maxlength="35" type="text" name="direccion" class="form-control" id="direccion" value=" {{ $worker->direccion }}" required>
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +115,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                 </span>
-                                                <input type="text" name="fono" class="form-control" id="fono" value=" {{ $worker->fono }}">
+                                                <input maxlength="8" type="text" name="fono" class="form-control" id="fono" value=" {{ $worker->fono }}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -181,15 +181,6 @@
                                                         }}</option>
                                                     @endforeach
                                                 </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label for="fono" class="control-label">Teléfono</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                </span>
-                                                <input type="text" name="fono" class="form-control" id="fono" value=" {{ $worker->fono }}">
                                             </div>
                                         </div>
                                     </div>

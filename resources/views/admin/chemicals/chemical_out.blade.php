@@ -60,7 +60,7 @@
 
                                     <div class="form-group">
                                         <div class="col-lg-4">
-                                            <label for="nombres" class="control-label">Nombre del producto</label>
+                                            <label for="nombres" class="control-label">Producto quimico</label>
                                             <h4> {{ $articles->nombre_articulo }} </h4>
                                         </div>
                                         <div class="col-lg-6">
@@ -76,7 +76,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                 </span>
-                                                <input type="text" name="cantidad" class="form-control" id="fono" required value="{{ old('cantidad') }}">
+                                                <input maxlength="5" type="text" name="cantidad" class="form-control" id="fono" required value="{{ old('cantidad') }}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
@@ -103,7 +103,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                 </span>
-                                                <input type="date" name="fecha" class="form-control" required value="{{ old('fecha') }}">
+                                                <input type="date" name="fecha" class="form-control" required value="{{ old('fecha') }}" required>
                                             </div>
                                         </div>
                                     </div>

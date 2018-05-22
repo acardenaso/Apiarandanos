@@ -26,11 +26,12 @@ class ArticlesController extends Controller
          //Lista los articulos
     public function index()
     {   
-        $articles = Article::paginate(10);
+        $articles = Article::paginate(6);
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $operations = Operation::all();
         $article_states = ArticleState::all();
+
         return view('admin.inventories.index')->with(compact('articles','categories','subcategories','operations','article_states'));
     }
     
@@ -54,13 +55,15 @@ class ArticlesController extends Controller
             'category_id.required' => 'Campo categoria es necesario',
             'article_state_id.required' => 'Campo estado es necesario',
             'min_stock.numeric' => 'Campo stock minimo solo numeros',
-            'min_stock.numeric' => 'Campo inventario inicial minimo solo numeros',
+            'cantidad.numeric' => 'Campo inventario inicial solo numeros',
+       
         ];    
         $rules = [
             'nombre_articulo' => 'unique:articles',
             'category_id' => 'required',
             'article_state_id' => 'required',
             'min_stock' => 'numeric',
+            'cantidad' => 'numeric',
         ];
         $this->validate($request, $rules,$messages);
         $articles = new Article();
@@ -102,14 +105,11 @@ class ArticlesController extends Controller
         public function update(Request $request, $id)
     {
          $messages = [
-            'nombre_articulo.required' => 'Articulo es requerido',
             'category_id.required' => 'Campo categoria es necesario',
             'article_state_id.required' => 'Campo estado es necesario',
             'min_stock.numeric' => 'Campo stock minimo solo numeros',
-            'min_stock.numeric' => 'Campo inventario inicial minimo solo numeros',
         ];    
         $rules = [
-            'nombre_articulo' => 'required',
             'category_id' => 'required',
             'article_state_id' => 'required',
             'min_stock' => 'numeric',
@@ -208,7 +208,7 @@ class ArticlesController extends Controller
         $messages = [
             'folio.numeric' => 'Campo folio solo numeros',
             'cantidad.numeric'  => 'Campo cantidad solo numeros',
-            'berrie_id.required'  => 'Campo berrie es requerido',     
+            'berrie_id.required'  => 'Campo huerto solicitante es requerido',     
         ];    
         $rules = [
             'folio' => 'numeric',
@@ -216,6 +216,7 @@ class ArticlesController extends Controller
             'berrie_id' => 'required',
         ];
         $this->validate($request, $rules,$messages);
+        
         if($request->input('cantidad')>= $request->input('new_cant')){
             $title = "La cantidad solicitada es mayor al stock diponible";
             Toastr::error($title);
@@ -398,7 +399,7 @@ class ArticlesController extends Controller
         return view('admin.chemicals.chemicals_out')->with(compact('operations'));    
     }
         
-        //formulario de prestamo de bandejas
+        //formulario de salida de productos quimicos
         public function chemical_out(Request $request,$article_id)
     {
         $articles = Article::find($article_id);
@@ -422,11 +423,11 @@ class ArticlesController extends Controller
     {
         $messages = [
         'cantidad.numeric' => 'Campo cantidad de salida solo numeros',
-        'sector.alpha'  => 'Campo sector solo letras',    
+        'sector_id.required'  => 'Campo sector requerido',    
         ];    
         $rules = [
         'cantidad' => 'numeric',
-        'sector'  => 'alpha',
+        'sector_id'  => 'required',
         ];
         $this->validate($request, $rules,$messages);
         if($request->input('cantidad')>= $request->input('new_cant')){
@@ -463,7 +464,7 @@ class ArticlesController extends Controller
         ->leftjoin('sub_categories','articles.sub_category_id','=','sub_categories.id')
         ->select('articles.*','sub_categories.subcategoria')
         ->where('articles.category_id','=','10')
-        ->paginate(5);
+        ->paginate(6);
         return view('admin.chemicals.chemicals_in')->with(compact('articles','subcategories'));     
     }
     
@@ -496,18 +497,18 @@ class ArticlesController extends Controller
         $operation_details->worker_id = $request->input('worker_id');
         $operation_details->fecha = $request->input('fecha');
         $operation_details->descripcion = $request->input('descripcion');
-        $operation_details->save();//INSERT     
+        $operation_details->save();    
 
         $operations = new Operation();
         $operations->cantidad = $request->input('cantidad');
         $operations->operation_type_id = '1';
         $operations->operation_detail_id = $operation_details->id;
         $operations->article_id = $request->input('article_id');
-        $operations->save();//INSERT
+        $operations->save();
     
         $articles = Article::find($id);
         $articles->cant = $request->input('stock')+$operations->cantidad = $request->input('cantidad');
-        $articles->save();//UPDATE
+        $articles->save();
     
         return redirect('/admin/inventories');
     }
@@ -543,15 +544,23 @@ class ArticlesController extends Controller
     //guarda en bd el reabastecimiento de los artículos
     public function res(Request $request,$id)
     {
+        $messages = [
+            'cantidad.numeric'  => 'Campo cantidad a reabastecer solo numeros',   
+        ];    
+        $rules = [
+            'cantidad'  => 'numeric'
+        ];            
+        $this->validate($request, $rules,$messages);
+
         $operations = new Operation();
         $operations->cantidad = $request->input('cantidad');
         $operations->article_id = $request->input('article_id');
         $operations->operation_type_id = '1';
-        $operations->save();//INSERT
+        $operations->save();
 
         $articles = Article::find($id);
         $articles->cant = $request->input('new_cant')+$operations->cantidad = $request->input('cantidad');
-        $articles->save();//SAVE
+        $articles->save();
         
         $title = "Reabastecimiento realizado correctamente!";
         Toastr::success($title);
@@ -793,7 +802,7 @@ class ArticlesController extends Controller
         ->orwhere('categories.categoria', 'like',"%$query%")
         ->orwhere('cant', 'like',"%$query%")
         ->orwhere('article_states.estado', 'like',"%$query%")
-        ->paginate(10); 
+        ->paginate(6); 
             
         if(empty($query)){  
             $title = "ingrese un criterio para la búsqueda";
@@ -815,7 +824,7 @@ class ArticlesController extends Controller
         ->where('articles.nombre_articulo', 'like',"%$query%")
         ->orwhere('articles.descripcion', 'like',"%$query%")
         ->orwhere('sub_categories.subcategoria', 'like',"%$query%")
-        ->paginate(5); 
+        ->paginate(6); 
     
         if(empty($query)){
                 
@@ -841,7 +850,7 @@ class ArticlesController extends Controller
         ->where('operation_details.fecha', 'like',"%$query%")
         ->orwhere('articles.nombre_articulo', 'like',"%$query%")
         ->orwhere('sectors.sector', 'like',"%$query%")
-        ->paginate(3);
+        ->paginate(6);
         
              
         if(empty($query)){  
@@ -858,7 +867,6 @@ class ArticlesController extends Controller
     public function showt(Request $request)
     {
         $query = $request->input('query'); 
-    
         $articles = DB::table('articles')
         ->whereIn ('articles.category_id',[9])
         ->where('nombre_articulo', 'like',"%$query%")
@@ -866,7 +874,7 @@ class ArticlesController extends Controller
         ->orWhere('descripcion', 'like',"%$query%")
         ->whereIn ('articles.category_id',[9])
         ->orWhere('cant', 'like',"%$query%")
-        ->get(); 
+        ->paginate(6); 
     
         if(empty($query)){
                 
@@ -895,7 +903,7 @@ class ArticlesController extends Controller
         ->orwhere('operation_details.folio','like',"%$query%")
         ->orwhere('berries.nombre_berrie','like',"%$query%")
         ->orwhere('sectors.sector','like',"%$query%")
-        ->paginate(5);
+        ->paginate(6);
         
               
         if(empty($query)){  

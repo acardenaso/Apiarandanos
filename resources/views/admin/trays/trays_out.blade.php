@@ -117,7 +117,8 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                @if(count($berries)>0) @foreach ($berries as $berrie)
+                                @if(count($berries)>0) 
+                                @foreach ($berries as $berrie)
                                 <tr>
                                   <td class="hidden">{{ $berrie->id }}</td>
                                   <td>{{ $berrie->nombre_berrie }}</td>
@@ -128,7 +129,8 @@
                                   </td>
                                 </tr>
                               </tbody>
-                              @endforeach @else
+                              @endforeach
+                               @else
                               <div style="position:absolute;visibility:visible z-index:1;top:-190px;left:722px;border-radius: 10px;opacity:0.8;" class="buttonn">
                                 <i class="fa fa-exclamation"></i> No se encontraron resultados
                               </div>

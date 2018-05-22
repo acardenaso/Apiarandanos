@@ -166,6 +166,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Kamaln7\Toastr\ToastrServiceProvider::class,
+        
 
         /*
          * Package Service Providers...
