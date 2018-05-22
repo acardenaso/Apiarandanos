@@ -92,7 +92,7 @@
 
                                                     <select data-live-search="true" class="form-control " name="berrie_id" id="berrie_id" disabled>
                                                         @foreach ($berries as $berrie)
-                                                        <option value="{{ $berrie->id }}"> {{ $berrie->nombre_berrie }}</option>
+                                                        <option value="{{ $berrie->id }}" selected> {{ $berrie->nombre_berrie }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -100,7 +100,7 @@
                                             <div class="form-group">
                                                 <div class="col-lg-6">
                                                     <label for="berrie" class="control-label">Descripción</label>
-                                                    <h4>{{ $operations->descripcion }}</h4>
+                                                    <h4>{{ $operations->description }}</h4>
                                                 </div>
 
 
