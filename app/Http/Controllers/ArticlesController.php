@@ -298,22 +298,6 @@ class ArticlesController extends Controller
 
         return view('admin.trays.tray_return')->with(compact('articles','berries','workers','prestadas','devueltas','saldo_bandejas'));
     }
-
-    //ajax para obtener total tipo de bandejas prestadas PENDIENTE
-    public function tipo_bandejaAjax(Request $request, $id)
-    {
-        $berrie = $request->input('berrie_id');
-        
-       $articulos = DB::table('operations')
-       ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
-       ->select(DB::raw('SUM(cantidad) as cant'))
-       ->where('operations.operation_type_id','=','2')
-       ->where('operations.article_id','=',$id)
-       ->first();
-
-
-        return json_encode($articulos);
-    }
     
 
          //Almacenar devolución de bandejas
