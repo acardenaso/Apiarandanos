@@ -161,12 +161,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <div class="col-lg-6">
-                                            <label for="fono" class="control-label">Cantidad de bandejas solicitadas(input de prueba)</label>
-                                            <input type="text" name="operation" class="form-control" id="operation">
-                                        </div>
-                                    </div>
 
                                     <br>
                                     <div class="form-group">

@@ -364,7 +364,7 @@ class ArticlesController extends Controller
         ->leftjoin('articles','operations.article_id','=','articles.id')
         ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
         ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
-        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','operation_details.sector','operation_details.berrie_id','operation_details.worker_id','articles.nombre_articulo','berries.nombre_berrie')
+        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','operation_details.description','operation_details.worker_id','articles.nombre_articulo','berries.nombre_berrie')
         ->where('articles.category_id','=','9')
         ->where('operations.operation_type_id','=','2')
         ->where('operations.id','=',$id)
@@ -388,6 +388,9 @@ class ArticlesController extends Controller
          ->first();
          return view('admin.trays.tray_out_edit')->with(compact('operations','berries','workers'));
     }
+
+
+
  
 
     // FIN LOGICA DE BANDEJAS
