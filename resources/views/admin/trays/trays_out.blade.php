@@ -123,7 +123,7 @@
                                   <td>{{ $berrie->nombre_berrie }}</td>
                                   <td class="td-actions">
                                     @can('trays.tray_out_view')
-                                    <a href="{{ url('/admin/trays/'.$berrie->id.'/tray_return') }}" class="buttonnd-sm">Seleccionar&nbsp;&nbsp;<i class="fa fa-eye"></i></a>        
+                                    <a href="{{ url('/admin/trays/'.$berrie->id.'/tray_return') }}" class="buttonnd-sm">Seleccionar&nbsp;&nbsp;<i class="fa fa-hand-o-left"></i></a>        
                                      @endcan
                                   </td>
                                 </tr>
@@ -135,9 +135,7 @@
                               @endif
                             </table>    
                       </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">cerrar</button>
-                      </div>
+                
                     </div>
 
                   </div>

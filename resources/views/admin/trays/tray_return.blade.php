@@ -40,15 +40,15 @@
                                         <div class="form-group ">
                                             <div class="col-lg-3">
                                                 <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas prestadas a la fecha</label>
-                                            <input type="text" class="form-control input-lg text-center" id="prestadas" value="{{ $prestadas->cant }}">
+                                            <input readonly type="text" class="form-control input-lg text-center" id="prestadas" value="{{ $prestadas->cant }}">
                                             </div>
                                             <div class="col-lg-3">
                                                     <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas devueltas a la fecha</label>
-                                                    <input type="text" class="form-control input-lg text-center" id="devueltas" value="{{ $devueltas->cant }}">
+                                                    <input readonly type="text" class="form-control input-lg text-center" id="devueltas" value="{{ $devueltas->cant }}">
                                                 </div>
                                             <div class="col-lg-3">
                                                 <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas pendientes</label>
-                                            <input type="text" class="form-control input-lg text-center" id="tipo" value="{{$saldo_bandejas}}">
+                                            <input readonly type="text" class="form-control input-lg text-center" id="tipo" value="{{$saldo_bandejas}}">
                                             </div>
                                             
                                         </div>
@@ -157,7 +157,7 @@
                                         <div class="col-lg-5">
                                             <label for="fono" class="control-label">Descripcion</label>
                                             <div class="form-group">
-                                                <textarea name="description" class="form-control" required>{{ old('description') }}</textarea>
+                                                <textarea  name="description" class="form-control" required>{{ old('description') }}solo traslado</textarea>
                                             </div>
                                         </div>
                                     </div>
