@@ -22,7 +22,7 @@
 
                         <div class="row">
                             <div class="col-lg-10">
-                                <h2>Préstamo de Bandejas</h2>
+                                <h2 style="border-bottom : 1px solid gray">Préstamo de Bandejas</h2>
                                 <br>
                                 <form class="form-horizontal" method="post" action=" {{ url('/admin/trays') }}">
                                     {{ csrf_field() }}

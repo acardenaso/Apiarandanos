@@ -1,5 +1,6 @@
 @extends('layouts.app') @section('content')
 
+
 <div class="content-wrapper">
 
     <!-- Main content -->
@@ -36,26 +37,16 @@
                         <div class="row">
                             <div class="col-lg-offset-1 col-lg-10">
                                 <div class="col-lg-8">
-                                    <h2>Usuario</h2>
+                                    <h2>Usuario: {{ $users->name }}</h2>
                                 </div>
 
                                 <br>
                                 <form class="form-horizontal" method="post" action="{{ url('/admin/users/'.$users->id.'/edit') }}">
                                     {{ csrf_field() }}
-                                    <div class="form-group">
-                                        <div class="col-lg-12">
-                                            <label for="rut" class="control-label">Nombre</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                </span>
-                                                <input type="text" name="name" id="name" class="form-control" placeholder="Nombre de usuario" value=" {{ $users->name }}"
-                                                    readonly="readonly">
-                                            </div>
-                                        </div>
+                             
                                         <div class="form-group">
                                             <div class="col-lg-12">
-                                                <h3>Lista de roles (Seleccione solo una opcion)</h3>
+                                                <h3 style="border-bottom : 1px solid gray">Lista de roles (Seleccione solo una opcion)</h3>
 
                                                 <div class="form-group">
                                                     <ul class="list-unstyled">
@@ -97,25 +88,25 @@
     </section>
     <!-- /.content -->
     <script>
-        window.addEventListener("DOMContentLoaded",function(){
+        window.addEventListener("DOMContentLoaded", function () {
             var checkeds = document.getElementsByName("roles[]");
-            if(checkeds.length){
-                checkeds.forEach(function(input){
+            if (checkeds.length) {
+                checkeds.forEach(function (input) {
                     input.classList = "rolesCheck";
-                    input.addEventListener("change",function(){
+                    input.addEventListener("change", function () {
                         var checkbox = this;
-                        checkeds.forEach(function(input){
-                             input.checked = false;
+                        checkeds.forEach(function (input) {
+                            input.checked = false;
                         })
                         checkbox.checked = true;
                     })
                 })
 
             }
-            
+
         })
         // $(document).ready(function(){
-      
+
         // })
     </script>
 </div>

@@ -44,7 +44,7 @@
                                                 <h3>Disponible: {{ $articles->cant }} unidades</h3>
                                                 @endif
                                                 </div>
-                                    <h2>Salida de productos</h2>
+                                    <h2 style="border-bottom : 1px solid gray">Salida de productos</h2>
                                 </div>
                                 <br>
                                 <form class="form-horizontal" method="post" action="{{ url('/admin/chemicals/'.$articles->id.'/chemicalout') }}">

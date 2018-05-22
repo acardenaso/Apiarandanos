@@ -38,7 +38,7 @@
             <div class="row">
               <div class="col-lg-offset-1 col-lg-10">
               <div class="col-lg-8">
-              <h1>Registro de Trabajadores</h1>
+              <h1 style="border-bottom : 1px solid gray">Registro de Trabajadores</h1>
               </div>
 
                 <br>
@@ -171,15 +171,6 @@
                           <option value="{{ $gender->id }}"@if(old('gender_id') == $gender->id) {{ 'selected' }} @endif> {{ $gender->genero }} </option>
                           @endforeach
                         </select>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <label for="imagen" class="control-label">Imágen (Opcional)</label>
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                        </span>
-                        <input type="file" name="imagen" class="form-control" id="imagen">
                       </div>
                     </div>
                   </div>

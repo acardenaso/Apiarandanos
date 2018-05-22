@@ -155,7 +155,6 @@ class WorkersController extends Controller
         $worker->fecha_nacimiento = $request->input('fecha_nacimiento');
         $worker->direccion = $request->input('direccion');
         $worker->fono = $request->input('fono');
-        $worker->imagen = $request->input('imagen');
         $worker->position_id= $request->input('position_id');
         $worker->gender_id= $request->input('gender_id');
         $worker->nationality_id = $request->input('nationality_id');
@@ -231,7 +230,6 @@ class WorkersController extends Controller
         $worker->fecha_nacimiento = $request->input('fecha_nacimiento');
         $worker->direccion = $request->input('direccion');
         $worker->fono = $request->input('fono');
-        $worker->imagen = $request->input('imagen');
         $worker->position_id = $request->input('position_id');
         $worker->nationality_id = $request->input('nationality_id');
         $worker->state_id = $request->input('state_id');

@@ -43,7 +43,7 @@
                                     <h3>Disponible: {{ $articles->cant }} unidades</h3>
                                     @endif
                                     </div>
-                                    <h2>Préstamo de Bandejas</h2>
+                                    <h2 style="border-bottom : 1px solid gray">Préstamo de Bandejas</h2>
                                 </div>
 
                                 <br>
@@ -122,7 +122,7 @@
                                         <div class="form-group">
                                             <div class="col-lg-4">
                                                 <label for="berrie" class="control-label">Descripción</label>
-                                                <textarea name="description" class="form-control" required>{{ old('description') }}</textarea>
+                                                <textarea name="description" class="form-control" required>{{ old('description') }}solo traslado</textarea>
                                             </div>
                                             
                                            

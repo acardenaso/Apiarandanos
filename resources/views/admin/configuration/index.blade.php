@@ -26,7 +26,7 @@
           <div class="box-body">
           <div class="row">
           <div class="col-lg-offset-1 col-lg-10">
-            <h2>Configuración General de Sistema</h2>
+            <h2 style="border-bottom : 1px solid gray">Configuración General de Sistema</h2>
             </div>
             </div>
             <div class="content ">

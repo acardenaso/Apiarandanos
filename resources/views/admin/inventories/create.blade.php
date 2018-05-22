@@ -38,7 +38,7 @@
             <div class="row">
               <div class="col-lg-offset-1 col-lg-10">
                 <div class="col-lg-10">
-                  <h2>Nuevo Artículo</h2>
+                  <h2 style="border-bottom : 1px solid gray">Nuevo Artículo</h2>
                 </div>
                 <br>
                 

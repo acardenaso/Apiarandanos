@@ -29,7 +29,7 @@
                             <div class="container">
                                 <div class="col-lg-offset-1 col-lg-10">
                                     <div class="col-lg-10">
-                                        <h2>Reabastecer&nbsp;&nbsp;{{ $articles->nombre_articulo }}</h2>
+                                        <h2 style="border-bottom : 1px solid gray">Reabastecer:&nbsp;{{ $articles->nombre_articulo }}</h2>
                                         <br>
                                         <form class="form-horizontal" method="post" action="{{ url('/admin/inventories/'.$articles->id.'/res') }}">
                                             {{ csrf_field() }}
@@ -54,7 +54,7 @@
                                             <div class="form-group">
                                                 <div class="col-lg-3">
                                                     <label for="min_stock" class="control-label">En inventario</label>
-                                                    <h4>{{ $articles->cant }}</h4>
+                                                    <h3>{{ $articles->cant }}</h3>
                                                 </div>
                                             </div>
                                             <div class="form-group">
