@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\RoleUser;
 use Caffeinated\Shinobi\Models\Role;
 Use Toastr;
 
@@ -28,14 +29,21 @@ class UsersController extends Controller
     {
         $roles = Role::get();
         $users = User::find($id);
-        return view('admin.users.edit')->with(compact('users','roles'));
+        $checked = [];
+        foreach($roles as $role){
+            $permitido = RoleUser::where("role_id","=",$role->id)->where("user_id","=", $users->id)->get();
+            if(count($permitido) > 0){
+                array_push($checked,true);
+            }else{
+                array_push($checked,false);
+            }
+        }
+        return view('admin.users.edit')->with(compact('users','roles','checked'));
     }
 
     public function update(Request $request, $id)
     {
         $users = User::find($id);
-        $users->name = $request->input('name');
-
      
         $users->roles()->sync($request->get('roles'));
         $users->save();//UPDATE

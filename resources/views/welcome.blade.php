@@ -164,7 +164,10 @@ background-image: url(img/bg.jpg);
                     @endif
         
         </div>
-
+        <div class="form-check">
+    <input type="checkbox" class="form-check-input" name="remember" id="remember">
+    <label class="form-check-label" for="remember">recordarme</label>
+  </div>
                 <button style="border-radius: 13px;" class="buttonn" type="submit">
                     Iniciar Sesion </button>
                 </form>
@@ -178,9 +181,25 @@ background-image: url(img/bg.jpg);
         </div>
     </div>
 </div>
-
-
-
-
+    <script>
+        $(document).ready(function(){
+            $("#remember").change(function(){
+                var isChecked = $(this).prop("checked");
+                if(isChecked){
+                    var email = $("#email").val();
+                    localStorage.setItem("email",email);
+                }else{
+                    localStorage.setItem("email","");
+                }
+            })
+            window.addEventListener("load",function(){
+                var remember = localStorage.getItem("email");
+                if(remember){
+                    $("#remember").prop("checked",true)
+                    $("#email").val(remember)
+                }
+            })
+        })
+    </script>
     </body>
 </html>
