@@ -23,6 +23,13 @@
       display: none;
       justify-content: center;
     }
+
+       .navbar-nav>.user-menu>.dropdown-menu>li.user-header {
+                height: 80px;
+                padding: 20px;
+                text-align: center;
+
+              }
   </style>
 
 </head>
