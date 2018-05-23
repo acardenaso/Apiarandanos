@@ -108,6 +108,7 @@
                         </a>
                         @endcan
                         <form style="display:inline-block;" method="post" action="{{ url('/admin/inventories/'.$article->id.'/delete') }}">
+                        {{ csrf_field() }}
                           @can('inventories.destroy')
                           <button data-toggle="tooltip"  class="buttonnde-sm" title="eliminar Articulo">
                             <i class="fa fa-trash"></i>

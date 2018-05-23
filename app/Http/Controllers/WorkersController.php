@@ -122,8 +122,8 @@ class WorkersController extends Controller
         //validar trabajador
         $messages = [
             'rut.unique' => 'Este rut ya se encuentra registrado',
-            'nombre.alpha' => 'Campo nombre es necesario solo caracteres',
-            'apellidos.alpha' => 'Campo apellidos es necesario solo caracteres',
+            'nombre.alpha_spaces' => 'Campo nombres es necesario solo caracteres',
+            'apellidos.alpha_spaces' => 'Campo apellidos es necesario solo caracteres',
             'fono.min' => 'Campo telefono es necesario 8 digitos',
             'fono.numeric' => 'Campo telefono es necesario solo numeros',
             'gender_id.required' => 'Campo sexo es necesario',
@@ -133,12 +133,10 @@ class WorkersController extends Controller
             'location_id.required' => 'Campo Localidad es necesario',
             
         ];    
-
-
         $rules = [
             'rut' => 'required|unique:workers',
-            'nombre' => 'alpha',
-            'apellidos' => 'alpha',
+            'nombre' => 'alpha_spaces',
+            'apellidos' => 'alpha_spaces',
             'fono' => 'min:8|numeric',
             'position_id' => 'required',
             'gender_id' => 'required',
@@ -200,8 +198,8 @@ class WorkersController extends Controller
     {
           //validar trabajador
           $messages = [
-            'nombre.string' => 'Campo nombre es necesario solo caracteres',
-            'apellidos.string' => 'Campo apellidos es necesario solo caracteres',
+            'nombre.alpha_spaces' => 'Campo nombre es necesario solo caracteres',
+            'apellidos.alpha_spaces' => 'Campo apellidos es necesario solo caracteres',
             'fono.numeric' => 'Campo fono es necesario solo numeros',
             'fono.min' => 'Campo telefono es necesario 8 digitos',
             'gender_id.required' => 'Campo sexo es necesario',
@@ -212,8 +210,8 @@ class WorkersController extends Controller
         ];    
         $rules = [
             'rut' => 'required',
-            'nombre' => 'string',
-            'apellidos' => 'string',
+            'nombre' => 'alpha_spaces',
+            'apellidos' => 'alpha_spaces',
             'fono' => 'numeric|min:8',
             'position_id' => 'required',
             'gender_id' => 'required',

@@ -511,6 +511,11 @@ document.getElementById('logout-form').submit();">
         $("#btnAgregarTrabajador").click(function (e) {
           $("#formAddWorkers").submit(function (e) {})
         })
+
+          
+
+
+
       })
     </script>
   

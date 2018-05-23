@@ -107,8 +107,9 @@
                           </a>
                           @endcan
                           <form style="display:inline-block;" method="post" action="{{ url('/admin/workers/'.$worker->id.'/delete') }}">
+                          {{ csrf_field() }}
                           @can('workers.destroy')
-                          <button style="display:inline-block;" data-toggle="tooltip" class="buttonnde-sm" title="eliminar Trabajador">
+                          <button  data-toggle="tooltip" class="buttonnde-sm" title="eliminar Trabajador">
                             <i class="fa fa-trash"></i>
                           </button>
                           @endcan
