@@ -251,6 +251,15 @@ class ArticlesController extends Controller
 
         //DEVOLUCION DE BANDEJAS
 
+        public function destroytr($id) 
+        {
+            $operations = Operation::find($id);
+            $operations->delete();
+            $title = "Devolucion eliminado correctamente!";
+            Toastr::success($title);
+            return back(); 
+        }
+
         //Listar bandejas devueltas
         public function trays_return()
     {
@@ -261,7 +270,7 @@ class ArticlesController extends Controller
         ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','articles.nombre_articulo','berries.nombre_berrie')
         ->where('articles.category_id','=','9')
         ->where('operations.operation_type_id','=','3')
-        ->paginate(5);
+        ->paginate(6);
         return view('admin.trays.trays_return')->with(compact('operations')); 
     }
 
@@ -383,7 +392,7 @@ class ArticlesController extends Controller
 // <---------------------------------------------------------------------------------------------------------------->
 
     //LOGICA DE QUIMICOS
-    public function destroyqs(Request $request, $id) 
+    public function destroyqs($id) 
     {
         $operations = Operation::find($id);
         $operations->delete();

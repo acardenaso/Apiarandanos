@@ -79,7 +79,8 @@ Route::post('/admin/trays/tray_in_store','ArticlesController@tray_in_store')->mi
 Route::get('/admin/trays/{id}/tray_out_view','ArticlesController@tray_out_view')->middleware('permission:trays.tray_out_view');
 Route::get('/admin/trays/{id}/trays_return_view','ArticlesController@trays_return_view');
 Route::get('/admin/trays/{id}/tray_out_view','ArticlesController@tray_out_view')->middleware('permission:trays.tray_out_view');  
-Route::get('/admin/trays/{berrie_id}/tray_return','ArticlesController@tray_return')->middleware('permission:trays.tray_return');  
+Route::get('/admin/trays/{berrie_id}/tray_return','ArticlesController@tray_return')->middleware('permission:trays.tray_return');
+Route::post('/admin/trays/{id}/delete','ArticlesController@destroytr');   
 
 
 Route::get('/admin/trays/{id}/tray_out_edit','ArticlesController@tray_out_edit')->middleware('permission:trays.tray_out_edit'); 

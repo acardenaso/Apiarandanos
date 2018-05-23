@@ -75,9 +75,12 @@
                                   <td>{{ $operation->cantidad }}</td>
                                   <td class="td-actions"> 
                                   <a data-toggle="tooltip"  title="detalle Guia" href="{{ url('/admin/trays/'.$operation->id.'/trays_return_view') }}" class="buttonnd-sm">Detalle Guia&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
-                                  <button style="display:inline-block;" data-toggle="tooltip" class="buttonnde-sm" title="eliminar devolucion">
+                                  <form style="display:inline-block;" method="post" action="{{ url('/admin/trays/'.$operation->id.'/delete') }}">
+                          {{ csrf_field() }}
+                          <button  data-toggle="tooltip" class="buttonnde-sm" title="eliminar devolucion">
                             <i class="fa fa-trash"></i>
                           </button>
+                          </form>
                                   </td>
                                 </tr>
                               </tbody>
