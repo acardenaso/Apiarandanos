@@ -47,14 +47,14 @@
                   <label for="nombre_berrie"  class="control-label">Nombre Empresa</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" name="nombre_berrie" id= "nombre_berrie" placeholder="Nombre" required value="{{old('nombre_berrie')}}">
+                    <input maxlength="30" type="text" class="form-control" name="nombre_berrie" id= "nombre_berrie" placeholder="Nombre" required value="{{old('nombre_berrie')}}">
                 </div>
                   </div> 
                   <div class="col-lg-6">
                   <label for="direccion" class="control-label">Direccion Empresa</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
-                    <input type="text" class="form-control" name="direccion" id= "direccion" placeholder="Direccion" required value="{{old('direccion')}}">
+                    <input maxlength="30" type="text" class="form-control" name="direccion" id= "direccion" placeholder="Direccion" required value="{{old('direccion')}}">
                 </div>
                   </div> 
                 </div> 
@@ -65,7 +65,7 @@
                   <label for="representante" class="control-label">Representante</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user-secret"></i></span>
-                    <input  type="text" class="form-control" name="representante" id= "representante" placeholder="Nombre Representante" required value="{{old('representante')}}">
+                    <input maxlength="30" type="text" class="form-control" name="representante" id= "representante" placeholder="Nombre Representante" required value="{{old('representante')}}">
                 </div>
                   </div> 
 
@@ -73,7 +73,7 @@
                   <label for="rut_empresa" class="control-label">Rut Empresa</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-toggle-right"></i></span>
-                    <input  type="text" class="form-control" name="rut_empresa" id="rut_empresa" placeholder="Rut" required value="{{old('rut_empresa')}}">
+                    <input maxlength="14"  type="text" class="form-control" name="rut_empresa" id="rut_empresa" placeholder="Rut" required value="{{old('rut_empresa')}}">
                   </div>
                   </div> 
 

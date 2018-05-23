@@ -25,7 +25,7 @@
                 <div class="row">
                 <div class="col-lg-offset-1 col-lg-10">
                 <div class="col-lg-8">
-                    <h2>Modificar datos de Berries</h2>
+                    <h2 style="border-bottom : 1px solid gray">Modificar datos de huerto</h2>
                     </div>
                     <br>
 
@@ -37,14 +37,14 @@
                   <label for="nombre_berrie" class="control-label">Nombre Empresa</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" name="nombre_berrie" id= "nombre_berrie"placeholder="Nombre" value="{{ $berrie->nombre_berrie }}">
+                    <input maxlength="30" type="text" class="form-control" name="nombre_berrie" id= "nombre_berrie"placeholder="Nombre" value="{{ $berrie->nombre_berrie }}" required>
                 </div>
                   </div> 
                   <div class="col-lg-6">
                   <label for="direccion" class="control-label">Direccion Empresa</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
-                    <input type="text" class="form-control" name="direccion" id= "direccion" placeholder="Direccion" value="{{ $berrie->direccion }}">
+                    <input maxlength="30" type="text" class="form-control" name="direccion" id= "direccion" placeholder="Direccion" value="{{ $berrie->direccion }}" required>
                 </div>
                   </div> 
                 </div> 
@@ -55,7 +55,7 @@
                   <label for="representante" class="control-label">Representante</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user-secret"></i></span>
-                    <input  type="text" class="form-control" name="representante" id= "representante" placeholder="Nombre Representante" value="{{ $berrie->representante }}">
+                    <input maxlength="30" type="text" class="form-control" name="representante" id= "representante" placeholder="Nombre Representante" value="{{ $berrie->representante }}" required>
                 </div>
                   </div> 
 
@@ -63,7 +63,7 @@
                   <label for="rut_empresa" class="control-label">Rut Empresa</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-toggle-right"></i></span>
-                    <input  type="text" class="form-control" name="rut_empresa" id="rut_empresa" placeholder="Rut" value="{{ $berrie->rut_empresa }}">
+                    <input maxlength="30" type="text" class="form-control" name="rut_empresa" id="rut_empresa" placeholder="Rut" value="{{ $berrie->rut_empresa }}" required>
                   </div>
                   </div> 
 
@@ -74,7 +74,7 @@
                   <label for="fono" class="control-label">Telefono</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                    <input type="text" class="form-control" name="fono" id="fono" placeholder="Telefono" value="{{ $berrie->fono }}">
+                    <input maxlength="8" type="text" class="form-control" name="fono" id="fono" placeholder="Telefono" value="{{ $berrie->fono }}" required>
                 </div>
                   </div> 
                 </div>   
