@@ -4,11 +4,11 @@
 <div class="content-wrapper">
 
   <!-- Main content -->
-  <section class="content">
+  <section  class="content">
 
     <div class="row">
       <div class="col-lg-12">
-        <div class="box">
+        <div  class="box">
           <div class="box-header with-border">
             <h3 class="box-title"></h3>
             <a type="button" href="{{url('/admin/inventories')}}">
@@ -26,9 +26,9 @@
             </div>
           </div>
           <!-- /.box-header -->
-          <div class="box-body">
-            <div class="col-lg-offset-1 col-lg-10">
-              <div class="col-lg-6">
+          <div  class="box-body">
+            <div  class="col-lg-offset-1 col-lg-10">
+              <div  class="col-lg-6">
                 <h2>Mantenedor de Artículos</h2>
               </div>
             </div>
@@ -70,7 +70,7 @@
             
 <br>
             <div class="row">
-              <div class="col-lg-offset-1 col-lg-10">
+              <div  class="col-lg-offset-1 col-lg-10">
                 <table class="table table-hover">
                   <thead>
                     <tr>

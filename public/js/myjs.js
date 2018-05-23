@@ -39,4 +39,22 @@ $(document).ready(function () {
             });
         }
     });
+
+
+    $("#remember").change(function(){
+        var isChecked = $(this).prop("checked");
+        if(isChecked){
+            var email = $("#email").val();
+            localStorage.setItem("email",email);
+        }else{
+            localStorage.setItem("email","");
+        }
+    })
+    window.addEventListener("load",function(){
+        var remember = localStorage.getItem("email");
+        if(remember){
+            $("#remember").prop("checked",true)
+            $("#email").val(remember)
+        }
+    })
 });

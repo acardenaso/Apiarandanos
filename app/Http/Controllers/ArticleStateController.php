@@ -10,7 +10,7 @@ class ArticleStateController extends Controller
     public function index()
     {
         
-        $articles = Article::paginate(10);
+        $articles = Article::paginate(6);
         $categories = Category::all();
         $operations = Operation::all();
         $article_states = ArticleState::all();
