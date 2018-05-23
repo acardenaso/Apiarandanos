@@ -92,14 +92,10 @@
                         <td>{{ $worker->state_estado }}</td>
                         <td>{{ $worker->position_cargo }}</td>
                         <td class="td-actions">
- 
- 
-
                         @can('workers.view')
                           <a  href="{{ url('/admin/workers/'.$worker->id.'/view') }}" class="buttonnd-sm" title="Detalle del trabajador" data-toggle="tooltip">
                             <i class="fa fa-eye"></i>
                           </a>
-
                         @endcan
                         @can('workers.edit')
                           <a href="{{ url('/admin/workers/'.$worker->id.'/edit') }}" class="buttonne-sm" data-toggle="tooltip" title="editar trabajador">

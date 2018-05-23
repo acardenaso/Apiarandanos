@@ -65,6 +65,7 @@
                                   <th>Artículo </th>
                                   <th>Sector</th>
                                   <th>Cantidad de salida</th>
+                                  <th>Opciones</th>
                                 </tr>
                               </thead>
                               <tbody class="buscar">
@@ -76,6 +77,14 @@
                                   <td>{{ $operation->nombre_articulo }}</td>
                                   <td>{{ $operation->sector }}</td>
                                   <td>{{ $operation->cantidad }}</td>
+                                  <td class="td-actions">
+                          <form style="display:inline-block;">
+                          {{ csrf_field() }}
+                          <button  data-toggle="tooltip" class="buttonnde-sm" title="eliminar salida de quimico">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                          </form>
+                        </td>
                                 </tr>
                               </tbody>
                               
