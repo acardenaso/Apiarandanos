@@ -25,7 +25,7 @@
                 <div class="box-body">
                 <div class="col-lg-offset-1 col-lg-10">
               <div class="col-lg-10">
-                    <h2>Registro Salida de Productos</h2>
+                    <h2>Registro Salida de Quimicos</h2>
                     </div>
             </div>
             <div class="row">
@@ -55,6 +55,8 @@
              
             </div>
             <br>
+
+
                         <div class="row">
                         <div class="col-lg-offset-1 col-lg-10">
                             <table class="table table-hover">
@@ -78,7 +80,7 @@
                                   <td>{{ $operation->sector }}</td>
                                   <td>{{ $operation->cantidad }}</td>
                                   <td class="td-actions">
-                          <form style="display:inline-block;">
+                          <form style="display:inline-block;" method="post" action="{{ url('/admin/chemicals/'.$operation->id.'/delete') }}">
                           {{ csrf_field() }}
                           <button  data-toggle="tooltip" class="buttonnde-sm" title="eliminar salida de quimico">
                             <i class="fa fa-trash"></i>
@@ -99,12 +101,13 @@
 
                         </div>    
                        
+                     
                     </div>
                   </div><!-- /.box-body -->
                 </div><!-- /.box -->
               </div><!-- /.col -->
             </div><!-- /.row -->
-
+                                       
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <!--Fin-Contenido-->

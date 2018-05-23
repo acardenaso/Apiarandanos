@@ -383,6 +383,14 @@ class ArticlesController extends Controller
 // <---------------------------------------------------------------------------------------------------------------->
 
     //LOGICA DE QUIMICOS
+    public function destroyqs(Request $request, $id) 
+    {
+        $operations = Operation::find($id);
+        $operations->delete();
+        $title = "Registro eliminado correctamente!";
+        Toastr::success($title);
+        return back(); 
+    }
 
     //Listar salida productos quimicos
         public function chemicals_out()

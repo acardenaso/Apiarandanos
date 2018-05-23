@@ -67,6 +67,7 @@ Route::get('/admin/chemicals/{id}/chemical_in','ArticlesController@chemicalin')-
 Route::post('/admin/chemical','ArticlesController@chemicalinstore')->middleware('permission:chemicals.chemicalinstore');
 Route::get('/searchq','ArticlesController@showq')->middleware('permission:chemicals.showq');
 Route::get('/searchqs','ArticlesController@showqs')->middleware('permission:chemicals.showqs'); 
+Route::post('/admin/chemicals/{id}/delete','ArticlesController@destroyqs'); 
     //rutas quimicos
 
     //rutas bandejas
@@ -74,9 +75,7 @@ Route::get('/admin/trays_in', 'ArticlesController@trays_in')->middleware('permis
 Route::get('/admin/trays/{article_id}/tray_out','ArticlesController@tray_out')->middleware('permission:trays.tray_out');
 Route::post('/admin/trays/{id}/tray_out','ArticlesController@tray_out_store')->middleware('permission:trays.tray_out_store');   
 Route::get('/admin/trays_out', 'ArticlesController@trays_out')->middleware('permission:trays.trays_out');
-
 Route::post('/admin/trays/tray_in_store','ArticlesController@tray_in_store')->middleware('permission:trays.tray_in_store');   
-
 Route::get('/admin/trays/{id}/tray_out_view','ArticlesController@tray_out_view')->middleware('permission:trays.tray_out_view');
 Route::get('/admin/trays/{id}/trays_return_view','ArticlesController@trays_return_view');
 Route::get('/admin/trays/{id}/tray_out_view','ArticlesController@tray_out_view')->middleware('permission:trays.tray_out_view');  
