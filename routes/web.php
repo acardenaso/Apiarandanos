@@ -86,7 +86,7 @@ Route::post('/admin/trayss/{id}/delete','ArticlesController@destroyto');
 
 Route::get('/admin/trays/{id}/tray_out_edit','ArticlesController@tray_out_edit')->middleware('permission:trays.tray_out_edit'); 
 Route::get('/admin/trays_return', 'ArticlesController@trays_return')->middleware('permission:trays.trays_return');
-Route::get('/searchts','ArticlesController@showto');   
+Route::get('/searchts','ArticlesController@showts');     
 Route::get('/searchtr','ArticlesController@showtr')->middleware('permission:trays.showtr');   
 
 Route::get('admin/trays/tray_return/ajax/{id}','ArticlesController@tipo_bandejaAjax')->middleware('permission:trays.tipo_bandeja.ajax');

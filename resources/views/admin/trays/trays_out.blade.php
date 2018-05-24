@@ -67,7 +67,8 @@
                     </tr>
                   </thead>
                   <tbody class="buscar">
-                    @if(count($operations)>0) @foreach ($operations as $operation)
+                    @if(count($operations)>0)
+                     @foreach ($operations as $operation)
                     <tr>
                       <td class="hidden">{{ $operation->id }}</td>
                       <td>{{ $operation->folio }}</td>
@@ -97,9 +98,6 @@
                   @endif
                 </table>
                 {{ $operations->links() }}
-
-
-
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
