@@ -901,7 +901,7 @@ class ArticlesController extends Controller
     }
     
     //búsqueda de bandejas
-    public function showt(Request $request)
+    public function showto(Request $request)
     {
         $query = $request->input('query'); 
         $articles = DB::table('articles')
@@ -918,10 +918,10 @@ class ArticlesController extends Controller
             $title = "ingrese un criterio para la búsqueda";
             Toastr::warning($title);
                 
-            return redirect('/admin/trays_in/');      
+            return redirect('/admin/trays_out/');      
         }
     
-        return view('admin.trays.trays_in')->with(compact('articles','query')); 
+        return view('admin.trays.trays_out')->with(compact('articles','query')); 
     }
     
     //búsqueda de bandejas prestadas
@@ -967,9 +967,14 @@ class ArticlesController extends Controller
         ->orwhere('operation_details.folio', 'like',"%$query%")
         ->orwhere('articles.nombre_articulo', 'like',"%$query%")
         ->orwhere('sectors.sector', 'like',"%$query%")
-        
         ->paginate(6);
 
+        if(empty($query)){  
+            $title = "ingrese un criterio para la búsqueda";
+            Toastr::warning($title);
+
+            return redirect('/admin/trays_return/');
+        }
         return view('admin.trays.trays_return')->with(compact('operations','berries'));    
     }
 
