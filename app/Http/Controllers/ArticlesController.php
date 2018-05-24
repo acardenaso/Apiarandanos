@@ -35,7 +35,6 @@ class ArticlesController extends Controller
         return view('admin.inventories.index')->with(compact('articles','categories','subcategories','operations','article_states'));
     }
     
-
         //Creacion de articulos
     public function create()
     {
@@ -45,7 +44,6 @@ class ArticlesController extends Controller
         $user = Auth::user();
         return view('admin.inventories.create')->with(compact('articles','categories','subcategories','article_states','user'));
     }
-
 
         //Almacenar articulo
     public function store(Request $request)
@@ -88,7 +86,6 @@ class ArticlesController extends Controller
         return redirect('/admin/inventories');
     }
 
-
         //Editar articulo
         public function edit($id)
     {
@@ -99,7 +96,6 @@ class ArticlesController extends Controller
         $user = Auth::user();
         return view('admin.inventories.edit')->with(compact('article','categories','subcategories','article_states','user'));
     }
-
 
          //Actualizar articulo
         public function update(Request $request, $id)
@@ -130,7 +126,6 @@ class ArticlesController extends Controller
         Toastr::success($title);
         return redirect('/admin/inventories');
     }
-
 
         //Eliminar articulo
         public function destroy($id)
@@ -251,19 +246,30 @@ class ArticlesController extends Controller
 
         //DEVOLUCION DE BANDEJAS
 
+    //eliminar guia de bandejas devueltas y sumar al stock    
         public function destroytr($id) 
         {
             $operations = Operation::find($id);
             $operations->delete();
+
+            $articles = Article::find($operations->article_id);
+            $articles->cant = $articles->cant+$operations->cantidad;
+            $articles->save();//SAVE
+
             $title = "Devolucion eliminado correctamente!";
             Toastr::success($title);
             return back(); 
         }
-
+    //eliminar guia de bandejas prestadas y sumar al stock de inventario
         public function destroyto($id) 
         {
             $operations = Operation::find($id);
             $operations->delete();
+
+            $articles = Article::find($operations->article_id);
+            $articles->cant = $articles->cant+$operations->cantidad;
+            $articles->save();//SAVE
+
             $title = "Guia eliminada correctamente!";
             Toastr::success($title);
             return back(); 
@@ -284,8 +290,6 @@ class ArticlesController extends Controller
     }
 
         //formulario devolucion de bandejas
-
-
         public function tray_return($berrie_id)
     {   
         $articles = DB::table('articles')
@@ -392,10 +396,6 @@ class ArticlesController extends Controller
          return view('admin.trays.tray_out_edit')->with(compact('operations','berries','workers'));
     }
 
-
-
- 
-
     // FIN LOGICA DE BANDEJAS
 
 // <---------------------------------------------------------------------------------------------------------------->
@@ -406,6 +406,11 @@ class ArticlesController extends Controller
         $operations = Operation::find($id);
         $operations->delete();
         $title = "Registro eliminado correctamente!";
+
+        $articles = Article::find($operations->article_id);
+        $articles->cant = $articles->cant+$operations->cantidad;
+        $articles->save();//SAVE
+
         Toastr::success($title);
         return back(); 
     }
@@ -693,14 +698,15 @@ class ArticlesController extends Controller
         if($filter){
             $operations = Operation::where('operations.operation_type_id','=','2')
             ->where('articles.category_id','=','9')
-            ->join('articles','operations.article_id','=','articles.id')
-            ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
-            ->join('berries','operation_details.berrie_id','=','berries.id')
+            ->leftjoin('articles','operations.article_id','=','articles.id')
+            ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
+            ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
+            ->leftjoin('sectors','operation_details.sector_id','=','sectors.id')
             ->where('articles.nombre_articulo','like',"%$filter%")
-            ->orwhere('operation_details.sector','like',"%$filter%")
             ->orwhere('operation_details.fecha','like',"%$filter%")
             ->orwhere('operation_details.folio','like',"%$filter%")
             ->orwhere('berries.nombre_berrie','like',"%$filter%")
+            ->orwhere('sectors.sector','like',"%$filter%")
             ->get();          
         }else{
             $operations = Operation::where('articles.category_id','=','9')
@@ -708,6 +714,7 @@ class ArticlesController extends Controller
             ->leftjoin('articles','operations.article_id','=','articles.id')
             ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
             ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
+            ->leftjoin('sectors','operation_details.sector_id','=','sectors.id')
             ->get();
         }
         $view = \View::make('admin.trays.pdfto', compact('operations'))->render();
@@ -724,23 +731,25 @@ class ArticlesController extends Controller
         $operations;
 
         if($filter){
-            $operations = Operation::where('operations.operation_type_id','=','2')
+            $operations = Operation::where('operations.operation_type_id','=','3')
             ->where('articles.category_id','=','9')
-            ->join('articles','operations.article_id','=','articles.id')
-            ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
-            ->join('berries','operation_details.berrie_id','=','berries.id')
-            ->where('articles.nombre_articulo','like',"%$filter%")
-            ->orwhere('operation_details.sector','like',"%$filter%")
-            ->orwhere('operation_details.fecha','like',"%$filter%")
-            ->orwhere('operation_details.folio','like',"%$filter%")
-            ->orwhere('berries.nombre_berrie','like',"%$filter%")
-            ->get();
-        }else{
-            $operations = Operation::where('articles.category_id','=','9')
-            ->where('operations.operation_type_id','=','2')
             ->leftjoin('articles','operations.article_id','=','articles.id')
             ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
             ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
+            ->leftjoin('sectors','operation_details.sector_id','=','sectors.id')
+            ->where('articles.nombre_articulo','like',"%$filter%")
+            ->orwhere('operation_details.fecha','like',"%$filter%")
+            ->orwhere('operation_details.folio','like',"%$filter%")
+            ->orwhere('berries.nombre_berrie','like',"%$filter%")
+            ->orwhere('sectors.sector','like',"%$filter%")
+            ->get();          
+        }else{
+            $operations = Operation::where('articles.category_id','=','9')
+            ->where('operations.operation_type_id','=','3')
+            ->leftjoin('articles','operations.article_id','=','articles.id')
+            ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
+            ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
+            ->leftjoin('sectors','operation_details.sector_id','=','sectors.id')
             ->get();
         }
             $view = \View::make('admin.trays.pdftr', compact('operations'))->render();
@@ -849,6 +858,7 @@ class ArticlesController extends Controller
         ->join('sub_categories','articles.sub_category_id','=','sub_categories.id')
         ->where('articles.nombre_articulo', 'like',"%$query%")
         ->orwhere('articles.descripcion', 'like',"%$query%")
+        ->orwhere('articles.cant', 'like',"%$query%")
         ->orwhere('sub_categories.subcategoria', 'like',"%$query%")
         ->paginate(6); 
     
@@ -873,7 +883,8 @@ class ArticlesController extends Controller
         ->join('articles','operations.article_id','=','articles.id')
         ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
         ->join('sectors','operation_details.sector_id','=','sectors.id')
-        ->where('operation_details.fecha', 'like',"%$query%")
+        ->where('operations.cantidad', 'like',"%$query%")
+        ->orwhere('operation_details.fecha', 'like',"%$query%")
         ->orwhere('articles.nombre_articulo', 'like',"%$query%")
         ->orwhere('sectors.sector', 'like',"%$query%")
         ->paginate(6);
@@ -914,31 +925,54 @@ class ArticlesController extends Controller
     }
     
     //búsqueda de bandejas prestadas
-    public function show_trays_out(Request $request)
+    public function showts(Request $request)
     {
         $query = $request->input('query');
     
-        $operations = Operation::where('operations.operation_type_id','=','2')
+        $berries = Berrie::all();
+        
+        $operations = DB::table('operations')
+        ->where('operations.operation_type_id','=','2')
         ->where('articles.category_id','=','9')
-        ->join('articles','operations.article_id','=','articles.id')
-        ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
-        ->join('sectors','operation_details.sector_id','=','sectors.id')
-        ->where('operation_details.fecha', 'like',"%$query%")
+        ->leftjoin('articles','operations.article_id','=','articles.id')
+        ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
+        ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
+        ->leftjoin('sectors','operation_details.sector_id','=','sectors.id')
+        ->where('berries.nombre_berrie', 'like',"%$query%")
+        ->orwhere('operation_details.fecha', 'like',"%$query%")
         ->orwhere('operation_details.folio', 'like',"%$query%")
         ->orwhere('articles.nombre_articulo', 'like',"%$query%")
         ->orwhere('sectors.sector', 'like',"%$query%")
-        ->paginate(6);
         
-             
-        if(empty($query)){  
-            $title = "ingrese un criterio para la búsqueda";
-            Toastr::warning($title);
+        ->paginate(6);
 
-            return redirect('/admin/trays_out/');
-        }   
-
-        return view('admin.trays.trays_out')->with(compact('operations','query'));
+        return view('admin.trays.trays_out')->with(compact('operations','berries'));    
     }
+
+    public function showtr(Request $request)
+    {
+        $query = $request->input('query');
+    
+        $berries = Berrie::all();
+        
+        $operations = DB::table('operations')
+        ->where('operations.operation_type_id','=','3')
+        ->where('articles.category_id','=','9')
+        ->leftjoin('articles','operations.article_id','=','articles.id')
+        ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
+        ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
+        ->leftjoin('sectors','operation_details.sector_id','=','sectors.id')
+        ->where('berries.nombre_berrie', 'like',"%$query%")
+        ->orwhere('operation_details.fecha', 'like',"%$query%")
+        ->orwhere('operation_details.folio', 'like',"%$query%")
+        ->orwhere('articles.nombre_articulo', 'like',"%$query%")
+        ->orwhere('sectors.sector', 'like',"%$query%")
+        
+        ->paginate(6);
+
+        return view('admin.trays.trays_return')->with(compact('operations','berries'));    
+    }
+
 
      //LOGICA BUSQUEDAS
 
