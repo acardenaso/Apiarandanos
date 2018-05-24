@@ -380,20 +380,20 @@ class ArticlesController extends Controller
     }
 
         //formulario detalle de edición guía de despacho PENDIENTE
-        public function tray_out_edit(Request $request,$id)
+        public function trays_return_view(Request $request,$id)
     {
-         $berries = Berrie::all();
-         $workers = Worker::all();
-         $operations = DB::table('operations')
-         ->leftjoin('articles','operations.article_id','=','articles.id')
-         ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
-         ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
-         ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','operation_details.sector','operation_details.berrie_id','operation_details.worker_id','articles.nombre_articulo','berries.nombre_berrie')
-         ->where('articles.category_id','=','9')
-         ->where('operations.operation_type_id','=','2')
-         ->where('operations.id','=',$id)
-         ->first();
-         return view('admin.trays.tray_out_edit')->with(compact('operations','berries','workers'));
+        $berries = Berrie::all();
+        $workers = Worker::all();
+        $operations = DB::table('operations')
+        ->leftjoin('articles','operations.article_id','=','articles.id')
+        ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
+        ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
+        ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','operation_details.description','operation_details.worker_id','articles.nombre_articulo','berries.nombre_berrie')
+        ->where('articles.category_id','=','9')
+        ->where('operations.operation_type_id','=','3')
+        ->where('operations.id','=',$id)
+        ->first();
+        return view('admin.trays.trays_return_view')->with(compact('operations','berries','workers'));
     }
 
     // FIN LOGICA DE BANDEJAS
