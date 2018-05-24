@@ -65,6 +65,7 @@
                                 </tr>
                               </thead>
                               <tbody class="buscar">
+                              @if(count($operations)>0)
                                 @foreach ($operations as $operation)
                                 <tr>
                                   <td class="hidden">{{ $operation->id }}</td>
@@ -84,11 +85,14 @@
                                   </td>
                                 </tr>
                               </tbody>
-                    
-                                @endforeach
+                              @endforeach 
+                  @else
+                  <div style="position:absolute;visibility:visible z-index:1;top:-190px;left:722px;border-radius: 10px;opacity:0.8;" class="buttonn">
+                    <i class="fa fa-exclamation"></i> No se encontraron resultados
+                  </div>
+                  @endif
                           </table>
                           {{ $operations->links() }}
-
                         </div>       
                     </div>
                   </div><!-- /.box-body -->
