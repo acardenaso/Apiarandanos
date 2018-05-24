@@ -260,6 +260,15 @@ class ArticlesController extends Controller
             return back(); 
         }
 
+        public function destroyto($id) 
+        {
+            $operations = Operation::find($id);
+            $operations->delete();
+            $title = "Guia eliminada correctamente!";
+            Toastr::success($title);
+            return back(); 
+        }
+
         //Listar bandejas devueltas
         public function trays_return()
     {

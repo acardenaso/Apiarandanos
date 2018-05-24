@@ -76,7 +76,8 @@
                       <td class="td-actions">
                         @can('trays.tray_out_view')
                         <a data-toggle="tooltip" title="detalle Guia" href="{{ url('/admin/trays/'.$operation->id.'/tray_out_view') }}" class="buttonnd-sm">Detalle Guia &nbsp;&nbsp;<i class="fa fa-eye"></i></a>                        @endcan
-                        <form style="display:inline-block;" method="post" action="{{ url('/admin/trays/'.$operation->id.'/delete') }}">
+                        <form style="display:inline-block;" method="post" action="{{ url('/admin/trayss/'.$operation->id.'/delete') }}">
+                        {{ csrf_field() }}
                           <button data-toggle="tooltip" class="buttonnde-sm" title="eliminar Guia">
                             <i class="fa fa-trash"></i>
                           </button>
