@@ -914,7 +914,7 @@ class ArticlesController extends Controller
     }
     
     //búsqueda de bandejas prestadas
-    public function showts(Request $request)
+    public function show_trays_out(Request $request)
     {
         $query = $request->input('query');
     
@@ -922,16 +922,14 @@ class ArticlesController extends Controller
         ->where('articles.category_id','=','9')
         ->join('articles','operations.article_id','=','articles.id')
         ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
-        ->join('berries','operation_details.berrie_id','=','berries.id')
         ->join('sectors','operation_details.sector_id','=','sectors.id')
-        ->where('articles.nombre_articulo','like',"%$query%")
-        ->orwhere('operation_details.fecha','like',"%$query%")
-        ->orwhere('operation_details.folio','like',"%$query%")
-        ->orwhere('berries.nombre_berrie','like',"%$query%")
-        ->orwhere('sectors.sector','like',"%$query%")
+        ->where('operation_details.fecha', 'like',"%$query%")
+        ->orwhere('operation_details.folio', 'like',"%$query%")
+        ->orwhere('articles.nombre_articulo', 'like',"%$query%")
+        ->orwhere('sectors.sector', 'like',"%$query%")
         ->paginate(6);
         
-              
+             
         if(empty($query)){  
             $title = "ingrese un criterio para la búsqueda";
             Toastr::warning($title);

@@ -99,47 +99,7 @@
 
 
                 <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog">
-                  <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title text-center">Seleccione huerto para continuar</h4>
-                      </div>
-                      <div class="modal-body">
-                          <table class="table table-hover">
-                              <thead>
-                                <tr>
-                                  <th class="hidden">id</th>
-                                  <th>Empresa</th>
-                                  <th>Opciones</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                @if(count($berries)>0) 
-                                @foreach ($berries as $berrie)
-                                <tr>
-                                  <td class="hidden">{{ $berrie->id }}</td>
-                                  <td>{{ $berrie->nombre_berrie }}</td>
-                                  <td class="td-actions">
-                                    @can('trays.tray_out_view')
-                                    <a href="{{ url('/admin/trays/'.$berrie->id.'/tray_return') }}" class="buttonnd-sm">Seleccionar&nbsp;&nbsp;<i class="fa fa-hand-o-left"></i></a>        
-                                     @endcan
-                                  </td>
-                                </tr>
-                              </tbody>
-                              @endforeach
-                               @else
-                              <div style="position:absolute;visibility:visible z-index:1;top:-190px;left:722px;border-radius: 10px;opacity:0.8;" class="buttonn">
-                                <i class="fa fa-exclamation"></i> No se encontraron resultados
-                              </div>
-                              @endif
-                            </table>    
-                      </div>
-                
-                    </div>
+               
 
                   </div>
                 </div>
