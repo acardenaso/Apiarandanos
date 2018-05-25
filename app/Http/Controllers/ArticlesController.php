@@ -15,6 +15,7 @@ use App\ArticleState;
 use App\Berrie;
 use App\Worker;
 use App\Sector;
+use App\User;
 use App\App;
 use Toastr;
 use Excel;
@@ -300,7 +301,7 @@ class ArticlesController extends Controller
         ->where('id','=',$berrie_id)
         ->get();
 
-        $workers = Worker::all();
+        $users = User::all();
 
         $prestadas = DB::table('operations')
         ->select(DB::raw('SUM(cantidad) as cant'))
@@ -319,7 +320,7 @@ class ArticlesController extends Controller
         $saldo_bandejas = $prestadas->cant-$devueltas->cant;
        
 
-        return view('admin.trays.tray_return')->with(compact('articles','berries','workers','prestadas','devueltas','saldo_bandejas'));
+        return view('admin.trays.tray_return')->with(compact('articles','berries','users','prestadas','devueltas','saldo_bandejas'));
     }
     
 
@@ -921,9 +922,7 @@ class ArticlesController extends Controller
 
         return view('admin.chemicals.chemicals_out')->with(compact('operations','query'));
     }
-    
-   
-    
+
     //búsqueda de bandejas prestadas
     public function showts(Request $request)
     {

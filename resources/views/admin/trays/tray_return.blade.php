@@ -146,10 +146,10 @@
                                                 <span class="input-group-addon">
                                                         <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                         </span>
-                                                <select data-live-search="true" class="form-control selectpicker" name="worker_id" id="worker">
+                                                <select data-live-search="true" class="form-control selectpicker" name="user_id" id="user">
                                                                 <option value="">Seleccione Responsable:</option>
-                                                                @foreach ($workers as $worker)
-                                                                <option value="{{ $worker->id }}" @if(old('worker_id') == $worker->id) {{ 'selected' }} @endif> {{ $worker->nombre }}</option>
+                                                                @foreach ($users as $user)
+                                                                <option value="{{ $user->id }}"> {{ $user->name }}</option>
                                                                 @endforeach
                                                     </select>
                                             </div>
