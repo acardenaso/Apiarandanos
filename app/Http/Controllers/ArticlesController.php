@@ -909,20 +909,26 @@ class ArticlesController extends Controller
     
         $berries = Berrie::all();
         
-        $operations = DB::table('operations')
-        ->where('operations.operation_type_id','=','2')
-        ->where('articles.category_id','=','9')
-        ->leftjoin('articles','operations.article_id','=','articles.id')
-        ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
-        ->leftjoin('berries','operation_details.berrie_id','=','berries.id')
-        ->leftjoin('sectors','operation_details.sector_id','=','sectors.id')
+        $operations = Operation::join('articles','operations.article_id','=','articles.id')
+        ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+        ->leftjoin('berries','operation_details.berrie_id','berries.id')
+        ->leftjoin('sectors','operation_details.sector_id','sectors.id')
+        ->whereIn('operations.operation_type_id',[2])
+        ->whereIn('articles.category_id',[9])
         ->where('berries.nombre_berrie', 'like',"%$query%")
+        ->whereIn('operations.operation_type_id',[2])
+        ->whereIn('articles.category_id',[9])
         ->orwhere('operation_details.fecha', 'like',"%$query%")
+        ->whereIn('operations.operation_type_id',[2])
+        ->whereIn('articles.category_id',[9])
         ->orwhere('operation_details.folio', 'like',"%$query%")
+        ->whereIn('operations.operation_type_id',[2])
+        ->whereIn('articles.category_id',[9])
         ->orwhere('articles.nombre_articulo', 'like',"%$query%")
+        ->whereIn('operations.operation_type_id',[2])
+        ->whereIn('articles.category_id',[9])
         ->orwhere('sectors.sector', 'like',"%$query%")
         ->paginate(6);
-
         
         if(empty($query)){
                 
