@@ -1006,7 +1006,7 @@ class ArticlesController extends Controller
     }
 
 
-     //LOGICA BUSQUEDAS
+     //FIN LOGICA BUSQUEDAS
 
      // <---------------------------------------------------------------------------------------------------------------->
 
