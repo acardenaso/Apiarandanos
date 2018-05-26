@@ -8,9 +8,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //rutas excel
+<<<<<<< HEAD
 Route::get('descargar-articulos', 'ArticlesController@excela')->name('articles.excela');
 Route::get('descargar-trabajadores', 'WorkersController@excelw')->name('workers.excelw');
 Route::get('descargar-quimicos', 'ArticlesController@excelq')->name('articles.excel');
+=======
+Route::get('descargar-articulos', 'ArticlesController@excela')->name('articles.excel');
+Route::get('descargar-trabajadores', 'WorkersController@excelw')->name('workers.excel');
+Route::get('descargar-quimicos', 'ArticlesController@excelq')->name('articlesq.excel');
+>>>>>>> 662aae365fb8e8f2f410735c9aab399c0d8b25b8
 Route::get('descargar-quimicoss', 'ArticlesController@excelqs')->name('articless.excel');
 Route::get('descargar-bandejas', 'ArticlesController@excelto')->name('operations.excel');
 Route::get('descargar-bandejass', 'ArticlesController@exceltr')->name('operationss.excel');
@@ -67,7 +73,7 @@ Route::get('/admin/chemicals/{id}/chemical_in','ArticlesController@chemicalin')-
 Route::post('/admin/chemical','ArticlesController@chemicalinstore')->middleware('permission:chemicals.chemicalinstore');
 Route::get('/searchq','ArticlesController@showq')->middleware('permission:chemicals.showq');
 Route::get('/searchqs','ArticlesController@showqs')->middleware('permission:chemicals.showqs'); 
-Route::post('/admin/chemicals/{id}/delete','ArticlesController@destroyqs'); 
+Route::post('/admin/chemicals/{id}/delete','ArticlesController@destroyqs')->middleware('permission:chemicals.destroyqs');
     //rutas quimicos
 
     //rutas bandejas
@@ -80,13 +86,13 @@ Route::get('/admin/trays/{id}/tray_out_view','ArticlesController@tray_out_view')
 Route::get('/admin/trays/{id}/trays_return_view','ArticlesController@trays_return_view');
 Route::get('/admin/trays/{id}/tray_out_view','ArticlesController@tray_out_view')->middleware('permission:trays.tray_out_view');  
 Route::get('/admin/trays/{berrie_id}/tray_return','ArticlesController@tray_return')->middleware('permission:trays.tray_return');
-Route::post('/admin/trays/{id}/delete','ArticlesController@destroytr'); 
-Route::post('/admin/trayss/{id}/delete','ArticlesController@destroyto');   
+Route::post('/admin/trays/{id}/delete','ArticlesController@destroytr')->middleware('permission:trays.destroytr'); 
+Route::post('/admin/trayss/{id}/delete','ArticlesController@destroyto')->middleware('permission:trays.destroyto');  
 
 
 Route::get('/admin/trays/{id}/tray_out_edit','ArticlesController@tray_out_edit')->middleware('permission:trays.tray_out_edit'); 
 Route::get('/admin/trays_return', 'ArticlesController@trays_return')->middleware('permission:trays.trays_return');
-Route::get('/searchts','ArticlesController@showts');     
+Route::get('/searchts','ArticlesController@showts')->middleware('permission:trays.showts');       
 Route::get('/searchtr','ArticlesController@showtr')->middleware('permission:trays.showtr');   
 
 Route::get('admin/trays/tray_return/ajax/{id}','ArticlesController@tipo_bandejaAjax')->middleware('permission:trays.tipo_bandeja.ajax');

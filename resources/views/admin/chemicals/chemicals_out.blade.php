@@ -63,7 +63,7 @@
                               <thead>
                                 <tr>
                                   <th class="hidden">ID</th>
-                                  <th>Fecha</th>
+                                  <th>Fecha salida</th>
                                   <th>Artículo </th>
                                   <th>Sector</th>
                                   <th>Cantidad de salida</th>
@@ -82,9 +82,11 @@
                                   <td class="td-actions">
                           <form style="display:inline-block;" method="post" action="{{ url('/admin/chemicals/'.$operation->id.'/delete') }}">
                           {{ csrf_field() }}
+                          @can('chemicals.destroyqs')
                           <button  data-toggle="tooltip" class="buttonnde-sm" title="eliminar salida de quimico">
                             <i class="fa fa-trash"></i>
                           </button>
+                          @endcan
                           </form>
                         </td>
                                 </tr>

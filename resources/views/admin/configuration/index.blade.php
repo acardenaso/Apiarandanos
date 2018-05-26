@@ -577,12 +577,7 @@
                         <a href="{{ url('/admin/categories/'.$categorie->id.'/edit') }}" class="btn btn-xs btn-warning" data-toggle="tooltip" title="editar Categoria">
                           <i class="fa fa-pencil"></i>
                         </a>
-                        <form style="display:inline-block;" method="post" action="{{ url('/admin/categories/'.$categorie->id.'/delete') }}">
-                          {{ csrf_field() }}
-                          <button type="submit" class="btn btn-xs btn-danger" data-toggle="tooltip" title="eliminar Categoria">
-                            <i class="fa fa-trash"></i>
-                          </button>
-                        </form>
+                  
                       </td>
                     </tr>
                   </tbody>
