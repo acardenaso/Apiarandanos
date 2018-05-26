@@ -23,7 +23,7 @@ background-image: url(img/bg.jpg);
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                       <center><a class="fa fa-bug" href="{{ url('/home') }}">Estas logeado, click aqui para Redireccionar al sistema</a></center>
+                       <center><a class="fa fa-bug" href="{{ url('/home') }}">Ya has iniciado sesión, click aqui para Redireccionar al sistema</a></center>
                     @else
                     @endauth
                 </div>
