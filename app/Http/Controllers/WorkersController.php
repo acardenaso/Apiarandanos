@@ -28,14 +28,14 @@ class WorkersController extends Controller
 
     public function excelw()
     {
-        Excel::create('Reporte Excel', function($excel) {
+        Excel::create('Trabajadores', function($excel) {
             $excel->sheet('Excel sheet', function($sheet) {
                 $workers = Worker::leftjoin('positions','workers.position_id','=','positions.id')
                 ->leftjoin('nationalities','workers.nationality_id','=','nationalities.id')
                 ->leftjoin('genders','workers.gender_id','=','genders.id')
                 ->leftjoin('states','workers.state_id','=','states.id')
                 ->leftjoin('locations','workers.location_id','=','locations.id')
-                ->select('rut as Rut','nombre as Nombre','apellidos as Apellidos','fecha_nacimiento as Fecha de nacimiento','direccion as Direccion','fono as Telefono','positions.cargo as Sub Cargo','genders.genero as Genero','nationalities.nacionalidad as Nacionalidad','locations.localidad as Localidad','states.estado as Estado')->get();                
+                ->select('rut as Rut','nombre as Nombres','apellidos as Apellidos','fecha_nacimiento as Fecha de nacimiento','direccion as Direccion','fono as Telefono','positions.cargo as Cargo','genders.genero as Genero','nationalities.nacionalidad as Nacionalidad','locations.localidad as Localidad','states.estado as Estado')->get();                
                 $sheet->fromArray($workers);
                 $sheet->setOrientation('landscape');
             });

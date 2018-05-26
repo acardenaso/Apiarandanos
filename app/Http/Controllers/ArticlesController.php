@@ -791,28 +791,62 @@ class ArticlesController extends Controller
     //reportes inventario
     public function excela()
     {
-        Excel::create('Reporte Excel', function($excel) {
+        Excel::create('Inventario', function($excel) {
             $excel->sheet('Excel sheet', function($sheet) {
-             
                 $articles = Article::leftjoin('categories','articles.category_id','=','categories.id')
                 ->leftjoin('sub_categories','articles.sub_category_id','=','sub_categories.id')
-                ->select('nombre_articulo as Artículo','descripcion as Descripción','cant as Cantidad','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
+                ->leftjoin('states','articles.article_state_id','=','states.id')
+                ->select('nombre_articulo as Artículo','descripcion as Descripción','states.estado as Estado','cant as Cantidad','min_stock as Stock minimo','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
                 $sheet->fromArray($articles);
                 $sheet->setOrientation('landscape');
             });
         })->download('xls');
-    }   
+    }  
+    
+      //reportes excel bandejas prestadas
+      public function excelto()
+      {
+          Excel::create('Bandejas prestadas', function($excel) {
+              $excel->sheet('Excel sheet', function($sheet) {
+                  $operations = Operation::where('operations.operation_type_id','=','2')
+                  ->where('articles.category_id','=','9')
+                  ->join('articles','operations.article_id','=','articles.id')
+                  ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+                  ->join('berries','operation_details.berrie_id','berries.id')
+                  ->select('operation_details.folio as N° de guia','operation_details.fecha as Fecha prestamo','cantidad as Cantidad','articles.nombre_articulo as Tipo bandeja','berries.nombre_berrie as Huerto')->get();                
+                  $sheet->fromArray($operations);
+                  $sheet->setOrientation('landscape');
+              });
+          })->download('xls');
+      } 
+
+         //reportes excel bandejas devueltas
+         public function exceltr()
+         {
+             Excel::create('Bandejas devueltas', function($excel) {
+                 $excel->sheet('Excel sheet', function($sheet) {
+                     $operations = Operation::where('operations.operation_type_id','=','3')
+                     ->where('articles.category_id','=','9')
+                     ->join('articles','operations.article_id','=','articles.id')
+                     ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+                     ->join('berries','operation_details.berrie_id','berries.id')
+                     ->select('operation_details.folio as N° de guia','operation_details.fecha as Fecha devolucion','cantidad as Cantidad','articles.nombre_articulo as Tipo bandeja','berries.nombre_berrie as Huerto')->get();                
+                     $sheet->fromArray($operations);
+                     $sheet->setOrientation('landscape');
+                 });
+             })->download('xls');
+         } 
 
     //reportes productos químicos
     public function excelq()
     {
-        Excel::create('Reporte Excel', function($excel) {
+        Excel::create('Productos quimicos', function($excel) {
             $excel->sheet('Excel sheet', function($sheet) {
              
                 $articles = Article::where('articles.category_id','=','10')
                 ->join('sub_categories','articles.sub_category_id','=','sub_categories.id')
                 ->join('categories','articles.category_id','=','categories.id')
-                ->select('nombre_articulo as Artículo','cant as Cantidad disponible','descripcion as Descripcion','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
+                ->select('nombre_articulo as Artículo','cant as Cantidad disponible','min_stock as Stock minimo','descripcion as Descripcion','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
                 $sheet->fromArray($articles);
                 $sheet->setOrientation('landscape');
             });
@@ -822,7 +856,7 @@ class ArticlesController extends Controller
     //reportes salida productos químicos
     public function excelqs()
     {
-        Excel::create('Reporte Excel', function($excel) {
+        Excel::create('Salida de quimicos', function($excel) {
             $excel->sheet('Excel sheet', function($sheet) {
              
                 $operations = Operation::where('operations.operation_type_id','=','2')
@@ -830,7 +864,7 @@ class ArticlesController extends Controller
                 ->join('articles','operations.article_id','=','articles.id')
                 ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
                 ->leftjoin('sectors','operation_details.sector_id','=','sectors.id')
-                ->select('operation_details.fecha as Fecha','nombre_articulo as Articulo','sectors.sector as Sector','cantidad as Cantidad')->get();                
+                ->select('operation_details.fecha as Fecha salida','nombre_articulo as Articulo','sectors.sector as Sector','cantidad as Cantidad','min_stock as Stock minimo')->get();                
                 $sheet->fromArray($operations);
                 $sheet->setOrientation('landscape');
             });

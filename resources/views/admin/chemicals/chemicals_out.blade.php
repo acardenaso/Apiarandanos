@@ -63,7 +63,7 @@
                               <thead>
                                 <tr>
                                   <th class="hidden">ID</th>
-                                  <th>Fecha</th>
+                                  <th>Fecha salida</th>
                                   <th>Artículo </th>
                                   <th>Sector</th>
                                   <th>Cantidad de salida</th>
