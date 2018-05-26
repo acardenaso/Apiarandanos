@@ -36,7 +36,7 @@
                         <div class="row">
                             <div class="col-lg-offset-1 col-lg-10">
                                 <div class="col-lg-10">
-                                    <div class="col-lg-offset-6 col-lg-12">
+                                    <div class="col-lg-offset-3 col-lg-12">
                                         <div class="form-group ">
                                             <div class="col-lg-3">
                                                 <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas prestadas a la fecha</label>
@@ -48,7 +48,12 @@
                                                 </div>
                                             <div class="col-lg-3">
                                                 <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas pendientes</label>
-                                            <input readonly type="text" class="form-control input-lg text-center" id="tipo" value="{{$saldo_bandejas}}">
+                                            <input readonly type="text" class="form-control input-lg text-center" id="saldo" value="{{$saldo_bandejas}}">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                    <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas pendientes</label>
+                                                <input readonly type="text" class="form-control input-lg text-center" id="por_bandejas">
+                                            
                                             </div>
                                             
                                         </div>
@@ -167,8 +172,6 @@
                                         <div class="col-lg-offset-8 col-lg-4">
                                             <button type="submit" class="buttonna">Generar devolución  <i class="fa fa-floppy-o"></i></button>
                                         </div>
-
-
 
                                 </form>
 

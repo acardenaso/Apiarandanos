@@ -35,7 +35,7 @@ $(document).ready(function () {
 
                 var obj = $.parseJSON(json_string);
 
-                $('#tipo').val(obj.cant);
+                $('#por_bandejas').val(obj.total);
             });
         }
     });
