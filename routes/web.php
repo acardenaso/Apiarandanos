@@ -8,9 +8,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //rutas excel
+<<<<<<< HEAD
+Route::get('descargar-articulos', 'ArticlesController@excela')->name('articles.excela');
+Route::get('descargar-trabajadores', 'WorkersController@excelw')->name('workers.excelw');
+Route::get('descargar-quimicos', 'ArticlesController@excelq')->name('articles.excel');
+=======
 Route::get('descargar-articulos', 'ArticlesController@excela')->name('articles.excel');
 Route::get('descargar-trabajadores', 'WorkersController@excelw')->name('workers.excel');
 Route::get('descargar-quimicos', 'ArticlesController@excelq')->name('articlesq.excel');
+>>>>>>> 662aae365fb8e8f2f410735c9aab399c0d8b25b8
 Route::get('descargar-quimicoss', 'ArticlesController@excelqs')->name('articless.excel');
 Route::get('descargar-bandejas', 'ArticlesController@excelto')->name('operations.excel');
 Route::get('descargar-bandejass', 'ArticlesController@exceltr')->name('operationss.excel');

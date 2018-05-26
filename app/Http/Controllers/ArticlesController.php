@@ -292,6 +292,22 @@ class ArticlesController extends Controller
         return view('admin.trays.trays_return')->with(compact('operations')); 
     }
 
+    public function tipo_bandejaAjax(Request $request, $id)
+   {
+       $berrie = $request->input('berrie_id');
+       
+       $articles = DB::table('operations')
+       ->select(DB::raw('SUM(cantidad) as total','articles.nombre_articulo as articulo'))
+       ->join('articles','operations.article_id','=','articles.id')
+       ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+       ->join('berries','operation_details.berrie_id','=','berrie_id')
+       ->where('operations.operation_type_id','=','2')
+       ->where('articles.id','=',$id)
+       ->get();
+
+        return json_encode($articles);
+    }
+
         //formulario devolucion de bandejas
         public function tray_return($berrie_id)
     {   
