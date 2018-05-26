@@ -78,9 +78,11 @@
                                   <a data-toggle="tooltip"  title="detalle Guia" href="{{ url('/admin/trays/'.$operation->id.'/trays_return_view') }}" class="buttonnd-sm">Detalle Guia&nbsp;&nbsp;<i class="fa fa-eye"></i></a>
                                   <form style="display:inline-block;" method="post" action="{{ url('/admin/trays/'.$operation->id.'/delete') }}">
                           {{ csrf_field() }}
+                          @can('trays.destroytr')
                           <button  data-toggle="tooltip" class="buttonnde-sm" title="eliminar devolucion">
                             <i class="fa fa-trash"></i>
                           </button>
+                          @endcan
                           </form>
                                   </td>
                                 </tr>

@@ -39,9 +39,9 @@
                     <input name="query" type="text" class="form-control" placeholder="Buscar Articulo">
                     @endcan
                   </div><br>
-
+                  @can('trays.tray_in_store')
                   <a href="#" data-toggle="modal" data-target="#myModal" class="buttonn">Registrar Devolución &nbsp;&nbsp;<i class="fa fa-plus"></i></a>
-
+                  @endcan
                   <a class="buttonn" target="_blanck" id="btnGenerarPdfTO" class="btn btn-success">Genenerar PDF&nbsp;&nbsp;
                       <i class="fa fa-file-pdf-o"></i>
                     </a>
@@ -78,13 +78,15 @@
                       <td>{{ $operation->cantidad }}</td>
                       <td class="td-actions">
                         @can('trays.tray_out_view')
-                        <a data-toggle="tooltip" title="detalle Guia" href="{{ url('/admin/trays/'.$operation->id.'/tray_out_view') }}" class="buttonnd-sm">Detalle Guia &nbsp;&nbsp;<i class="fa fa-eye"></i></a>                        @endcan
+                        <a data-toggle="tooltip" title="detalle Guia" href="{{ url('/admin/trays/'.$operation->id.'/tray_out_view') }}" class="buttonnd-sm">Detalle Guia &nbsp;&nbsp;<i class="fa fa-eye"></i></a>
+                        @endcan                      
                         <form style="display:inline-block;" method="post" action="{{ url('/admin/trayss/'.$operation->id.'/delete') }}">
                         {{ csrf_field() }}
+                        @can('trays.destroyto')
                           <button data-toggle="tooltip" class="buttonnde-sm" title="eliminar Guia">
                             <i class="fa fa-trash"></i>
                           </button>
-
+                          @endcan 
                         </form>
 
                       </td>
