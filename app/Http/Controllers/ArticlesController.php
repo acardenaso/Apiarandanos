@@ -236,7 +236,9 @@ class ArticlesController extends Controller
         $articles = Article::find($id);
         $articles->cant = $request->input('new_cant')-$operations->cantidad = $request->input('cantidad');
         $articles->save();//SAVE
-
+        
+        $title = "Prestamo realizado correctamente!";
+        Toastr::success($title);
         return redirect('/admin/trays_out');
         }
     }
@@ -359,6 +361,8 @@ class ArticlesController extends Controller
         $articles->cant = $articles->cant+$operations->cantidad = $request->input('cantidad');
         $articles->save();//SAVE
         
+        $title = "Devolucion realizada correctamente!";
+        Toastr::success($title);
         return redirect('/admin/trays_return');
         
     }
@@ -407,12 +411,11 @@ class ArticlesController extends Controller
         $operations = Operation::find($id);
         $operations->delete();
         $title = "Registro eliminado correctamente!";
+        Toastr::success($title);
 
         $articles = Article::find($operations->article_id);
         $articles->cant = $articles->cant+$operations->cantidad;
         $articles->save();//SAVE
-
-        Toastr::success($title);
         return back(); 
     }
 
