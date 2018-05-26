@@ -1,3 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.formatterRut = formatterRut;
+exports.cleanRut = cleanRut;
+exports.validateRut = validateRut;
+exports.numberToClp = numberToClp;
+exports.getRutDv = getRutDv;
 
 function formatterRut(rut) {
     var actual = rut.toString().replace(/^0+/, "");
@@ -46,7 +55,10 @@ function validateRut(rut) {
 }
 
 function numberToClp(monto) {
-    var valueConverted = monto.toString().split("").reverse();
+    var separator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ".";
+    var cleanValue = monto.toString().replace(/\D/g, '');
+    var valueConverted = cleanValue ? cleanValue.split("").reverse() : "";
+    if (!cleanValue) return "";
     var length = valueConverted.length;
     var divs = length / 3;
     var sobr = length % 3;
@@ -61,12 +73,12 @@ function numberToClp(monto) {
     });
     if (sobr) {
         var valSobr = valueConverted.reverse().slice(0, sobr);
-        var point = length < 3 ? '' : '.';
+        var point = length < 3 ? '' : separator;
         finalValue = valSobr.join('') + point;
     } else {
-        array.push(monto.toString().split('').slice(0, 3).join(''));
+        array.push(valueConverted.reverse().slice(0, 3).join(''));
     }
-    return "$" + (finalValue ? finalValue : '') + array.reverse().join('.');
+    return "$" + (finalValue ? finalValue : '') + array.reverse().join(separator);
 }
 
 function getRutDv(cleanRut) {
