@@ -89,7 +89,9 @@ Route::get('/admin/trays_return', 'ArticlesController@trays_return')->middleware
 Route::get('/searchts','ArticlesController@showts')->middleware('permission:trays.showts');       
 Route::get('/searchtr','ArticlesController@showtr')->middleware('permission:trays.showtr');   
 
-Route::get('admin/trays/tray_return/ajax/{id}','ArticlesController@tipo_bandejaAjax')->middleware('permission:trays.tipo_bandeja.ajax');
+Route::get('admin/trays/tray_return/ajax1/{a_id}/{b_id}','ArticlesController@tipo_bandejaAjax')->middleware('permission:trays.tipo_bandeja.ajax');
+
+Route::get('admin/trays/tray_return/ajax2/{a_id}/{b_id}','ArticlesController@tipo_bandeja1Ajax')->middleware('permission:trays.tipo_bandeja1.ajax');
 
     //rutas bandejas 
 

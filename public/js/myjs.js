@@ -1,60 +1,76 @@
 $(document).ready(function () {
 
-    //ejemplo codigo select dependientes
-    $('select[name="state"]').on('change', function () {
-        var stateID = $(this).val();
-        if (stateID) {
+    $("#remember").change(function () {
+        var isChecked = $(this).prop("checked");
+        if (isChecked) {
+            var email = $("#email").val();
+            localStorage.setItem("email", email);
+        } else {
+            localStorage.setItem("email", "");
+        }
+    })
+    window.addEventListener("load", function () {
+        var remember = localStorage.getItem("email");
+        if (remember) {
+            $("#remember").prop("checked", true)
+            $("#email").val(remember)
+        }
+    })
+
+   //ejemplo codigo select dependientes
+   $('select[name="article_id"]').change(function () {
+       
+        var articleID = $(this).val();
+        var berrieID = $('#berrie_id').val();
+        if (articleID && berrieID) {
             $.ajax({
-                url: '/myform/ajax/' + stateID,
+                url: '/admin/trays/tray_return/ajax1/' + articleID+ '/'+ berrieID,
                 type: "GET",
                 dataType: "json",
+                data:{articleID:articleID,berrieID:berrieID},
                 success: function (data) {
 
-                    $('select[name="nombre_articulo"]').empty();
+                    $('select[name="articulo"]').empty();
                     $.each(data, function (key, value) {
-                        $('select[name="nombre_articulo"]').append('<option value="' + key + '">' + value + '</option>');
+                        $('#b_p').val(key)
+                        
                     });
                 }
             });
         } else {
-            $('select[name="nombre_articulo"]').empty();
+            $('select[name="articulo"]').empty();
         }
-    });
+    })
 
-    //select para tray return
-    $("select[name=article_id]").change(function () {
+    $('select[name="article_id"]').change(function () {
         var articleID = $(this).val();
-        if (articleID) {
+        var berrieID = $('#berrie_id').val();
+        if (articleID && berrieID) {
             $.ajax({
-                url: '/admin/trays/tray_return/ajax/' + articleID,
+                url: '/admin/trays/tray_return/ajax2/' + articleID+ '/'+ berrieID,
+                type: "GET",
                 dataType: "json",
-                type: "GET"
-            }).done(function (data) {
+                data:{articleID:articleID,berrieID:berrieID},
+                success: function (data) {
 
-                var json_string = JSON.stringify(data);
-
-                var obj = $.parseJSON(json_string);
-
-                $('#por_bandejas').val(obj.total);
+                    $('select[name="articulo"]').empty();
+                    $.each(data, function (key, value) {
+                        $('#b_d').val(key)
+                        
+                    });
+                    var b_p = $("#b_p").val();
+                    var b_d = $("#b_d").val();
+                    
+                    var b_s =(parseInt(b_p)-parseInt(b_d));
+            
+            
+                    $("#s_b").val(b_s);
+                }
             });
-        }
-    });
-
-
-    $("#remember").change(function(){
-        var isChecked = $(this).prop("checked");
-        if(isChecked){
-            var email = $("#email").val();
-            localStorage.setItem("email",email);
-        }else{
-            localStorage.setItem("email","");
+        } else {
+            $('select[name="articulo"]').empty();
         }
     })
-    window.addEventListener("load",function(){
-        var remember = localStorage.getItem("email");
-        if(remember){
-            $("#remember").prop("checked",true)
-            $("#email").val(remember)
-        }
-    })
+    
+  
 });

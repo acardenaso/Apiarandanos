@@ -36,39 +36,53 @@
                         <div class="row">
                             <div class="col-lg-offset-1 col-lg-10">
                                 <div class="col-lg-10">
-                                    <div class="col-lg-offset-3 col-lg-12">
+                                    <div class="col-lg-offset-1 col-lg-12">
                                         <div class="form-group ">
                                             <div class="col-lg-3">
                                                 <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas prestadas a la fecha</label>
-                                            <input readonly type="text" class="form-control input-lg text-center" id="prestadas" value="{{ $prestadas->cant }}">
+                                                <input readonly type="text" class="form-control input-lg text-center" id="prestadas" value="{{ $prestadas->cant }}">
                                             </div>
                                             <div class="col-lg-3">
-                                                    <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas devueltas a la fecha</label>
-                                                    <input readonly type="text" class="form-control input-lg text-center" id="devueltas" value="{{ $devueltas->cant }}">
-                                                </div>
+                                                <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas devueltas a la fecha</label>
+                                                <input readonly type="text" class="form-control input-lg text-center" id="devueltas" value="{{ $devueltas->cant }}">
+                                            </div>
                                             <div class="col-lg-3">
                                                 <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas pendientes</label>
-                                            <input readonly type="text" class="form-control input-lg text-center" id="saldo" value="{{$saldo_bandejas}}">
+                                                <input readonly type="text" class="form-control input-lg text-center" id="saldo" value="{{$saldo_bandejas}}">
                                             </div>
                                             <div class="col-lg-3">
-                                                    <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas pendientes</label>
-                                                <input readonly type="text" class="form-control input-lg text-center" id="por_bandejas">
-                                            
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#tipo_bandejas">Ver resumen por tipo de bandejas</button>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
-
+                                    <br> <br>
                                     <h2>Devolución de Bandejas</h2>
                                 </div>
 
-                                <br>
+                                <br> <br>
 
                                 <form class="form-horizontal" method="post" action="{{ url('/admin/trays/tray_in_store') }}">
 
                                     {{ csrf_field() }}
-
-
+                                    <div class="row">
+                                        <div class="hidden">
+                                            <div class="col-lg-3">
+                                                    <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Prestadas</label>
+                                                <input readonly type="text" class="form-control input-lg text-center" id="b_p" value=0>
+                                            
+                                            </div>
+                                            <div class="col-lg-3">
+                                                    <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Devueltas</label>
+                                                <input readonly type="text" class="form-control input-lg text-center" id="b_d" value=0>
+                                            
+                                            </div>
+                                            <div class="col-lg-3">
+                                                    <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;saldo</label>
+                                                <input readonly type="text" class="form-control input-lg text-center" id="s_b" value=0 name="pendientes">
+                                            
+                                            </div>
+                                        </div>
 
                                     <div class="form-group">
                                         <div class="col-lg-6">
@@ -99,7 +113,7 @@
                                                 <span class="input-group-addon">
                                                             <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                                                         </span>
-                                                <select data-live-search="true" class="form-control selectpicker" name="berrie_id" id="berrie">
+                                                <select data-live-search="true" class="form-control selectpicker" name="berrie_id" id="berrie_id">
                                                         @foreach ($berries as $berrie)
                                                         <option value="{{ $berrie->id }}" selected> {{ $berrie->nombre_berrie }}</option>
                                                         @endforeach
@@ -162,7 +176,7 @@
                                         <div class="col-lg-5">
                                             <label for="fono" class="control-label">Descripcion</label>
                                             <div class="form-group">
-                                                <textarea required  name="description" class="form-control" required>{{ old('description') }}solo traslado</textarea>
+                                                <textarea required name="description" class="form-control" required>{{ old('description') }}solo traslado</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -186,6 +200,86 @@
                 <!-- /.col -->
             </div>
             <!-- /.row -->
+
+            <!-- Trigger the modal with a button -->
+
+
+            <!-- Modal -->
+            <div id="tipo_bandejas" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title text-center">Resumen por bandejas</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-offset-3 col-lg-6">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    Tipo Bandeja
+                                                </th>
+                                                <th class="text-center">
+                                                    Cantidad Prestadas
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($tipo_prestadas as $t_p)
+                                            <tr>
+                                                <td>
+                                                    <input readonly type="text" class="form-control text-center" value="{{ $t_p->articulo }}">
+                                                </td>
+                                                <td>
+                                                    <input readonly type="text" class="form-control text-center v1" id="v1" name="new_cant" value="{{ $t_p->total }}">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-offset-3 col-lg-6">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    Tipo Bandeja
+                                                </th>
+                                                <th class="text-center">
+                                                    Cantidad Devueltas
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($tipo_devueltas as $t_d)
+                                            <tr>
+                                                <td>
+                                                    <input readonly type="text" class="form-control text-center " value="{{ $t_d->articulo }}">
+                                                </td>
+                                                <td>
+                                                    <input readonly type="text" class="form-control text-center v2" id="v2" value="{{ $t_d->total }}">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">cerrar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
     </section>
     <!-- /.content -->

@@ -182,8 +182,12 @@ class ArticlesController extends Controller
         public function tray_out(Request $request,$article_id)
     {
         $articles = Article::find($article_id);
+
         $berries = Berrie::all();
+
         $workers = Worker::all();
+
+        $users = User::all();
         $entradas = DB::table('operations')
         ->select(DB::raw('SUM(cantidad) as cantidad'))
         ->where('operations.article_id','=',$article_id)
@@ -195,7 +199,7 @@ class ArticlesController extends Controller
         ->where('operations.operation_type_id','=','2')
         ->first();   
         $stock = $entradas->cantidad-$salidas->cantidad;         
-        return view('admin.trays.tray_out')->with(compact('articles','berries','workers','stock')); 
+        return view('admin.trays.tray_out')->with(compact('articles','berries','workers','stock','users')); 
     }
 
         //Almacenar préstamo de bandejas
@@ -281,6 +285,10 @@ class ArticlesController extends Controller
         //Listar bandejas devueltas
         public function trays_return()
     {
+        $articles_id = DB::table('articles')
+        ->select('articles.id')
+        ->get();
+
         $operations = DB::table('operations')
         ->leftjoin('articles','operations.article_id','=','articles.id')
         ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
@@ -289,31 +297,76 @@ class ArticlesController extends Controller
         ->where('articles.category_id','=','9')
         ->where('operations.operation_type_id','=','3')
         ->paginate(6);
-        return view('admin.trays.trays_return')->with(compact('operations')); 
+        return view('admin.trays.trays_return')->with(compact('operations','articles')); 
+
+        
     }
 
-    public function tipo_bandejaAjax(Request $request, $id)
-   {
-       $berrie = $request->input('berrie_id');
-       
-       $articles = DB::table('operations')
-       ->select(DB::raw('SUM(cantidad) as total','articles.nombre_articulo as articulo'))
-       ->join('articles','operations.article_id','=','articles.id')
-       ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
-       ->join('berries','operation_details.berrie_id','=','berrie_id')
-       ->where('operations.operation_type_id','=','2')
-       ->where('articles.id','=',$id)
-       ->get();
+    public function tipo_bandejaAjax($a_id,$b_id)
+    {
+            $prestadas= DB::table('operations')
+            ->select('articles.nombre_articulo',DB::raw('SUM(cantidad) as total'))
+            ->join('articles','operations.article_id','articles.id')
+            ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+            ->join('berries','operation_details.berrie_id','=','berries.id')
+            ->where('operations.operation_type_id','=','2')
+            ->where('articles.id','=',$a_id)
+            ->where('berries.id','=',$b_id)
+            ->groupBy('articles.nombre_articulo')
+            ->pluck("articles.nombre_articulo","total");
+    
+        
+         return json_encode($prestadas);
+     }
 
-        return json_encode($articles);
-    }
+     public function tipo_bandeja1Ajax($a_id,$b_id)
+     {
+             $devueltas= DB::table('operations')
+             ->select('articles.nombre_articulo',DB::raw('SUM(cantidad) as total'))
+             ->join('articles','operations.article_id','articles.id')
+             ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+             ->join('berries','operation_details.berrie_id','=','berries.id')
+             ->where('operations.operation_type_id','=','3')
+             ->where('articles.id','=',$a_id)
+             ->where('berries.id','=',$b_id)
+             ->groupBy('articles.nombre_articulo')
+             ->pluck("articles.nombre_articulo","total");
+     
+         
+          return json_encode($devueltas);
+      }
 
         //formulario devolucion de bandejas
-        public function tray_return($berrie_id)
+        public function tray_return(Request $request,$berrie_id)
     {   
         $articles = DB::table('articles')
         ->where('category_id','=','9')
         ->get();
+
+        $article = $request->input('article_id');
+
+       
+
+        $tipo_prestadas = DB::table('operations')
+        ->select('articles.id','articles.nombre_articulo as articulo',DB::raw('SUM(cantidad) as total'))
+        ->join('articles','operations.article_id','articles.id')
+        ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+        ->join('berries','operation_details.berrie_id','=','berries.id')
+        ->where('operations.operation_type_id','=','2')
+        ->where('berries.id','=',$berrie_id)
+        ->groupBy('articles.id','articles.nombre_articulo')
+        ->get();
+
+        $tipo_devueltas = DB::table('operations')
+        ->select('articles.id','articles.nombre_articulo as articulo',DB::raw('SUM(cantidad) as total'))
+        ->join('articles','operations.article_id','articles.id')
+        ->join('operation_details','operations.operation_detail_id','=','operation_details.id')
+        ->join('berries','operation_details.berrie_id','=','berries.id')
+        ->where('operations.operation_type_id','=','3')
+        ->where('berries.id','=',$berrie_id)
+        ->groupBy('articles.id','articles.nombre_articulo')
+        ->get();
+
 
         $berries = DB::table('berries')
         ->where('id','=',$berrie_id)
@@ -338,7 +391,7 @@ class ArticlesController extends Controller
         $saldo_bandejas = $prestadas->cant-$devueltas->cant;
        
 
-        return view('admin.trays.tray_return')->with(compact('articles','berries','users','prestadas','devueltas','saldo_bandejas'));
+        return view('admin.trays.tray_return')->with(compact('articles','berries','users','prestadas','devueltas','saldo_bandejas','tipo_prestadas','tipo_devueltas','pendientes'));
     }
     
 
@@ -357,6 +410,11 @@ class ArticlesController extends Controller
         ];            
             $this->validate($request, $rules,$messages);
             
+        if($request->input('cantidad')>$request->input('pendientes')){
+            $title = "La cantidad a devolver es mayor a la de bandejas prestadas";
+            Toastr::error($title);
+            return redirect()->back();
+        }else{  
 
         $operation_details = new OperationDetail();
         $operation_details->folio = $request->input('folio');
@@ -380,6 +438,7 @@ class ArticlesController extends Controller
         $title = "Devolucion realizada correctamente!";
         Toastr::success($title);
         return redirect('/admin/trays_return');
+        }
         
     }
 

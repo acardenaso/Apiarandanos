@@ -141,8 +141,8 @@
                                                 </span>
                                                 <select data-live-search="true" class="form-control selectpicker" name="worker_id" id="worker">
                                                     <option value="">Seleccione Responsable:</option>
-                                                    @foreach ($workers as $worker)
-                                                    <option value="{{ $worker->id }}" @if(old('worker_id') == $worker->id) {{ 'selected' }} @endif> {{ $worker->nombre }}</option>
+                                                    @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}"> {{ $user->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
