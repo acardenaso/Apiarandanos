@@ -36,7 +36,7 @@
                         <div class="row">
                             <div class="col-lg-offset-1 col-lg-10">
                                 <div class="col-lg-10">
-                                    <div class="col-lg-offset-1 col-lg-12">
+                                    <div class="col-lg-offset-4 col-lg-12">
                                         <div class="form-group ">
                                             <div class="col-lg-3">
                                                 <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Nº bandejas prestadas a la fecha</label>
@@ -51,16 +51,14 @@
                                                 <input readonly type="text" class="form-control input-lg text-center" id="saldo" value="{{$saldo_bandejas}}">
                                             </div>
                                             <div class="col-lg-3">
-                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#tipo_bandejas">Ver resumen por tipo de bandejas</button>
+                                                <button type="button" class="buttonn" data-toggle="modal" data-target="#tipo_bandejas">Ver resumen</button>
                                             </div>
-
-                                        </div>
                                     </div>
-                                    <br> <br>
-                                    <h2>Devolución de Bandejas</h2>
-                                </div>
-
-                                <br> <br>
+                                  
+                                   
+                                </div><br><br><br><br><br>
+                                <h2>Devolución de Bandejas</h2>
+                          
 
                                 <form class="form-horizontal" method="post" action="{{ url('/admin/trays/tray_in_store') }}">
 
