@@ -142,7 +142,7 @@
                                                 <select data-live-search="true" class="form-control selectpicker" name="worker_id" id="worker">
                                                     <option value="">Seleccione Responsable:</option>
                                                     @foreach ($users as $user)
-                                                    <option value="{{ $user->id }}"> {{ $user->name }}</option>
+                                                    <option value="{{ $user->id }}">  {{ $user->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
