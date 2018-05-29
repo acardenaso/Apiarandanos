@@ -71,6 +71,10 @@ $(document).ready(function () {
             $('select[name="articulo"]').empty();
         }
     })
+
+    $('select[name="category_id"]').change(function(){
+        $('#option').removeAttr('disabled');
+      });
     
   
 });

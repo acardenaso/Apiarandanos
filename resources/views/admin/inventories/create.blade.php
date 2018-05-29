@@ -68,7 +68,7 @@
                         <span class="input-group-addon">
                           <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                         </span>
-                        <select data-live-search="true" name="category_id" id="category_id" class="form-control selectpicker">
+                        <select data-live-search="true" name="category_id" id="category" class="form-control selectpicker">
                           <option value="">Seleccione Categoria</option>
                           @foreach ($categories as $category)
                           <option value="{{ $category->id }}" @if(old('category_id') == $category->id) {{ 'selected' }} @endif> {{ $category->categoria }} </option>
@@ -83,10 +83,10 @@
                         <span class="input-group-addon">
                           <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                         </span>
-                        <select data-live-search="true" name="sub_category_id" id="sub_category_id" class="form-control selectpicker">
-                          <option value="">Seleccione SubCategoria</option>
+                        <select data-live-search="true" name="sub_category_id" id="sub_category" class="form-control selectpicker" >
+                          <option value="" >Seleccione SubCategoria </option>
                           @foreach ($subcategories as $subcategory)
-                          <option value="{{ $subcategory->id }}" @if(old('sub_category_id') == $subcategory->id) {{ 'selected' }} @endif> {{ $subcategory->subcategoria }} </option>
+                          <option value="{{ $subcategory->id }}" @if(old('sub_category_id') == $subcategory->id) {{ 'selected' }} @endif > {{ $subcategory->subcategoria }} </option>
                           @endforeach
                         </select>
                       </div>

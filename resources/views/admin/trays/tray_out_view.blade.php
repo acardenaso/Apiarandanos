@@ -117,9 +117,9 @@
                                                 <div class="input-group">
 
                                                     <select data-live-search="true" class="form-control " name="worker_id" id="worker_id" disabled>
-                                                        @foreach ($workers as $worker)
-                                                        <option value="{{ $worker->id }}" @if($worker->id == old('worker_id', $operations->worker_id)) selected @endif>
-                                                            {{ $worker->nombre }}</option>
+                                                        @foreach ($users as $user)
+                                                        <option value="{{ $user->id }}">
+                                                            {{ $user->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

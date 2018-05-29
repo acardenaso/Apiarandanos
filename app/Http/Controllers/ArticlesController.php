@@ -446,7 +446,7 @@ class ArticlesController extends Controller
         public function tray_out_view(Request $request,$id)
     {
         $berries = Berrie::all();
-        $workers = Worker::all();
+        $users = User::all();
         $operations = DB::table('operations')
         ->leftjoin('articles','operations.article_id','=','articles.id')
         ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
@@ -456,14 +456,14 @@ class ArticlesController extends Controller
         ->where('operations.operation_type_id','=','2')
         ->where('operations.id','=',$id)
         ->first();
-        return view('admin.trays.tray_out_view')->with(compact('operations','berries','workers'));
+        return view('admin.trays.tray_out_view')->with(compact('operations','berries','users'));
     }
 
         //formulario detalle de edición guía de despacho PENDIENTE
         public function trays_return_view(Request $request,$id)
     {
         $berries = Berrie::all();
-        $workers = Worker::all();
+        $users = User::all();
         $operations = DB::table('operations')
         ->leftjoin('articles','operations.article_id','=','articles.id')
         ->leftjoin('operation_details','operations.operation_detail_id','=','operation_details.id')
@@ -473,7 +473,7 @@ class ArticlesController extends Controller
         ->where('operations.operation_type_id','=','3')
         ->where('operations.id','=',$id)
         ->first();
-        return view('admin.trays.trays_return_view')->with(compact('operations','berries','workers'));
+        return view('admin.trays.trays_return_view')->with(compact('operations','berries','users'));
     }
 
     // FIN LOGICA DE BANDEJAS
