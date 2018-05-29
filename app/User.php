@@ -5,9 +5,9 @@ namespace App;
 use Caffeinated\Shinobi\Traits\ShinobiTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-
-class User extends Authenticatable
+class User extends Authenticatable implements AuthenticatableContract
 {
     use Notifiable, ShinobiTrait;
 

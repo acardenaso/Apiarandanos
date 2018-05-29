@@ -113,7 +113,7 @@
                                 <label for="example-email-input" class="col-2 col-form-label">Contraseña</label>
                                   <div class="input-group">
                                   <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                  <input id="password" type="password" class="form-control" name="password" required>
+                                  <input  id="password" type="password" class="form-control" name="password" required>
                               </div>
                               @if ($errors->has('password'))
                               <span class="help-block">
