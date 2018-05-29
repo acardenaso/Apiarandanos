@@ -58,6 +58,7 @@ $(document).ready(function () {
                         $('#b_d').val(key)
                         
                     });
+                    
                     var b_p = $("#b_p").val();
                     var b_d = $("#b_d").val();
                     
@@ -71,12 +72,4 @@ $(document).ready(function () {
             $('select[name="articulo"]').empty();
         }
     })
-
-    $('select[name="category_id"]').change(function(){
-        $('#option').removeAttr('disabled');
-      });
-      $('select[name="category_id"]').change(function(){
-        $('#option').removeAttr('disabled');
-      });
-  
 });

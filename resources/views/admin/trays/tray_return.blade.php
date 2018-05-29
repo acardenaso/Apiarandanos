@@ -64,7 +64,8 @@
 
                                     {{ csrf_field() }}
                                     <div class="row">
-                                        <div class="hidden">
+
+                                        <div >
                                             <div class="col-lg-3">
                                                     <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Prestadas</label>
                                                 <input readonly type="text" class="form-control input-lg text-center" id="b_p" value=0>
