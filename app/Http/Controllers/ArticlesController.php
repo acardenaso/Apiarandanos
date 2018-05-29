@@ -410,7 +410,7 @@ class ArticlesController extends Controller
         ];            
             $this->validate($request, $rules,$messages);
             
-        if($request->input('cantidad')>$request->input('pendientes')){
+        if($request->input('cantidad')>=$request->input('pendientes')){
             $title = "La cantidad a devolver es mayor a la de bandejas prestadas";
             Toastr::error($title);
             return redirect()->back();
