@@ -75,6 +75,8 @@ $(document).ready(function () {
     $('select[name="category_id"]').change(function(){
         $('#option').removeAttr('disabled');
       });
-    
+      $('select[name="category_id"]').change(function(){
+        $('#option').removeAttr('disabled');
+      });
   
 });
