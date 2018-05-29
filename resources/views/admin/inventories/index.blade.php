@@ -61,7 +61,7 @@
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
 
-                  <a class="buttonn" href="{{ route('articles.excel') }}" class="btn btn-success btn-sm">Genenerar Excel&nbsp;&nbsp;
+                  <a class="buttonn" href="{{ route('articles.excela') }}" class="btn btn-success btn-sm">Genenerar Excel&nbsp;&nbsp;
                     <i class="fa fa-file-excel-o"></i>
                   </a>
                   @endcan

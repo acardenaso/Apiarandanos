@@ -700,6 +700,7 @@ class ArticlesController extends Controller
             ->orwhere('min_stock', 'like',"%$filter%")
             ->orwhere('sub_categories.subcategoria', 'like',"%$filter%")
             ->orwhere('users.name', 'like',"%$filter%")
+            ->orwhere('nombre_articulo', 'like',"%$filter%")
             ->orwhere('article_states.estado','like',"%$filter%")->get();
         }else{
             $articles = Article::all();
