@@ -39,6 +39,7 @@
                     </div>
                     <input name="query" type="text" class="form-control" placeholder="Buscar Articulo">
                   </div><br>
+                  
                   <a class="buttonn" target="_blanck" id="btnGenerarPdfTR" class="btn btn-success">Genenerar PDF&nbsp;&nbsp;
                       <i class="fa fa-file-pdf-o"></i>
                     </a>
