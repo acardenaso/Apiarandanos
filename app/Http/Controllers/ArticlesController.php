@@ -27,7 +27,7 @@ class ArticlesController extends Controller
          //Lista los articulos
     public function index()
     {   
-        $articles = Article::paginate(15);
+        $articles = Article::paginate(20);
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $operations = Operation::all();
@@ -512,7 +512,7 @@ class ArticlesController extends Controller
         ->select('operations.id','operations.cantidad','operation_details.folio','operation_details.fecha','articles.nombre_articulo','berries.nombre_berrie','sectors.sector')
         ->where('articles.category_id','=','10')
         ->where('operations.operation_type_id','=','2')
-        ->paginate(6);
+        ->paginate(20);
         return view('admin.chemicals.chemicals_out')->with(compact('operations'));    
     }
         
@@ -581,7 +581,7 @@ class ArticlesController extends Controller
         ->leftjoin('sub_categories','articles.sub_category_id','=','sub_categories.id')
         ->select('articles.*','sub_categories.subcategoria')
         ->where('articles.category_id','=','10')
-        ->paginate(6);
+        ->paginate(20);
         return view('admin.chemicals.chemicals_in')->with(compact('articles','subcategories'));     
     }
     
@@ -884,7 +884,7 @@ class ArticlesController extends Controller
                 $articles = Article::leftjoin('categories','articles.category_id','=','categories.id')
                 ->leftjoin('sub_categories','articles.sub_category_id','=','sub_categories.id')
                 ->leftjoin('states','articles.article_state_id','=','states.id')
-                ->select('nombre_articulo as Artículo','descripcion as Descripción','states.estado as Estado','cant as Cantidad','min_stock as Stock minimo','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
+                ->select('guia as N° guia','fecha as Fecha','nombre_articulo as Artículo','descripcion as Descripción','states.estado as Estado','cant as Cantidad','min_stock as Stock minimo','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
                 $sheet->fromArray($articles);
                 $sheet->setOrientation('landscape');
             });
@@ -984,7 +984,7 @@ class ArticlesController extends Controller
         ->orwhere('guia', 'like',"%$query%")
         ->orwhere('fecha', 'like',"%$query%")
         ->orwhere('article_states.estado', 'like',"%$query%")
-        ->paginate(15); 
+        ->paginate(20); 
             
         if(empty($query)){  
             $title = "ingrese un criterio para la búsqueda";
@@ -1007,7 +1007,7 @@ class ArticlesController extends Controller
         ->orwhere('articles.descripcion', 'like',"%$query%")
         ->orwhere('articles.cant', 'like',"%$query%")
         ->orwhere('sub_categories.subcategoria', 'like',"%$query%")
-        ->paginate(6); 
+        ->paginate(20); 
     
         if(empty($query)){
                 
