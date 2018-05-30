@@ -55,7 +55,7 @@ class ArticlesController extends Controller
             'article_state_id.required' => 'Campo estado es necesario',
             'min_stock.numeric' => 'Campo stock minimo solo numeros',
             'cantidad.numeric' => 'Campo inventario inicial solo numeros',
-       
+            'guia.numeric' => 'Campo N° guia solo numeros',
         ];    
         $rules = [
             'nombre_articulo' => 'unique:articles',
@@ -63,6 +63,7 @@ class ArticlesController extends Controller
             'article_state_id' => 'required',
             'min_stock' => 'numeric',
             'cantidad' => 'numeric',
+            'guia' => 'numeric',
         ];
         $this->validate($request, $rules,$messages);
         $articles = new Article();
@@ -73,6 +74,8 @@ class ArticlesController extends Controller
         $articles->category_id = $request->input('category_id');
         $articles->sub_category_id = $request->input('sub_category_id');
         $articles->article_state_id = $request->input('article_state_id');
+        $articles->guia = $request->input('guia');
+        $articles->fecha = $request->input('fecha');
         $articles->user_id = $request->input('user_id');
         $articles->save();
 
@@ -105,11 +108,13 @@ class ArticlesController extends Controller
             'category_id.required' => 'Campo categoria es necesario',
             'article_state_id.required' => 'Campo estado es necesario',
             'min_stock.numeric' => 'Campo stock minimo solo numeros',
+            'guia.numeric' => 'Campo N° guia solo numeros',
         ];    
         $rules = [
             'category_id' => 'required',
             'article_state_id' => 'required',
             'min_stock' => 'numeric',
+            'guia' => 'numeric',
         ];
         $this->validate($request, $rules,$messages);     
         //Editar articulo en la bd, edita todos los campos, menos la cantidad, ya que ese campo es 
@@ -121,6 +126,8 @@ class ArticlesController extends Controller
         $articles->category_id = $request->input('category_id');
         $articles->sub_category_id = $request->input('sub_category_id');
         $articles->article_state_id = $request->input('article_state_id');
+        $articles->guia = $request->input('guia');
+        $articles->fecha = $request->input('fecha');
         $articles->user_id = $request->input('user_id');
         $articles->save();
         $title = "Artículo editado correctamente!";
@@ -700,6 +707,8 @@ class ArticlesController extends Controller
             ->orwhere('min_stock', 'like',"%$filter%")
             ->orwhere('sub_categories.subcategoria', 'like',"%$filter%")
             ->orwhere('users.name', 'like',"%$filter%")
+            ->orwhere('guia', 'like',"%$filter%")
+            ->orwhere('fecha', 'like',"%$filter%")
             ->orwhere('nombre_articulo', 'like',"%$filter%")
             ->orwhere('article_states.estado','like',"%$filter%")->get();
         }else{
@@ -972,6 +981,8 @@ class ArticlesController extends Controller
         ->orwhere('descripcion', 'like',"%$query%")
         ->orwhere('categories.categoria', 'like',"%$query%")
         ->orwhere('cant', 'like',"%$query%")
+        ->orwhere('guia', 'like',"%$query%")
+        ->orwhere('fecha', 'like',"%$query%")
         ->orwhere('article_states.estado', 'like',"%$query%")
         ->paginate(15); 
             

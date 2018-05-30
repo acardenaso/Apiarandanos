@@ -43,6 +43,8 @@
 <table class="table">
     <thead>
         <tr>
+            <th>N° guia</th>
+            <th>Fecha</th>
             <th>Articulo</th>
             <th>Descripcion</th>
             <th>Cantidad</th>
@@ -53,6 +55,8 @@
     <tbody>
         @foreach ($articles as $article)
         <tr>
+            <td>{{ $article->guia }}</td>
+            <td>{{ $article->fecha }}</td>
             <td>{{ $article->nombre_articulo }}</td>
             <td>{{ $article->descripcion }}</td>
             <td>{{ $article->cant }}</td>

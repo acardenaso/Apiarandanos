@@ -128,6 +128,26 @@
                       </div>
                     </div>
 
+                     <div class="col-lg-2">
+                      <label for="guia" class="control-label">N° Guia</label>
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                        </span>
+                        <input maxlength="7" type="text" name="guia" id="guia" class="form-control"  value="{{old('guia')}}" required>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                      <label for="fecha" class="control-label">Fecha</label>
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                        </span>
+                        <input type="date" name="fecha" id="fecha" class="form-control"  value="{{old('fecha')}}" required>
+                      </div>
+                    </div>
+
                     <div class="form-group hidden">
                       <div class="col-lg-2">
                         <label for="min_stock" class="control-label">User id </label>

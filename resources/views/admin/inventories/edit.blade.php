@@ -113,6 +113,26 @@
                         </div>
                       </div>
                     </div>
+
+                    <div class="col-lg-3">
+                      <label for="guia" class="control-label">N° Guia</label>
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                        </span>
+                        <input maxlength="7" type="text" name="guia" id="guia" class="form-control"  value=" {{ $article->guia }}" required>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                      <label for="fecha" class="control-label">Fecha</label>
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" name="fecha" id="fecha" class="form-control"  value=" {{ $article->fecha }}" required>
+                      </div>
+                    </div>
                     <br>
 
                     <div class="form-group hidden">
