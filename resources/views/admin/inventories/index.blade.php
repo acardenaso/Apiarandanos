@@ -75,6 +75,8 @@
                   <thead>
                     <tr>
                       <th class="hidden">ID</th>
+                      <th>N° guia </th>
+                      <th>Fecha</th>
                       <th>Nombre </th>
                       <th>Descripción </th>
                       <th>Estado </th>
@@ -87,6 +89,8 @@
                     @foreach ($articles as $article)
                     <tr>
                       <td class="hidden">{{ $article->id }}</td>
+                      <td class="nombre">{{ $article->guia }}</td>
+                      <td class="nombre">{{ $article->fecha }}</td>
                       <td class="nombre">{{ $article->nombre_articulo }}</td>
                       <td class="nombre">{{ $article->descripcion }}</td>
                       <td class="nombre">{{ $article->article_state_estado }}</td>
