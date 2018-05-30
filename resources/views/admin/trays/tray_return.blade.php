@@ -65,6 +65,23 @@
                                     {{ csrf_field() }}
                                     <div class="row">
 
+                                        <div class="hidden" >
+                                            <div class="col-lg-3">
+                                                    <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Prestadas</label>
+                                                <input readonly type="text" class="form-control input-lg text-center" id="b_p" value=0>
+                                            
+                                            </div>
+                                            <div class="col-lg-3">
+                                                    <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;Devueltas</label>
+                                                <input readonly type="text" class="form-control input-lg text-center" id="b_d" value=0>
+                                            
+                                            </div>
+                                            <div class="col-lg-3">
+                                                    <label for="fono" class="control-label text-center">&nbsp;&nbsp;&nbsp;&nbsp;saldo</label>
+                                                <input readonly type="text" class="form-control input-lg text-center" id="s_b" value=0 name="pendientes">
+                                            
+                                            </div>
+                                        </div>
 
                                     <div class="form-group">
                                         <div class="col-lg-6">
@@ -263,24 +280,6 @@
                 </div>
             </div>
 
-
-                                        <div  >
-                                            <div class="col-lg-3">
-                                                   
-                                                <input type="hidden" readonly type="text" class="form-control input-lg text-center" id="b_p" value=0>
-                                            
-                                            </div>
-                                            <div class="col-lg-3">
-                                               
-                                                <input type="hidden" readonly type="text" class="form-control input-lg text-center" id="b_d" value=0>
-                                            
-                                            </div>
-                                            <div class="col-lg-3">
-                                                   
-                                                <input type="hidden" readonly type="text" class="form-control input-lg text-center" id="s_b" value=0 name="pendientes">
-                                            
-                                            </div>
-                                        </div>
     </section>
     <!-- /.content -->
     </div>
