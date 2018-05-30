@@ -27,7 +27,7 @@ class ArticlesController extends Controller
          //Lista los articulos
     public function index()
     {   
-        $articles = Article::paginate(6);
+        $articles = Article::paginate(15);
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $operations = Operation::all();
@@ -973,7 +973,7 @@ class ArticlesController extends Controller
         ->orwhere('categories.categoria', 'like',"%$query%")
         ->orwhere('cant', 'like',"%$query%")
         ->orwhere('article_states.estado', 'like',"%$query%")
-        ->paginate(6); 
+        ->paginate(15); 
             
         if(empty($query)){  
             $title = "ingrese un criterio para la búsqueda";
