@@ -22,7 +22,7 @@ class WorkersController extends Controller
 
     public function index()
     {   
-        $workers = Worker::paginate(6);
+        $workers = Worker::paginate(22);
         return view('admin.workers.index')->with(compact('workers'));
     }
 
@@ -95,7 +95,7 @@ class WorkersController extends Controller
         ->orwhere('genders.genero', 'like',"%$query%")
         ->orwhere('states.estado','like',"%$query%")
         ->orwhere('locations.localidad','like',"%$query%")
-        ->paginate(6); 
+        ->paginate(22); 
         if(empty($query)){
             
             $title = "ingrese un criterio para la búsqueda";
