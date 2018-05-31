@@ -109,14 +109,12 @@ class ArticlesController extends Controller
             'article_state_id.required' => 'Campo estado es necesario',
             'min_stock.numeric' => 'Campo stock minimo solo numeros',
             'guia.numeric' => 'Campo N° guia solo numeros',
-            'sag.numeric' => 'Campo N° Sag solo numeros',
         ];    
         $rules = [
             'category_id' => 'required',
             'article_state_id' => 'required',
             'min_stock' => 'numeric',
             'guia' => 'numeric',
-            'sag' => 'numeric',
         ];
         $this->validate($request, $rules,$messages);     
         //Editar articulo en la bd, edita todos los campos, menos la cantidad, ya que ese campo es 
