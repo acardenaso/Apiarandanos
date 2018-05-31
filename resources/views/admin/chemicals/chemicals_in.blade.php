@@ -64,7 +64,7 @@
                                   <th class="hidden">ID</th>
                                   <th>Artículo </th>
                                   <th>Cantidad Disponible</th>
-                                  <th>Descripción</th>
+                                  <th>Ingrediente activo</th>
                                   <th>Sub Categoría</th>
                                   <th>Opciones</th>
                                 </tr>
