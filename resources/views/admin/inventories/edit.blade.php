@@ -133,6 +133,24 @@
                         <input type="text" name="fecha" id="fecha" class="form-control"  value=" {{ $article->fecha }}" required>
                       </div>
                     </div>
+                    <div class="col-lg-3">
+                    <label for="sag" class="control-label">N° Sag</label>
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" name="sag" id="sag" class="form-control"  value=" {{ $article->sag }}">
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <label for="reingreso" class="control-label">Periodo de reingreso</label>
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" name="reingreso" id="reingreso" class="form-control"  value=" {{ $article->reingreso }}">
+                      </div>
+                    </div>
                     <br>
 
                     <div class="form-group hidden">
