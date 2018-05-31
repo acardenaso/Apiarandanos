@@ -1,53 +1,6 @@
 @extends('layouts.app') @section('content')
 
 
-<style type="text/css">
-
-
-.select-field{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    border: 1px solid #C2C2C2;
-    box-shadow: 5px 5px 8px #EBEBEB;
-    -moz-box-shadow: 1px 1px 4px #EBEBEB;
-    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
-    border-radius: 3px;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 3px;
-    padding: 7px;
-    outline: none;
-    width:225px;
-}
-
-.select-field-guia{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    border: 1px solid #C2C2C2;
-    box-shadow: 5px 5px 8px #EBEBEB;
-    -moz-box-shadow: 1px 1px 4px #EBEBEB;
-    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
-    border-radius: 3px;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 3px;
-    padding: 7px;
-    outline: none;
-    width:90px;
-}
-.select-field:focus{
-    border: 1px solid #0C0;
-}
-
-.select-field-guia:focus{
-    border: 1px solid #0C0;
-}
-
-</style>
-
-
-
-
 <div class="content-wrapper">
 
   <!-- Main content -->
@@ -165,7 +118,7 @@
                   </div>
 
                   
-                  <div class="col-sm-3">  
+                  <div class="col-sm-4">  
                       <label for="category_id" class="control-label">Categoría</label>
                       <div class="input-group">
                         <select  name="category_id" id="category" class="selectpicker">
@@ -177,7 +130,7 @@
                       </div>
                   </div>
 
-                  <div class="col-sm-3"> 
+                  <div class="col-sm-4"> 
                       <label for="article_states_id" class="control-label">Estado</label>
                       <div class="input-group">
                         <select  name="article_state_id" id="article_state_id" class="selectpicker">
@@ -190,7 +143,7 @@
                     </div>
               
 
-                       <div id="categoriass" class="col-sm-3 hidden">
+                       <div id="categoriass" class="col-sm hidden">
                       <label for="sub_category_id" class="control-label">Sub Categoría</label>
                       <div class="input-group">
                         <select  name="sub_category_id" id="sub_category" class="selectpicker" >
