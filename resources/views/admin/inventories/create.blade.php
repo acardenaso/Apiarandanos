@@ -121,7 +121,7 @@
                   <div class="col-sm-4">  
                       <label for="category_id" class="control-label">Categoría</label>
                       <div class="input-group">
-                        <select  name="category_id" id="category" class="selectpicker">
+                        <select  name="category_id" id="category" class="select-field">
                           <option value="0">Seleccione Categoria</option>
                           @foreach ($categories as $category)
                           <option value="{{ $category->id }}" @if(old('category_id') == $category->id) {{ 'selected' }} @endif> {{ $category->categoria }} </option>
@@ -133,7 +133,7 @@
                   <div class="col-sm-4"> 
                       <label for="article_states_id" class="control-label">Estado</label>
                       <div class="input-group">
-                        <select  name="article_state_id" id="article_state_id" class="selectpicker">
+                        <select  name="article_state_id" id="article_state_id" class="select-field">
                           <option value="">Seleccione Estado</option>
                           @foreach($article_states as $article_state)
                           <option value="{{ $article_state->id }}" @if(old('article_state_id') == $article_state->id) {{ 'selected' }} @endif> {{ $article_state->estado }} </option>
@@ -146,7 +146,7 @@
                        <div id="categoriass" class="col-sm hidden">
                       <label for="sub_category_id" class="control-label">Sub Categoría</label>
                       <div class="input-group">
-                        <select  name="sub_category_id" id="sub_category" class="selectpicker" >
+                        <select  name="sub_category_id" id="sub_category" class="select-field" >
                           <option value="" >Seleccione SubCategoria </option>
                           @foreach ($subcategories as $subcategory)
                           <option value="{{ $subcategory->id }}" @if(old('sub_category_id') == $subcategory->id) {{ 'selected' }} @endif > {{ $subcategory->subcategoria }} </option>
