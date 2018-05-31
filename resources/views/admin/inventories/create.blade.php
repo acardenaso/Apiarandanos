@@ -1,6 +1,53 @@
 @extends('layouts.app') @section('content')
-<!--Contenido-->
-<!-- Content Wrapper. Contains page content -->
+
+
+<style type="text/css">
+
+
+.select-field{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    box-shadow: 5px 5px 8px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
+    width:225px;
+}
+
+.select-field-guia{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    box-shadow: 5px 5px 8px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
+    width:90px;
+}
+.select-field:focus{
+    border: 1px solid #0C0;
+}
+
+.select-field-guia:focus{
+    border: 1px solid #0C0;
+}
+
+</style>
+
+
+
+
 <div class="content-wrapper">
 
   <!-- Main content -->
@@ -36,69 +83,104 @@
                 
               
             <div class="row">
-              <div class="col-lg-offset-1 col-lg-10">
-                <div class="col-lg-10">
-                  <h2 style="border-bottom : 1px solid gray">Nuevo Artículo</h2>
+              <div class="col-sm-offset-1 col-sm-10">
+                <div class="row">  
+                  <div class="col-sm-10">
+                    <h2 style="border-bottom : 1px solid gray">Nuevo Artículo</h2>
+                  </div>
                 </div>
-                <br>
-                
+
                 <form class="form-horizontal" method="post" action="{{ url('/admin/inventories') }}">
                   {{ csrf_field() }}
-                  <div class="form-group">
-                    <div class="col-lg-6">
-                      <label for="nombre_articulo" class="control-label">Nombre Artículo</label>
+                  
+                  <div class="row">
+                    <div class="col-sm-2">
+                        <label for="guia" class="control-label">N° Guia</label>
                       <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                        </span>
-                        <input maxlength="30" type="text" name="nombre_articulo" id="nombre_articulo" class="form-control" value="{{old('nombre_articulo')}}" required>
+                        <input maxlength="7" type="text" name="guia" id="guia" class="select-field-guia"  value="{{old('guia')}}" required>
                       </div>
                     </div>
 
-                    <div class="col-lg-6">
-                      <label for="descripcion" class="control-label">Descripción </label>
-                      <textarea maxlength="35" name="descripcion" id="descripcion" class="form-control" required>{{ old('descripcion') }}</textarea>
+                
+
+                    <div class="col-sm-2">
+                        <label for="min_stock" class="control-label">Stock Mínimo  <i data-toggle="tooltip" title="Genera una alerta si el stock es menor o igual al inventario inicial" class="fa fa-question-circle" aria-hidden="true"></i></label>
+                      <div class="input-group">
+                        <input maxlength="5" type="text" name="min_stock" id="min_stock" class="select-field-guia" value="{{old('min_stock')}}" required>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label for="min_stock" class="control-label">Stock Inicial </label>
+                      <div class="input-group">
+                        <input maxlength="5" type="text" name="cantidad" id="min_stock" class="select-field-guia"  value="{{old('cantidad')}}" required>
+                      </div>
+                    </div>
+
+                    <div id="sagg" class="col-sm-2 hidden">
+                        <label for="sag" class="control-label">N° Sag </label>
+                      <div class="input-group">
+                        <input  maxlength="5" type="text" name="sag" id="sag" class="select-field-guia"  value="{{old('sag')}}">
+                      </div>
+                    </div>
+
+                  <div id="reingresoo" class="col-sm hidden">
+                        <label for="reingreso" class="control-label">Periodo de reingreso</label>
+                      <div class="input-group">
+                        <input maxlength="7" type="text" name="reingreso" id="guia" class="select-field"  value="{{old('reingreso')}}">
+                      </div>
+                  </div>
+
+                  </div>
+                    
+                  <div class="row">
+                    <div class="col-lg-3">
+                        <label for="fecha" class="control-label">Fecha</label>
+                      <div class="input-group">
+                        <input type="date" name="fecha" id="fecha" class="select-field"  value="{{old('fecha')}}" required>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label for="nombre_articulo" class="control-label">Nombre Artículo</label>
+                      <div class="input-group">
+                        <input maxlength="30" type="text" name="nombre_articulo" id="nombre_articulo" class="select-field" value="{{old('nombre_articulo')}}" required>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label for="descripcion" class="control-label">Descripción </label>
+                      <div class="input-group">
+                        <input maxlength="35" name="descripcion" id="descripcion" class="select-field"  value="{{old('descripcion')}}" required>
+                      </div>
+                    </div>
+
+                    
+
+                    <div class="col-sm-3">  
+                        <label class="control-label"></label>
+                      <div class="input-group">
+                      </div>
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <div class="col-lg-4">
+                  
+                  <div class="col-sm-3">  
                       <label for="category_id" class="control-label">Categoría</label>
                       <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                        </span>
-                        <select data-live-search="true" name="category_id" id="category" class="form-control selectpicker">
-                          <option value="">Seleccione Categoria</option>
+                        <select  name="category_id" id="category" class="selectpicker">
+                          <option value="0">Seleccione Categoria</option>
                           @foreach ($categories as $category)
                           <option value="{{ $category->id }}" @if(old('category_id') == $category->id) {{ 'selected' }} @endif> {{ $category->categoria }} </option>
                           @endforeach
                         </select>
                       </div>
-                    </div>
+                  </div>
 
-                     <div class="col-lg-4">
-                      <label for="sub_category_id" class="control-label">Sub Categoría <i data-toggle="tooltip" title="Seleccione sub categoria solo para productos quimicos" class="fa fa-question-circle" aria-hidden="true"></i></label>
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                        </span>
-                        <select data-live-search="true" name="sub_category_id" id="sub_category" class="form-control selectpicker" >
-                          <option value="" >Seleccione SubCategoria </option>
-                          @foreach ($subcategories as $subcategory)
-                          <option value="{{ $subcategory->id }}" @if(old('sub_category_id') == $subcategory->id) {{ 'selected' }} @endif > {{ $subcategory->subcategoria }} </option>
-                          @endforeach
-                        </select>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-4">
+                  <div class="col-sm-3"> 
                       <label for="article_states_id" class="control-label">Estado</label>
                       <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                        </span>
-                        <select data-live-search="true" name="article_state_id" id="article_state_id" class="form-control selectpicker">
+                        <select  name="article_state_id" id="article_state_id" class="selectpicker">
                           <option value="">Seleccione Estado</option>
                           @foreach($article_states as $article_state)
                           <option value="{{ $article_state->id }}" @if(old('article_state_id') == $article_state->id) {{ 'selected' }} @endif> {{ $article_state->estado }} </option>
@@ -106,47 +188,19 @@
                         </select>
                       </div>
                     </div>
-                  </div>
+              
 
-                  <div class="form-group">
-                    <div class="col-lg-2">
-                      <label for="min_stock" class="control-label">Stock Mínimo  <i data-toggle="tooltip" title="Cambia a color rojo si el stock es menor o igual al inventario inicial" class="fa fa-question-circle" aria-hidden="true"></i></label>
+                       <div id="categoriass" class="col-sm-3 hidden">
+                      <label for="sub_category_id" class="control-label">Sub Categoría</label>
                       <div class="input-group">
-                        <span class="input-group-addon">
-                          <i  class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                        </span>
-                        <input maxlength="5" type="text" name="min_stock" id="min_stock" class="form-control" value="{{old('min_stock')}}" required>
+                        <select  name="sub_category_id" id="sub_category" class="selectpicker" >
+                          <option value="" >Seleccione SubCategoria </option>
+                          @foreach ($subcategories as $subcategory)
+                          <option value="{{ $subcategory->id }}" @if(old('sub_category_id') == $subcategory->id) {{ 'selected' }} @endif > {{ $subcategory->subcategoria }} </option>
+                          @endforeach
+                        </select>
                       </div>
-                    </div>
-                    <div class="col-lg-2">
-                      <label for="min_stock" class="control-label">Inventario Inicial </label>
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                        </span>
-                        <input maxlength="5" type="text" name="cantidad" id="min_stock" class="form-control"  value="{{old('cantidad')}}" required>
-                      </div>
-                    </div>
 
-                     <div class="col-lg-2">
-                      <label for="guia" class="control-label">N° Guia</label>
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                        </span>
-                        <input maxlength="7" type="text" name="guia" id="guia" class="form-control"  value="{{old('guia')}}" required>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-2">
-                      <label for="fecha" class="control-label">Fecha</label>
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                        </span>
-                        <input type="date" name="fecha" id="fecha" class="form-control"  value="{{old('fecha')}}" required>
-                      </div>
-                    </div>
 
                     <div class="form-group hidden">
                       <div class="col-lg-2">
@@ -158,6 +212,7 @@
                           <input type="text" name="user_id" id="min_stock" class="form-control" value="{{ $user->id}}" required>
                         </div>
                       </div>
+                    </div>
                     </div>
                     <br>
 
@@ -180,6 +235,8 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
+
+
 
   </section>
   <!-- /.content -->

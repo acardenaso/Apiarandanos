@@ -308,6 +308,22 @@ document.getElementById('logout-form').submit();">
         $("#btnAgregarTrabajador").click(function (e) {
           $("#formAddWorkers").submit(function (e) {})
         })
+
+        $('#category').on('change', function(){
+    var valor = $(this).val();
+          if(valor == 10){
+            $("#sagg").removeClass("hidden");
+            $("#reingresoo").removeClass("hidden");
+            $("#categoriass").removeClass("hidden");
+          }
+          else{
+            $("#sagg").addClass("hidden");
+            $("#reingresoo").addClass("hidden");
+            $("#categoriass").addClass("hidden");
+          }
+    });
+
+
       })
     </script>
   

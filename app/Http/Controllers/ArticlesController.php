@@ -50,7 +50,6 @@ class ArticlesController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'nombre_articulo.unique' => 'Este articulo ya se encuentra registrado',
             'category_id.required' => 'Campo categoria es necesario',
             'article_state_id.required' => 'Campo estado es necesario',
             'min_stock.numeric' => 'Campo stock minimo solo numeros',
@@ -58,7 +57,6 @@ class ArticlesController extends Controller
             'guia.numeric' => 'Campo N° guia solo numeros',
         ];    
         $rules = [
-            'nombre_articulo' => 'unique:articles',
             'category_id' => 'required',
             'article_state_id' => 'required',
             'min_stock' => 'numeric',
