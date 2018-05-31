@@ -150,10 +150,7 @@
                                                 <div class="col-lg-4">
                                                     <label for="id" class="control-label">Folio (N° Guia de despacho)*</label>
                                                     <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                        </span>
-                                                        <input maxlength="5" type="text" name="folio" id="id" class="form-control" required>
+                                                        <input maxlength="5" type="text" name="folio" id="id" class="select-field-guia" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -164,10 +161,7 @@
                                                 <div class="col-lg-4">
                                                     <label for="berrie" class="control-label">Huerto</label>
                                                     <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                        </span>
-                                                        <select data-live-search="true" class="form-control selectpicker" name="berrie_id" id="berrie_id">
+                                                        <select data-live-search="true" class="select-field" name="berrie_id" id="berrie_id">
                                                             @foreach ($berries as $berrie)
                                                             <option value="{{ $berrie->id }}" selected> {{ $berrie->nombre_berrie }}</option>
                                                             @endforeach
@@ -177,10 +171,7 @@
                                                 <div class="col-lg-4">
                                                     <label for="fono" class="control-label">Tipo de bandeja</label>
                                                     <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                        </span>
-                                                        <select data-live-search="true" class="form-control selectpicker" name="article_id" id="article_id">
+                                                        <select data-live-search="true" class="select-field" name="article_id" id="article_id">
                                                             <option value="">Seleccione bandeja:</option>
                                                             @foreach ($articles as $article)
                                                             <option value="{{ $article->id }}"> {{ $article->nombre_articulo }}</option>
@@ -195,19 +186,13 @@
                                                 <div class="col-lg-4">
                                                     <label for="fono" class="control-label">Cantidad Bandejas devueltas</label>
                                                     <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                        </span>
-                                                        <input maxlength="5" type="text" class="form-control" id="cantidad" name="cantidad" required>
+                                                        <input maxlength="5" type="text" class="select-field" id="cantidad" name="cantidad" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 ">
                                                     <label for="berrie" class="control-label">Fecha devolución</label>
                                                     <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                        </span>
-                                                        <input type="date" name="fecha" class="form-control" required>
+                                                        <input type="date" name="fecha" class="select-field" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -216,10 +201,7 @@
                                                 <div class="col-lg-4">
                                                     <label for="fono" class="control-label">Responsable</label>
                                                     <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                        </span>
-                                                        <select data-live-search="true" class="form-control selectpicker" name="user_id" id="user">
+                                                        <select data-live-search="true" class="select-field" name="user_id" id="user">
                                                             <option value="">Seleccione Responsable:</option>
                                                             @foreach ($users as $user)
                                                             <option value="{{ $user->id }}"> {{ $user->name }}</option>
@@ -230,7 +212,7 @@
                                                 <div class="col-lg-5">
                                                     <label for="fono" class="control-label">Descripcion</label>
                                                     <div class="form-group">
-                                                        <textarea required name="description" class="form-control" required>{{ old('description') }}solo traslado</textarea>
+                                                        <input required name="description" class="select-field" value="{{old('descripcion')}}" required>
                                                     </div>
                                                 </div>
                                             </div>

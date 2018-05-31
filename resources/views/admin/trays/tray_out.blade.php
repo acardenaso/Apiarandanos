@@ -67,19 +67,13 @@
                                         <div class="col-lg-4">
                                             <label for="id" class="control-label">Folio (N° Guia de despacho)*</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                </span>
-                                                <input maxlength="5" type="text" name="folio" id="id" class="form-control" required value="{{old('folio')}}">
+                                                <input maxlength="5" type="text" name="folio" id="id" class="select-field-guia" required value="{{old('folio')}}">
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <label for="fono" class="control-label">Cantidad de bandejas solicitadas</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                </span>
-                                                <input maxlength="5" type="text" name="cantidad" class="form-control" id="cantidad" required value="{{old('cantidad')}}">
+                                                <input maxlength="5" type="text" name="cantidad" class="select-field" id="cantidad" required value="{{old('cantidad')}}">
                                             </div>
                                         </div>
                                     </div>
@@ -95,10 +89,7 @@
                                         <div class="col-lg-4">
                                             <label for="berrie" class="control-label">Fecha de solicitud</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                </span>
-                                                <input type="date" name="fecha" class="form-control" required value="{{old('fecha')}}">
+                                                <input type="date" name="fecha" class="select-field" required value="{{old('fecha')}}">
                                             </div>
                                         </div>
 
@@ -108,10 +99,7 @@
                                         <div class="col-lg-4">
                                             <label for="berrie" class="control-label">Huerto solicitante</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                </span>
-                                                <select data-live-search="true" class="form-control selectpicker" name="berrie_id" id="berrie">
+                                                <select data-live-search="true" class="select-field" name="berrie_id" id="berrie">
                                                     <option value="">Seleccione Huerto destino:</option>
                                                     @foreach ($berries as $berrie)
                                                     <option value="{{ $berrie->id }}" @if(old('berrie_id') == $berrie->id) {{ 'selected' }} @endif> {{ $berrie->nombre_berrie }}</option>
@@ -122,9 +110,10 @@
                                         <div class="form-group">
                                             <div class="col-lg-4">
                                                 <label for="berrie" class="control-label">Descripción</label>
-                                                <textarea name="description" class="form-control" required>{{ old('description') }}solo traslado</textarea>
+                                                <div class="input-group">
+                                                <input name="description" class="select-field" value="{{old('descripcion')}}" required>
                                             </div>
-                                            
+                                            </div> 
                                            
                                         </div>
                                         <div class="form-group">
@@ -136,10 +125,7 @@
                                         <div class="col-lg-4">
                                             <label for="worker" class="control-label">Responsable</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
-                                                </span>
-                                                <select data-live-search="true" class="form-control selectpicker" name="worker_id" id="worker">
+                                                <select data-live-search="true" class="select-field" name="worker_id" id="worker">
                                                     <option value="">Seleccione Responsable:</option>
                                                     @foreach ($users as $user)
                                                     <option value="{{ $user->id }}">  {{ $user->name }}</option>
