@@ -35,15 +35,16 @@
                                 @endif
                         <div class="row">
                         <div class="col-lg-offset-1 col-lg-10">
+                        <div class="row">
                         <div class="col-lg-8">        
                                 <h2 style="border-bottom : 1px solid gray">Editar información del trabajador</h2>
                                 </div>
-                               
+                                </div>   
                                 <br>
                                 <form class="form-horizontal" method="post" action="{{ url('/admin/workers/'.$worker->id.'/edit') }}">
                                     {{ csrf_field() }}
                                     <div class="form-group">
-                                        <div class="col-lg-6">
+                                        <div class="col-sm-3">
                                             <label for="rut" class="control-label">Rut</label>
                                             <div class="input-group">
                                                 <input maxlength="12" onkeyup="this.value = formatterRut(this.value)" type="text" name="rut" id="rut" class="select-field"  value=" {{ $worker->rut }}"  required>
@@ -63,7 +64,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="col-lg-6">
+                                        <div class="col-sm-3">
                                             <label for="nombres" class="control-label">Nombres</label>
                                             <div class="input-group">
                                                 <input maxlength="30" type="text" name="nombre" id="nombres" class="select-field" value=" {{ $worker->nombre }}" required>
@@ -77,7 +78,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-lg-6">
+                                        <div class="col-sm-3">
                                             <label for="fecha_nacimiento" class="control-label">Fecha de Nacimiento</label>
                                             <div class="input-group">
                                                 <input type="text" name="fecha_nacimiento" class="select-field" id="fecha_nacimiento" value=" {{ $worker->fecha_nacimiento }}" required>
@@ -91,7 +92,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-lg-6">
+                                        <div class="col-sm-3">
                                             <label for="fono" class="control-label">Teléfono</label>
                                             <div class="input-group">
                                                 <input maxlength="8" type="text" name="fono" class="select-field" id="fono" value=" {{ $worker->fono }}" required>
@@ -112,7 +113,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="col-lg-6">
+                                        <div class="col-sm-3">
                                             <label for="cargo" class="control-label">Nacionalidad del Trabjador</label>
                                             <div class="input-group">
                                                 <select name="nationality_id" data-live-search="true" id="nacionalidad" class="select-field">

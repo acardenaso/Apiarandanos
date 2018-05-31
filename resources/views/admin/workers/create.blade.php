@@ -37,22 +37,24 @@
                 
             <div class="row">
               <div class="col-lg-offset-1 col-lg-10">
+                <div class="row">
               <div class="col-lg-8">
               <h1 style="border-bottom : 1px solid gray">Registro de Trabajadores</h1>
+              </div>
               </div>
 
                 <br>
                 <form class="form-horizontal" method="post" action="{{ url('/admin/workers') }}">
                   {{ csrf_field() }}
                   <div class="form-group">
-                    <div class="col-lg-6">
+                    <div class="col-sm-3">
                       <label for="rut" class="control-label">Rut</label>
                       <div class="input-group">
                         <input type="text" maxlength="12" name="rut" id="rut" class="select-field" onkeyup="this.value = formatterRut(this.value)"
                           required value="{{old('rut')}}">
                       </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
                       <label for="cargo" class="control-label">Localidad del Trabajador</label>
                       <div class="input-group">
                       <select data-live-search="true" name="location_id" id="localidad" class="select-field">
@@ -65,7 +67,7 @@
                   </div>
 
                   <div class="form-group">
-                    <div class="col-lg-6">
+                    <div class="col-sm-3">
                       <label for="nombres" class="control-label">Nombres</label>
                       <div class="input-group">
                         <input maxlength="30" type="text" name="nombre" id="nombres" class="select-field" required value="{{old('nombre')}}">
@@ -80,7 +82,7 @@
                   </div>
 
                   <div class="form-group">
-                    <div class="col-lg-6">
+                    <div class="col-sm-3">
                       <label for="fecha_nacimiento" class="control-label">Fecha de Nacimiento</label>
                       <div class="input-group">
                         <input type="date" name="fecha_nacimiento" class="select-field" id="fecha_nacimiento" required value="{{old('fecha_nacimiento')}}">
@@ -95,13 +97,13 @@
                   </div>
 
                   <div class="form-group">
-                    <div class="col-lg-6">
+                    <div class="col-sm-3">
                       <label for="fono" class="control-label">Teléfono</label>
                       <div class="input-group">
                         <input type="text" maxlength="8" name="fono" class="select-field" id="fono" required value="{{old('fono')}}">
                       </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-sm-7">
                       <label for="cargo" class="control-label">Cargo del Trabajador</label>
                       <div class="input-group">
                         <select data-live-search="true"  name="position_id" id="cargo" class="select-field" >
@@ -111,17 +113,8 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-lg-6">
-                      <label for="cargo" class="control-label">Nacionalidad del Trabjador</label>
-                      <div class="input-group">
-                      <select data-live-search="true" name="nationality_id" id="nacionalidad" class="select-field">
-                        @foreach($nationalities as $nationality)
-                        <option value="{{ $nationality->id }}" @if(old('nationality_id') == $nationality->id) {{ 'selected' }} @endif> {{ $nationality->nacionalidad }} </option>
-                        @endforeach
-                      </select>
-                  </div>
-                  </div>
-                    <div class="col-lg-6">
+                  
+                    <div class="col-sm-3">
                       <label for="cargo" class="control-label">Estado del Trabjador</label>
                       <div class="input-group">
                         <select data-live-search="true" name="state_id" id="estado" class="select-field">
@@ -131,9 +124,21 @@
                         </select>
                       </div>
                     </div>
+                    
+                    <div class="col-sm-3">
+                      <label for="cargo" class="control-label">Nacionalidad del Trabjador</label>
+                      <div class="input-group">
+                      <select data-live-search="true" name="nationality_id" id="nacionalidad" class="select-field">
+                        @foreach($nationalities as $nationality)
+                        <option value="{{ $nationality->id }}" @if(old('nationality_id') == $nationality->id) {{ 'selected' }} @endif> {{ $nationality->nacionalidad }} </option>
+                        @endforeach
+                      </select>
                   </div>
+                  </div>
+                  </div>
+
                   <div class="form-group">
-                    <div class="col-lg-6">
+                    <div class="col-sm-3">
                       <label for="genero" class="control-label">Sexo</label>
                       <div class="input-group">
                         <select  data-live-search="true" name="gender_id" id="genero" class="select-field">
