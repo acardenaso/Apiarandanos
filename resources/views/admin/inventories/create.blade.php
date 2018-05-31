@@ -118,7 +118,7 @@
                   </div>
 
                   
-                  <div class="col-sm-4">  
+                  <div class="col-sm-3">  
                       <label for="category_id" class="control-label">Categoría</label>
                       <div class="input-group">
                         <select  name="category_id" id="category" class="select-field">
@@ -130,7 +130,7 @@
                       </div>
                   </div>
 
-                  <div class="col-sm-4"> 
+                  <div class="col-sm-3"> 
                       <label for="article_states_id" class="control-label">Estado</label>
                       <div class="input-group">
                         <select  name="article_state_id" id="article_state_id" class="select-field">
@@ -142,7 +142,7 @@
                       </div>
                     </div>
               
-
+                    <div class="col-sm-3"> 
                        <div id="categoriass" class="col-sm hidden">
                       <label for="sub_category_id" class="control-label">Sub Categoría</label>
                       <div class="input-group">
@@ -153,7 +153,7 @@
                           @endforeach
                         </select>
                       </div>
-
+                      </div>
 
                     <div class="form-group hidden">
                       <div class="col-lg-2">
