@@ -127,7 +127,7 @@
                   <div id="reingresoo" class="col-sm hidden">
                         <label for="reingreso" class="control-label">Periodo de reingreso</label>
                       <div class="input-group">
-                        <input maxlength="7" type="text" name="reingreso" id="guia" class="select-field"  value="{{old('reingreso')}}">
+                        <input maxlength="30" type="text" name="reingreso" id="reingreso" class="select-field"  value="{{old('reingreso')}}">
                       </div>
                   </div>
 

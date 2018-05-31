@@ -43,17 +43,21 @@
 <table class="table">
     <thead>
         <tr>
+            <th>N° Sag</th>
             <th>Articulo</th>
             <th>Cantidad disponible</th>
-            <th>Descripcion</th>
+            <th>Periodo reingreso</th>
+            <th>Ingrediente activo</th>
             <th>Sub categoria</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($articles as $article)
         <tr>
+            <td>{{ $article->sag }}</td>
             <td>{{ $article->nombre_articulo }}</td>
             <td>{{ $article->cant }}</td>
+            <td>{{ $article->reingreso }}</td>
             <td>{{ $article->descripcion }}</td>
             <td>{{ $article->subcategoria }}</td>
         </tr>

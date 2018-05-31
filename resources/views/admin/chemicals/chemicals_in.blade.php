@@ -62,8 +62,10 @@
                               <thead>
                                 <tr>
                                   <th class="hidden">ID</th>
+                                  <th>N° Sag </th>
                                   <th>Artículo </th>
                                   <th>Cantidad Disponible</th>
+                                  <th>Periodo reingreso</th>
                                   <th>Ingrediente activo</th>
                                   <th>Sub Categoría</th>
                                   <th>Opciones</th>
@@ -74,6 +76,7 @@
                                 @foreach ($articles as $article)
                                 <tr>
                                   <td class="hidden">{{ $article->id }}</td>
+                                  <td>{{ $article->sag }}</td>
                                   <td>{{ $article->nombre_articulo }}</td>
                                   @if($article->cant < $article->min_stock)
                                   <td class="rojo">{{ $article->cant }} stock critico!</td>
@@ -82,6 +85,7 @@
                                   @elseif($article->cant > $article->min_stock)
                                   <td class="nombre">{{ $article->cant }}</td>
                                   @endif
+                                  <td>{{ $article->reingreso }}</td>
                                   <td>{{ $article->descripcion }}</td>
                                   <td>{{ $article->subcategoria }}</td>
                                   <td class="td-actions"> 

@@ -74,6 +74,8 @@ class ArticlesController extends Controller
         $articles->article_state_id = $request->input('article_state_id');
         $articles->guia = $request->input('guia');
         $articles->fecha = $request->input('fecha');
+        $articles->sag = $request->input('sag');
+        $articles->reingreso = $request->input('reingreso');
         $articles->user_id = $request->input('user_id');
         $articles->save();
 
@@ -107,12 +109,14 @@ class ArticlesController extends Controller
             'article_state_id.required' => 'Campo estado es necesario',
             'min_stock.numeric' => 'Campo stock minimo solo numeros',
             'guia.numeric' => 'Campo N° guia solo numeros',
+            'sag.numeric' => 'Campo N° Sag solo numeros',
         ];    
         $rules = [
             'category_id' => 'required',
             'article_state_id' => 'required',
             'min_stock' => 'numeric',
             'guia' => 'numeric',
+            'sag' => 'numeric',
         ];
         $this->validate($request, $rules,$messages);     
         //Editar articulo en la bd, edita todos los campos, menos la cantidad, ya que ese campo es 
@@ -126,6 +130,8 @@ class ArticlesController extends Controller
         $articles->article_state_id = $request->input('article_state_id');
         $articles->guia = $request->input('guia');
         $articles->fecha = $request->input('fecha');
+        $articles->sag = $request->input('sag');
+        $articles->reingreso = $request->input('reingreso');
         $articles->user_id = $request->input('user_id');
         $articles->save();
         $title = "Artículo editado correctamente!";
@@ -730,11 +736,13 @@ class ArticlesController extends Controller
             ->join('sub_categories','articles.sub_category_id','=','sub_categories.id')
             ->where('articles.nombre_articulo', 'like',"%$filter%")
             ->orwhere('articles.descripcion', 'like',"%$filter%")
+            ->orwhere('sag', 'like',"%$filter%")
+            ->orwhere('reingreso', 'like',"%$filter%")
             ->orwhere('sub_categories.subcategoria', 'like',"%$filter%")
             ->get();      
         }else{
             $articles = Article::join('sub_categories','articles.sub_category_id','=','sub_categories.id')
-            ->select('articles.id','articles.nombre_articulo','articles.cant','articles.descripcion','sub_categories.subcategoria')
+            ->select('articles.id','articles.sag','articles.nombre_articulo','articles.cant','articles.reingreso','articles.descripcion','sub_categories.subcategoria')
             ->where('articles.category_id','=','10')
             ->get();
         }
@@ -932,7 +940,7 @@ class ArticlesController extends Controller
                 $articles = Article::where('articles.category_id','=','10')
                 ->join('sub_categories','articles.sub_category_id','=','sub_categories.id')
                 ->join('categories','articles.category_id','=','categories.id')
-                ->select('nombre_articulo as Artículo','cant as Cantidad disponible','min_stock as Stock minimo','descripcion as Descripcion','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
+                ->select('sag as N° Sag','nombre_articulo as Artículo','cant as Cantidad disponible','min_stock as Stock minimo','reingreso as Periodo de reingreso','descripcion as Descripcion','categories.categoria as Categoría','sub_categories.subcategoria as Sub Categoría')->get();                
                 $sheet->fromArray($articles);
                 $sheet->setOrientation('landscape');
             });
@@ -1004,6 +1012,8 @@ class ArticlesController extends Controller
         ->where('articles.nombre_articulo', 'like',"%$query%")
         ->orwhere('articles.descripcion', 'like',"%$query%")
         ->orwhere('articles.cant', 'like',"%$query%")
+        ->orwhere('sag', 'like',"%$query%")
+        ->orwhere('reingreso', 'like',"%$query%")
         ->orwhere('sub_categories.subcategoria', 'like',"%$query%")
         ->paginate(20); 
     
