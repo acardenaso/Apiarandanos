@@ -107,6 +107,7 @@
                       <label for="cargo" class="control-label">Cargo del Trabajador</label>
                       <div class="input-group">
                         <select data-live-search="true"  name="position_id" id="cargo" class="select-field" >
+                        <option value="">Seleccion Cargo</option>
                           @foreach($positions as $position)
                           <option value="{{ $position->id }}" @if(old('position_id') == $position->id) {{ 'selected' }} @endif>{{ $position->cargo }}  </option>
                           @endforeach
