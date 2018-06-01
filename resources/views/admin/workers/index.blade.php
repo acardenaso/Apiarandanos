@@ -39,7 +39,7 @@
                           <i class="fa fa-search"></i>
                         </button>
                       </div>
-                      <input name="query" type="text" class="form-control" placeholder="Buscar trabajador">
+                      <input name="query" type="text" class="select-field-search" placeholder="Buscar trabajador">
                       @endcan
                       </div>
                 </form>

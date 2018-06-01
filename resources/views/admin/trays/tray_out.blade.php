@@ -11,7 +11,7 @@
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title"></h3>
-                        <a type="button"  href="{{url('/admin/trays_in')}}" class="btn btn-success"><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>
+                        <a type="button"  href="{{url('/admin/trays_in')}}" ><img class="l" src="{{asset('/img/l.png')}}"></a>
                         <div class="box-tools pull-right">
                             <button class="btn btn-box-tool" data-widget="collapse">
                                 <i class="fa fa-minus"></i>
@@ -34,20 +34,26 @@
         </div>
         @endif
                         <div class="row">
-                            <div class="col-lg-offset-1 col-lg-10">
+                            <div style="background:#FBFCFC;border: 1px solid #E8D7EA  ;
+    border-radius: 10px;-webkit-box-shadow: 8px 6px 19px 0px rgba(0,0,0,0.62)"; class="col-lg-offset-3 col-lg-7">
                                 <div class="col-lg-10">
-                                    <div class="col-lg-offset-8 col-lg-12">
+                                    <div  class=" col-lg-offset-8 col-lg-12">
                                     @if($articles->min_stock >= $articles->cant)
                                         <h3 class="rojo">Disponible: {{ $articles->cant }} unidades stock critico!</h3>
                                     @else
                                     <h3>Disponible: {{ $articles->cant }} unidades</h3>
                                     @endif
                                     </div>
-                                    <h2 style="border-bottom : 1px solid gray">Préstamo de Bandejas</h2>
-                                </div>
+                                    <div class="row">
+                                    <div  class=" col-lg-offset-1 col-lg-8">
+                                    <h2 style="border-bottom : 1px solid #D2B4DE">Préstamo de Bandejas</h2>
+                                    </div>
+                  <div class="col-sm-3">
+              <img style="position:absolute;margin-left:-44px;margin-top:7px;" src="{{asset('/img/t.png')}}">
+              </div>
+              </div>
 
-                                <br>
-
+                <br>
                                 <form class="form-horizontal" method="post" action="{{ url('/admin/trays/'.$articles->id.'/tray_out') }}">
 
                                     {{ csrf_field() }}
@@ -64,14 +70,14 @@
 
                                     <div class="form-group">
 
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-offset-1 col-lg-6">
                                             <label for="id" class="control-label">Folio (N° Guia de despacho)*</label>
                                             <div class="input-group">
                                                 <input maxlength="5" type="text" name="folio" id="id" class="select-field-guia" required value="{{old('folio')}}">
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
-                                            <label for="fono" class="control-label">Cantidad de bandejas solicitadas</label>
+                                            <label for="fono" class="control-label">Cantidad solicitadas</label>
                                             <div class="input-group">
                                                 <input maxlength="5" type="text" name="cantidad" class="select-field" id="cantidad" required value="{{old('cantidad')}}">
                                             </div>
@@ -79,7 +85,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-offset-1 col-lg-6">
                                             <h4>
                                                 <label for="nombres" class="control-label">Tipo de bandeja</label>
                                             </h4>
@@ -96,8 +102,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="col-lg-4">
-                                            <label for="berrie" class="control-label">Huerto solicitante</label>
+                                        <div class="col-lg-offset-1 col-lg-6">
+                                            <label for="berrie" class="control-label">Solicita</label>
                                             <div class="input-group">
                                                 <select data-live-search="true" class="select-field" name="berrie_id" id="berrie">
                                                     <option value="">Seleccione Huerto destino:</option>
@@ -122,7 +128,7 @@
                                                 <input type="text" name="article_id" id="id" class="form-control hidden" value=" {{ $articles->id }}">
                                             </div>
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-offset-1 col-lg-4">
                                             <label for="worker" class="control-label">Responsable</label>
                                             <div class="input-group">
                                                 <select data-live-search="true" class="select-field" name="worker_id" id="worker">
@@ -135,7 +141,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-lg-offset-5 col-lg-4">
+                                        <div class="col-lg-offset-8 col-lg-5">
                                         <button type="submit" class="buttonna">Generar prestamo <i class="fa fa-floppy-o"></i></button>
 
                                         </div>

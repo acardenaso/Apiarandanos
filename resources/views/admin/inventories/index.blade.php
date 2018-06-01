@@ -29,7 +29,7 @@
           <div  class="box-body">
             <div  class="col-lg-offset-1 col-lg-10">
               <div  class="col-lg-6">
-                <h2>Mantenedor de Artículos</h2>
+                <h2>Artículos</h2>
               </div>
             </div>
             <div class="row">
@@ -42,7 +42,7 @@
                         <i class="fa fa-search"></i>
                       </button>
                     </div>
-                    <input name="query" type="text" class="form-control" placeholder="Buscar Articulo">
+                    <input name="query" type="text" class="select-field-search" placeholder="Buscar Articulo">
                   </div>
                   @endcan
                    </div>

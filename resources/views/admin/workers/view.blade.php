@@ -13,7 +13,7 @@
               <div class="box">
                 <div class="box-header with-border">
                   <h3 class="box-title"></h3>
-                  <a type="button"  href="{{url('/admin/workers')}}" class="btn btn-success"><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>
+                  <a type="button"  href="{{url('/admin/workers')}}" ><img class="l" src="{{asset('/img/l.png')}}"></a>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     
@@ -24,10 +24,18 @@
                 <div class="box-body">
 
                 <div class="row">
-                  <div style="border-radius: 25px;border: 2px solid  #8080ff;" class="col-lg-offset-1 col-lg-10">
-                    <h2 style="border-bottom : 2px solid gray">Detalle del trabajador</h2>
-                    <br>
-                
+                  <div style="background:#FBFCFC;border: 1px solid #E8D7EA  ;
+    border-radius: 10px;-webkit-box-shadow: 8px 6px 19px 0px rgba(0,0,0,0.62);" class="col-lg-offset-2 col-lg-6">
+    <div class="row">  
+                  <div class="col-sm-6">
+                    <h3 style="border-bottom : 2px solid #D2B4DE">Detalle del trabajador</h3>
+                    </div>
+                  <div class="col-sm-3">
+              <img style="position:absolute;margin-left:-48px;margin-top:16px;" src="{{asset('/img/p.png')}}">
+              </div>
+              </div>
+
+                <br>
                     <form class="form-horizontal">
                                     {{ csrf_field() }}
                                     <div class="form-group">

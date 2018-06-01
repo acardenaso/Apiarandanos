@@ -34,13 +34,18 @@
           <div class="box-body">
 
                <div class="row">
-              <div class="col-sm-offset-1 col-sm-10">
+              <div style="background:#FBFCFC;border: 1px solid #E8D7EA  ;
+    border-radius: 10px;-webkit-box-shadow: 8px 6px 19px 0px rgba(0,0,0,0.62);" class="col-sm-offset-1 col-sm-10">
                 <div class="row">  
-                  <div class="col-sm-10">
-                    <h2 style="border-bottom : 1px solid gray">Editar: {{ $article->nombre_articulo }}</h2>
-                  </div>
-                </div>
+                  <div class="col-sm-5">
+                    <h3 style="border-bottom : 1px solid #D2B4DE">Editar: {{ $article->nombre_articulo }}</h3>
+                    </div>
+                  <div class="col-sm-3">
+              <img style="position:absolute;margin-left:-58px;margin-top:16px;" src="{{asset('/img/a.png')}}">
+              </div>
+              </div>
 
+                <br>
                   <form class="form-horizontal" method="post" action="{{ url('/admin/inventories/'.$article->id.'/edit') }}">
                     {{ csrf_field() }}
                     <div class="row">
@@ -54,14 +59,14 @@
                 
 
                     <div class="col-sm-2">
-                        <label for="min_stock" class="control-label">Stock Mínimo  <i data-toggle="tooltip" title="Genera una alerta si el stock es menor o igual al inventario inicial" class="fa fa-question-circle" aria-hidden="true"></i></label>
+                        <label for="min_stock" class="control-label">Stock Mínimo  <i data-toggle="tooltip" title="Genera una alerta si el stock actual es menor o igual al Stock minimo" class="fa fa-question-circle" aria-hidden="true"></i></label>
                       <div class="input-group">
                         <input maxlength="5" type="text" name="min_stock" id="min_stock" class="select-field-guia" value=" {{ $article->min_stock }}" required>
                       </div>
                     </div>
 
                     <div class="col-sm-2">
-                        <label for="min_stock" class="control-label">Stock Inicial </label>
+                        <label for="min_stock" class="control-label">Stock actual</label>
                       <div class="input-group">
                         <input maxlength="5" type="text" name="cantidad" id="min_stock" class="select-field-guia"  value=" {{ $article->cant }}" required>
                       </div>
@@ -92,7 +97,7 @@
                     </div>
 
                     <div class="col-lg-3">
-                        <label for="nombre_articulo" class="control-label">Nombre Artículo</label>
+                        <label for="nombre_articulo" class="control-label">Artículo</label>
                       <div class="input-group">
                         <input maxlength="30" type="text" name="nombre_articulo" id="nombre_articulo" class="select-field" value=" {{ $article->nombre_articulo }}" required>
                       </div>
@@ -115,7 +120,7 @@
                   </div>
 
                   
-                  <div class="col-sm-3">  
+                  <div style="margin-left:-15px"; class="col-sm-3">  
                       <label for="category_id" class="control-label">Categoría</label>
                       <div class="input-group">
                         <select  name="category_id" id="category" class="select-field">
@@ -126,7 +131,7 @@
                       </div>
                   </div>
 
-                  <div class="col-sm-3"> 
+                  <div style="margin-left:8px"; class="col-sm-3"> 
                       <label for="article_states_id" class="control-label">Estado</label>
                       <div class="input-group">
                         <select  name="article_state_id" id="article_state_id" class="select-field">
@@ -138,7 +143,7 @@
                       </div>
                     </div>
               
-                    <div class="col-sm-3"> 
+                    <div style="margin-left:8px"; class="col-sm-3"> 
                        <div id="categoriass" class="col-sm">
                       <label for="sub_category_id" class="control-label">Sub Categoría</label>
                       <div class="input-group">
@@ -165,11 +170,15 @@
                     </div>
                     <br>
 
-                    <div class="form-group">
-                      <div class="col-lg-offset-9 col-lg-3">
-                      <button type="submit" class="buttonna">Actualizar articulo <i class="fa fa-floppy-o"></i></button>
-                      </div>
-                    </div>
+<div class="form-group">
+  <div class="col-lg-offset-7 col-sm-3">
+  <label for="min_stock" class="control-label"></label>
+    <div class="input-group">
+  <button type="submit" class="buttonna">Actualizar articulo <i class="fa fa-floppy-o"></i></button>
+  </div>
+  </div>
+  
+</div>
 
                   </form>
 
