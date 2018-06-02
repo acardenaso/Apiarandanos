@@ -11,8 +11,8 @@
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title"></h3>
-                        <a type="button" href="{{url('/admin/users')}}" class="btn btn-success">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>
+                        <a type="button" href="{{url('/admin/users')}}">
+                        <img class="l" src="{{asset('/img/l.png')}}"></a>
                         <div class="box-tools pull-right">
                             <button class="btn btn-box-tool" data-widget="collapse">
                                 <i class="fa fa-minus"></i>
@@ -35,17 +35,20 @@
                         </div>
                         @endif
                         <div class="row">
-                            <div class="col-lg-offset-1 col-lg-10">
-                                <div class="col-lg-8">
+                            <div style="background:#FBFCFC;border: 1px solid #E8D7EA  ;
+    border-radius: 10px;-webkit-box-shadow: 8px 6px 19px 0px rgba(0,0,0,0.62);" class="col-lg-offset-1 col-lg-9">
+                                <div class="col-lg-offset-2 col-lg-8">
                                     <h2>Usuario: {{ $users->name }}</h2>
                                 </div>
-
+                              
+                                <img style="margin-top:64px;position:absolute;margin-left:-77px" class="l" src="{{asset('/img/u.png')}}">
+                         
                                 <br>
                                 <form class="form-horizontal" method="post" action="{{ url('/admin/users/'.$users->id.'/edit') }}">
                                     {{ csrf_field() }}
                              
                                         <div class="form-group">
-                                            <div class="col-lg-12">
+                                            <div class="col-lg-offset-2 col-lg-7">
                                                 <h3 style="border-bottom : 1px solid gray">Lista de roles (Seleccione solo una opcion)</h3>
 
                                                 <div class="form-group">
@@ -62,12 +65,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-lg-offset-9 col-lg-2">
+                                        <div class="col-lg-offset-8 col-lg-3">
                                             <button type="submit" class="buttonna">Definir rol
                                                 <i class="fa fa-floppy-o"></i>
                                             </button>
+                                    </div>
+                                    <div class="form-group">
+                                     
                                         </div>
                                     </div>
 

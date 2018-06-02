@@ -21,7 +21,7 @@
                 <div class="box-body">
                 <div class="col-lg-offset-1 col-lg-10">
 
-                  <h1>Mantenedor de Usuarios</h1>
+                  <h1>Usuarios</h1>
                   </div>
                   </div>
                 <div class="row">

@@ -19,7 +19,7 @@
         <div class="box">
           <div class="box-header with-border">
             <h3 class="box-title"></h3>
-            <a type="button"  href="{{url('/admin/inventories')}}" class="btn btn-success"><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>
+            <a type="button"  href="{{url('/admin/inventories')}}"><img class="l" src="{{asset('/img/l.png')}}"></a>
             <div class="box-tools pull-right">
               <button class="btn btn-box-tool" data-widget="collapse">
                 <i class="fa fa-minus"></i>
@@ -37,7 +37,7 @@
               <div style="background:#FBFCFC;border: 1px solid #E8D7EA  ;
     border-radius: 10px;-webkit-box-shadow: 8px 6px 19px 0px rgba(0,0,0,0.62);" class="col-sm-offset-1 col-sm-10">
                 <div class="row">  
-                  <div class="col-sm-5">
+                  <div class="col-sm-offset-1 col-sm-5">
                     <h3 style="border-bottom : 1px solid #D2B4DE">Editar: {{ $article->nombre_articulo }}</h3>
                     </div>
                   <div class="col-sm-3">
@@ -49,7 +49,7 @@
                   <form class="form-horizontal" method="post" action="{{ url('/admin/inventories/'.$article->id.'/edit') }}">
                     {{ csrf_field() }}
                     <div class="row">
-                    <div class="col-sm-2">
+                    <div class="col-sm-offset-1 col-sm-2">
                         <label for="guia" class="control-label">N° Guia</label>
                       <div class="input-group">
                         <input maxlength="7" type="text" name="guia" id="guia" class="select-field-guia"  value=" {{ $article->guia }}" required>
@@ -89,7 +89,7 @@
                   </div>
                     
                   <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-sm-offset-1 col-lg-3">
                         <label for="fecha" class="control-label">Fecha</label>
                       <div class="input-group">
                         <input type="text" name="fecha" id="fecha" class="select-field"  value=" {{ $article->fecha }}" required>
@@ -120,7 +120,7 @@
                   </div>
 
                   
-                  <div style="margin-left:-15px"; class="col-sm-3">  
+                  <div style="margin-left:60px"; class="col-sm-offset-1 col-sm-3">  
                       <label for="category_id" class="control-label">Categoría</label>
                       <div class="input-group">
                         <select  name="category_id" id="category" class="select-field">

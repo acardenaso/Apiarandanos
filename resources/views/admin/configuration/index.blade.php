@@ -24,14 +24,21 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-          <div class="row">
-          <div class="col-lg-offset-1 col-lg-10">
-            <h2 style="border-bottom : 1px solid gray">Configuración General de Sistema</h2>
+          <div  class="row">
+          <div  class="col-lg-offset-1 col-lg-10">
+            
             </div>
             </div>
-            <div class="content ">
-              <div class="row">
-              <div class="col-lg-offset-1 col-lg-10">
+            <div  style="background:#FBFCFC;border: 1px solid #E8D7EA  ;
+    border-radius: 10px;-webkit-box-shadow: 8px 6px 19px 0px rgba(0,0,0,0.62);" class="col-lg-offset-2 col-sm-5 ">
+              <div  class="row">
+              <div class="col-lg-offset-1 col-sm-9">
+              <h3 style="border-bottom : 1px solid #D2B4DE">Configuración del Sistema</h3>
+              </div>
+              <div  class="col-sm">
+              <img style="margin-left:-40px;margin-top:15px" class="l" src="{{asset('/img/co.png')}}">
+              </div>
+              <div class="col-lg-offset-1 col-lg-8">
                 <div class="col-sm-12">
                   <a title="Cree, edite y elimine Cargos" data-target="#ModalCT" data-toggle="modal" type="button" class="btn btn-outline-primary">
                     <i class="material-icons">copyright</i> Cargos</a>
@@ -144,12 +151,12 @@
                                     <td>{{ $position->descripcion }}</td>
                                     <td class="td-actions">
 
-                                      <a href="{{ url('/admin/positions/'.$position->id.'/edit') }}" class="btn btn-xs btn-warning" data-toggle="tooltip" title="editar Cargo">
+                                      <a href="{{ url('/admin/positions/'.$position->id.'/edit') }}" class="buttonne-sm" data-toggle="tooltip" title="editar Cargo">
                                         <i class="fa fa-pencil"></i>
                                       </a>
                                       <form style="display:inline-block;" method="post" action="{{ url('/admin/positions/'.$position->id.'/delete') }}">
                                         {{ csrf_field() }}
-                                        <button type="submit" class="btn btn-xs btn-danger" data-toggle="tooltip" title="eliminar Cargo">
+                                        <button type="submit" class="buttonnde-sm" data-toggle="tooltip" title="eliminar Cargo">
                                           <i class="fa fa-trash"></i>
                                         </button>
                                       </form>

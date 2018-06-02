@@ -24,7 +24,7 @@
           <!-- /.box-header -->
           <div class="box-body">
             <div class="col-lg-offset-1 col-lg-10">
-              <h2>Maestro de Huertos</h2>
+              <h2>Huertos</h2>
             </div>
           </div>
           <div class="row">
