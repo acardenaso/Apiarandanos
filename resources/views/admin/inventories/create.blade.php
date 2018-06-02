@@ -51,7 +51,7 @@
                   {{ csrf_field() }}
                   
                   <div class="row">
-                    <div class="col-sm-offset-1  col-sm-2">
+                    <div style="width:100px" class="col-sm-offset-1  col-sm-2">
                         <label for="guia" class="control-label">N° Guia</label>
                       <div class="input-group">
                         <input maxlength="7" type="text" name="guia" id="guia" class="select-field-guia"  value="{{old('guia')}}" required>
@@ -60,21 +60,21 @@
 
                 
 
-                    <div class="col-sm-2">
+                    <div style="width:129px" class="col-sm-2">
                         <label for="min_stock" class="control-label">Stock Mínimo  <i data-toggle="tooltip" title="Genera una alerta si el stock es menor o igual al inventario inicial" class="fa fa-question-circle" aria-hidden="true"></i></label>
                       <div class="input-group">
                         <input maxlength="5" type="text" name="min_stock" id="min_stock" class="select-field-guia" value="{{old('min_stock')}}" required>
                       </div>
                     </div>
 
-                    <div class="col-sm-2">
+                    <div style="width:111px" class="col-sm-2">
                         <label for="min_stock" class="control-label">Stock Inicial </label>
                       <div class="input-group">
                         <input maxlength="5" type="text" name="cantidad" id="min_stock" class="select-field-guia"  value="{{old('cantidad')}}" required>
                       </div>
                     </div>
 
-                    <div id="sagg" class="col-sm-2 hidden">
+                    <div style="width:140px" id="sagg" class="col-sm-2 hidden">
                         <label for="sag" class="control-label">N° Sag </label>
                       <div class="input-group">
                         <input  maxlength="5" type="text" name="sag" id="sag" class="select-field-guia"  value="{{old('sag')}}">
