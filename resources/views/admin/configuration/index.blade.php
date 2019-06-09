@@ -584,7 +584,7 @@
                         <a href="{{ url('/admin/categories/'.$categorie->id.'/edit') }}" class="btn btn-xs btn-warning" data-toggle="tooltip" title="editar Categoria">
                           <i class="fa fa-pencil"></i>
                         </a>
-                  
+                      
                       </td>
                     </tr>
                   </tbody>

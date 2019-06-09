@@ -310,7 +310,7 @@ document.getElementById('logout-form').submit();">
         })
 
         $('#category').on('change', function(){
-    var valor = $(this).val();
+        var valor = $(this).val();
           if(valor == 10){
             $("#sagg").removeClass("hidden");
             $("#reingresoo").removeClass("hidden");
